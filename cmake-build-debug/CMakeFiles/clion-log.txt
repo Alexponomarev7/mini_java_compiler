@@ -1,5 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/lexolordan/compilers/compiler
--- Found Bison keg installed by Homebrew at /usr/local/opt/bison
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/lexolordan/compilers/compiler/cmake-build-debug
