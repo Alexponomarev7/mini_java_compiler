@@ -4,6 +4,7 @@
 #include "components/base.h"
 
 class Statement : BaseElement {
+public:
     virtual void Accept(Visitor* visitor) = 0;
 };
 

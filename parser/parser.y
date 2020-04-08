@@ -77,6 +77,7 @@
     MAIN        "public static void main"
     PUBLIC      "public"
     THIS        "this"
+    LENGTH      "length"
 
     // literals
     TRUE        "true"
@@ -122,7 +123,7 @@
 unit: mainClass classes { $$ = new Program($1, $2); driver.program = $$; };
 
 mainClass:
-    "class" "identifier" "{" "public static void main" "(" ")" "{" statements "}"
+    "class" "identifier" "{" "public static void main" "(" ")" "{" statements "}" "}"
     { $$ = new MainClass($2, std::move($8)); }
 
 extension:
@@ -156,10 +157,10 @@ methodDeclaration:
 formal:
     type "identifier" { $$ = new Formal($1, $2); }
 
-// TODO fix
 formals:
     %empty {}
-    | formals formal { $$ = std::move($1); $$.push_back($2); }
+    | formal { $$ = std::vector<Formal*>(); $$.push_back($1); }
+    | formals "," formal { $$ = std::move($1); $$.push_back($3); }
 
 type:
     simpleType { $$ = $1; }
@@ -178,7 +179,7 @@ typeIdentifier:
     "identifier" { $$ = $1; }
 
 statement:
-    "assert" "(" expr ")" { $$ = new AssertStatement($3); }
+    "assert" "(" expr ")" ";" { $$ = new AssertStatement($3); }
     | localVariableDeclaration { $$ = new LocalVariableDeclarationStatement($1); }
     | "{" statements "}" { $$ = new ScopeStatements($2); }
     | "if" "(" expr ")" statement { $$ = new IfStatement($3, $5); }
@@ -208,8 +209,8 @@ lvalue:
 
 expr:
     expr binaryOperator expr { $$ = new BinaryExpression($1, $3, $2); }
-    | expr "[" expr "]" {}
-    | expr "." "length"
+    | expr "[" expr "]" { $$ = new InverseExpression($1); } // need fix
+    | expr "." "length" { $$ = new InverseExpression($1); } // need fix
     | "new" simpleType "[" expr "]" { $$ = new ArrayMakeExpression($2, $4); }
     | "new" typeIdentifier "(" ")" { $$ = new ObjectMakeExpression($2); }
     | "!" expr { $$ = new InverseExpression($2); }

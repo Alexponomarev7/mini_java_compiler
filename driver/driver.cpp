@@ -30,6 +30,11 @@ void Driver::scan_begin() {
   }
 }
 
+void Driver::PrintTree(const std::string& filename) {
+    PrintVisitor visitor(filename);
+    visitor.Visit(program);
+}
+
 void Driver::scan_end()
 {
     stream.close();

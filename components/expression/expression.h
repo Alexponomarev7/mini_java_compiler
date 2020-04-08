@@ -4,6 +4,7 @@
 #include "components/base.h"
 
 class Expression : public BaseElement {
+public:
     virtual void Accept(Visitor* visitor) = 0;
 };
 

@@ -13,6 +13,8 @@ public:
 
 private:
     TypeIdentifier typeIdentifier_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_OBJECT_MAKE_EXPRESSION_H

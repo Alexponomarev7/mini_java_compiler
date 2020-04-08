@@ -17,6 +17,8 @@ public:
 private:
     Expression* expr_;
     Identifier id_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_METHOD_INVOCATION_H

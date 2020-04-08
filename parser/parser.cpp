@@ -293,11 +293,11 @@ namespace yy {
         value.YY_MOVE_OR_COPY< VariableDeclaration* > (YY_MOVE (that.value));
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -380,11 +380,11 @@ namespace yy {
         value.move< VariableDeclaration* > (YY_MOVE (that.value));
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.move< int > (YY_MOVE (that.value));
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -467,11 +467,11 @@ namespace yy {
         value.copy< VariableDeclaration* > (that.value);
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.copy< int > (that.value);
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -553,11 +553,11 @@ namespace yy {
         value.move< VariableDeclaration* > (that.value);
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.move< int > (that.value);
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -875,11 +875,11 @@ namespace yy {
         yylhs.value.emplace< VariableDeclaration* > ();
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         yylhs.value.emplace< int > ();
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -927,85 +927,85 @@ namespace yy {
           switch (yyn)
             {
   case 2:
-#line 122 "parser/parser.y"
+#line 123 "parser/parser.y"
                         { yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < MainClass* > (), yystack_[0].value.as < std::vector<Class*> > ()); driver.program = yylhs.value.as < Program* > (); }
 #line 933 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 3:
-#line 126 "parser/parser.y"
-    { yylhs.value.as < MainClass* > () = new MainClass(yystack_[7].value.as < std::string > (), std::move(yystack_[1].value.as < std::vector<Statement*> > ())); }
+#line 127 "parser/parser.y"
+    { yylhs.value.as < MainClass* > () = new MainClass(yystack_[8].value.as < std::string > (), std::move(yystack_[2].value.as < std::vector<Statement*> > ())); }
 #line 939 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 4:
-#line 129 "parser/parser.y"
+#line 130 "parser/parser.y"
            { yylhs.value.as < std::string > () = ""; }
 #line 945 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 5:
-#line 130 "parser/parser.y"
+#line 131 "parser/parser.y"
                              { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 951 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 6:
-#line 134 "parser/parser.y"
+#line 135 "parser/parser.y"
     { yylhs.value.as < Class* > () = new Class(yystack_[4].value.as < std::string > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<Declaration*> > ()); }
 #line 957 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 7:
-#line 137 "parser/parser.y"
+#line 138 "parser/parser.y"
            {}
 #line 963 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 8:
-#line 138 "parser/parser.y"
+#line 139 "parser/parser.y"
                     { yylhs.value.as < std::vector<Class*> > () = std::move(yystack_[1].value.as < std::vector<Class*> > ()); yylhs.value.as < std::vector<Class*> > ().push_back(yystack_[0].value.as < Class* > ()); }
 #line 969 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 9:
-#line 141 "parser/parser.y"
+#line 142 "parser/parser.y"
                         { yylhs.value.as < Declaration* > () = yystack_[0].value.as < VariableDeclaration* > (); }
 #line 975 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 10:
-#line 142 "parser/parser.y"
+#line 143 "parser/parser.y"
                         { yylhs.value.as < Declaration* > () = yystack_[0].value.as < MethodDeclaration* > (); }
 #line 981 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 11:
-#line 145 "parser/parser.y"
+#line 146 "parser/parser.y"
            {}
 #line 987 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 12:
-#line 146 "parser/parser.y"
+#line 147 "parser/parser.y"
                                { yylhs.value.as < std::vector<Declaration*> > () = std::move(yystack_[1].value.as < std::vector<Declaration*> > ()); yylhs.value.as < std::vector<Declaration*> > ().push_back(yystack_[0].value.as < Declaration* > ()); }
 #line 993 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 13:
-#line 150 "parser/parser.y"
+#line 151 "parser/parser.y"
     { yylhs.value.as < VariableDeclaration* > () = new VariableDeclaration(yystack_[2].value.as < std::string > (), yystack_[1].value.as < std::string > ()); }
 #line 999 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 14:
-#line 154 "parser/parser.y"
+#line 155 "parser/parser.y"
     { yylhs.value.as < MethodDeclaration* > () = new MethodDeclaration(yystack_[7].value.as < std::string > (), yystack_[6].value.as < std::string > (), yystack_[4].value.as < std::vector<Formal*> > (), yystack_[1].value.as < std::vector<Statement*> > ()); }
 #line 1005 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 15:
-#line 157 "parser/parser.y"
+#line 158 "parser/parser.y"
                       { yylhs.value.as < Formal* > () = new Formal(yystack_[1].value.as < std::string > (), yystack_[0].value.as < std::string > ()); }
 #line 1011 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
@@ -1018,294 +1018,300 @@ namespace yy {
 
   case 17:
 #line 162 "parser/parser.y"
-                     { yylhs.value.as < std::vector<Formal*> > () = std::move(yystack_[1].value.as < std::vector<Formal*> > ()); yylhs.value.as < std::vector<Formal*> > ().push_back(yystack_[0].value.as < Formal* > ()); }
+             { yylhs.value.as < std::vector<Formal*> > () = std::vector<Formal*>(); yylhs.value.as < std::vector<Formal*> > ().push_back(yystack_[0].value.as < Formal* > ()); }
 #line 1023 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 18:
-#line 165 "parser/parser.y"
-               { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 163 "parser/parser.y"
+                         { yylhs.value.as < std::vector<Formal*> > () = std::move(yystack_[2].value.as < std::vector<Formal*> > ()); yylhs.value.as < std::vector<Formal*> > ().push_back(yystack_[0].value.as < Formal* > ()); }
 #line 1029 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 19:
 #line 166 "parser/parser.y"
-                { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+               { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1035 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 20:
-#line 169 "parser/parser.y"
-          { yylhs.value.as < std::string > () = "int"; }
+#line 167 "parser/parser.y"
+                { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1041 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 21:
 #line 170 "parser/parser.y"
-                { yylhs.value.as < std::string > () = "boolean"; }
+          { yylhs.value.as < std::string > () = "int"; }
 #line 1047 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 22:
 #line 171 "parser/parser.y"
-             { yylhs.value.as < std::string > () = "void"; }
+                { yylhs.value.as < std::string > () = "boolean"; }
 #line 1053 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 23:
 #line 172 "parser/parser.y"
-                     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+             { yylhs.value.as < std::string > () = "void"; }
 #line 1059 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 24:
-#line 175 "parser/parser.y"
-                       { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > (); }
+#line 173 "parser/parser.y"
+                     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1065 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 25:
-#line 178 "parser/parser.y"
-                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 176 "parser/parser.y"
+                       { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > (); }
 #line 1071 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 26:
-#line 181 "parser/parser.y"
-                          { yylhs.value.as < Statement* > () = new AssertStatement(yystack_[1].value.as < Expression* > ()); }
+#line 179 "parser/parser.y"
+                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1077 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 27:
 #line 182 "parser/parser.y"
-                               { yylhs.value.as < Statement* > () = new LocalVariableDeclarationStatement(yystack_[0].value.as < VariableDeclaration* > ()); }
+                              { yylhs.value.as < Statement* > () = new AssertStatement(yystack_[2].value.as < Expression* > ()); }
 #line 1083 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 28:
 #line 183 "parser/parser.y"
-                         { yylhs.value.as < Statement* > () = new ScopeStatements(yystack_[1].value.as < std::vector<Statement*> > ()); }
+                               { yylhs.value.as < Statement* > () = new LocalVariableDeclarationStatement(yystack_[0].value.as < VariableDeclaration* > ()); }
 #line 1089 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 29:
 #line 184 "parser/parser.y"
-                                  { yylhs.value.as < Statement* > () = new IfStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
+                         { yylhs.value.as < Statement* > () = new ScopeStatements(yystack_[1].value.as < std::vector<Statement*> > ()); }
 #line 1095 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 30:
 #line 185 "parser/parser.y"
-                                                   { yylhs.value.as < Statement* > () = new IfElseStatement(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Statement* > (), yystack_[0].value.as < Statement* > ()); }
+                                  { yylhs.value.as < Statement* > () = new IfStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
 #line 1101 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 31:
 #line 186 "parser/parser.y"
-                                     { yylhs.value.as < Statement* > () = new WhileStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
+                                                   { yylhs.value.as < Statement* > () = new IfElseStatement(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Statement* > (), yystack_[0].value.as < Statement* > ()); }
 #line 1107 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 32:
 #line 187 "parser/parser.y"
-                                            { yylhs.value.as < Statement* > () = new PrintlnStatement(yystack_[2].value.as < Expression* > ()); }
+                                     { yylhs.value.as < Statement* > () = new WhileStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
 #line 1113 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 33:
 #line 188 "parser/parser.y"
-                          { yylhs.value.as < Statement* > () = new SetLvalueStatement(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
+                                            { yylhs.value.as < Statement* > () = new PrintlnStatement(yystack_[2].value.as < Expression* > ()); }
 #line 1119 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 34:
 #line 189 "parser/parser.y"
-                        { yylhs.value.as < Statement* > () = new ReturnStatement(yystack_[1].value.as < Expression* > ()); }
+                          { yylhs.value.as < Statement* > () = new SetLvalueStatement(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
 #line 1125 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 35:
 #line 190 "parser/parser.y"
-                           { yylhs.value.as < Statement* > () = new MethodInvocationStatement(yystack_[1].value.as < MethodInvocation* > ()); }
+                        { yylhs.value.as < Statement* > () = new ReturnStatement(yystack_[1].value.as < Expression* > ()); }
 #line 1131 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 36:
-#line 193 "parser/parser.y"
-           {}
+#line 191 "parser/parser.y"
+                           { yylhs.value.as < Statement* > () = new MethodInvocationStatement(yystack_[1].value.as < MethodInvocation* > ()); }
 #line 1137 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 37:
 #line 194 "parser/parser.y"
-                           { yylhs.value.as < std::vector<Statement*> > () = std::move(yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < std::vector<Statement*> > ().push_back(yystack_[0].value.as < Statement* > ()); }
+           {}
 #line 1143 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 38:
-#line 198 "parser/parser.y"
-                        { yylhs.value.as < VariableDeclaration* > () = yystack_[0].value.as < VariableDeclaration* > (); }
+#line 195 "parser/parser.y"
+                           { yylhs.value.as < std::vector<Statement*> > () = std::move(yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < std::vector<Statement*> > ().push_back(yystack_[0].value.as < Statement* > ()); }
 #line 1149 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 39:
-#line 202 "parser/parser.y"
-                                  { yylhs.value.as < MethodInvocation* > () = new MethodInvocation(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < std::string > ()); }
+#line 199 "parser/parser.y"
+                        { yylhs.value.as < VariableDeclaration* > () = yystack_[0].value.as < VariableDeclaration* > (); }
 #line 1155 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 40:
-#line 206 "parser/parser.y"
-                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 203 "parser/parser.y"
+                                  { yylhs.value.as < MethodInvocation* > () = new MethodInvocation(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < std::string > ()); }
 #line 1161 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 41:
 #line 207 "parser/parser.y"
-                                { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > (); }
+                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1167 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 42:
-#line 210 "parser/parser.y"
-                             { yylhs.value.as < Expression* > () = new BinaryExpression(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > (), yystack_[1].value.as < std::string > ()); }
+#line 208 "parser/parser.y"
+                                { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > (); }
 #line 1173 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 43:
 #line 211 "parser/parser.y"
-                        {}
+                             { yylhs.value.as < Expression* > () = new BinaryExpression(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > (), yystack_[1].value.as < std::string > ()); }
 #line 1179 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 44:
 #line 212 "parser/parser.y"
-      { yylhs.value.as < Expression* > () = yystack_[2].value.as < Expression* > (); }
+                        { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[3].value.as < Expression* > ()); }
 #line 1185 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 45:
 #line 213 "parser/parser.y"
-                                    { yylhs.value.as < Expression* > () = new ArrayMakeExpression(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
+                        { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[2].value.as < Expression* > ()); }
 #line 1191 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 46:
 #line 214 "parser/parser.y"
-                                   { yylhs.value.as < Expression* > () = new ObjectMakeExpression(yystack_[2].value.as < std::string > ()); }
+                                    { yylhs.value.as < Expression* > () = new ArrayMakeExpression(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
 #line 1197 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 47:
 #line 215 "parser/parser.y"
-               { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[0].value.as < Expression* > ()); }
+                                   { yylhs.value.as < Expression* > () = new ObjectMakeExpression(yystack_[2].value.as < std::string > ()); }
 #line 1203 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 48:
 #line 216 "parser/parser.y"
-                   { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); }
+               { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[0].value.as < Expression* > ()); }
 #line 1209 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 49:
 #line 217 "parser/parser.y"
-                   { yylhs.value.as < Expression* > () = new SimpleExpression(yystack_[0].value.as < std::string > ()); }
+                   { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); }
 #line 1215 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 50:
 #line 218 "parser/parser.y"
-               { yylhs.value.as < Expression* > () = new SimpleExpression(std::to_string(yystack_[0].value.as < int > ())); }
+                   { yylhs.value.as < Expression* > () = new SimpleExpression(yystack_[0].value.as < std::string > ()); }
 #line 1221 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 51:
 #line 219 "parser/parser.y"
-             { yylhs.value.as < Expression* > () = new SimpleExpression("this"); }
+               { yylhs.value.as < Expression* > () = new SimpleExpression(std::to_string(yystack_[0].value.as < int > ())); }
 #line 1227 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 52:
 #line 220 "parser/parser.y"
-             { yylhs.value.as < Expression* > () = new SimpleExpression("true"); }
+             { yylhs.value.as < Expression* > () = new SimpleExpression("this"); }
 #line 1233 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 53:
 #line 221 "parser/parser.y"
-              { yylhs.value.as < Expression* > () = new SimpleExpression("false"); }
+             { yylhs.value.as < Expression* > () = new SimpleExpression("true"); }
 #line 1239 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 54:
 #line 222 "parser/parser.y"
-                       { yylhs.value.as < Expression* > () = new MethodInvocationExpression(yystack_[0].value.as < MethodInvocation* > ()); }
+              { yylhs.value.as < Expression* > () = new SimpleExpression("false"); }
 #line 1245 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 55:
-#line 228 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "&&"; }
+#line 223 "parser/parser.y"
+                       { yylhs.value.as < Expression* > () = new MethodInvocationExpression(yystack_[0].value.as < MethodInvocation* > ()); }
 #line 1251 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 56:
 #line 229 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "||"; }
+           { yylhs.value.as < std::string > () = "&&"; }
 #line 1257 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 57:
 #line 230 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "<"; }
+           { yylhs.value.as < std::string > () = "||"; }
 #line 1263 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 58:
 #line 231 "parser/parser.y"
-           { yylhs.value.as < std::string > () = ">"; }
+           { yylhs.value.as < std::string > () = "<"; }
 #line 1269 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 59:
 #line 232 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "=="; }
+           { yylhs.value.as < std::string > () = ">"; }
 #line 1275 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 60:
 #line 233 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "+"; }
+           { yylhs.value.as < std::string > () = "=="; }
 #line 1281 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 61:
 #line 234 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "-"; }
+           { yylhs.value.as < std::string > () = "+"; }
 #line 1287 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 62:
 #line 235 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "*"; }
+           { yylhs.value.as < std::string > () = "-"; }
 #line 1293 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 63:
 #line 236 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "/"; }
+           { yylhs.value.as < std::string > () = "*"; }
 #line 1299 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 64:
 #line 237 "parser/parser.y"
-           { yylhs.value.as < std::string > () = "%"; }
+           { yylhs.value.as < std::string > () = "/"; }
 #line 1305 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
+  case 65:
+#line 238 "parser/parser.y"
+           { yylhs.value.as < std::string > () = "%"; }
+#line 1311 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+    break;
 
-#line 1309 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+
+#line 1315 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
             default:
               break;
@@ -1576,196 +1582,201 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -100;
+  const signed char parser::yypact_ninf_ = -97;
 
-  const signed char parser::yytable_ninf_ = -41;
+  const signed char parser::yytable_ninf_ = -42;
 
   const short
   parser::yypact_[] =
   {
-     -26,   -35,    27,  -100,    12,  -100,    -2,     4,    19,  -100,
-      39,    21,    47,    22,    44,    57,  -100,  -100,  -100,     5,
-     284,  -100,     9,  -100,  -100,  -100,  -100,  -100,  -100,  -100,
-    -100,    49,  -100,    35,    66,  -100,  -100,    66,    64,    67,
-      68,     9,    71,    66,  -100,  -100,  -100,    -5,  -100,  -100,
-    -100,  -100,    70,   274,    65,    50,    73,    75,  -100,    11,
-    -100,   314,   274,    66,    66,    66,    76,    84,    66,    62,
-      66,    66,  -100,  -100,  -100,  -100,  -100,  -100,  -100,  -100,
-    -100,    66,   -29,  -100,    66,  -100,    85,  -100,  -100,  -100,
-    -100,   106,   123,   148,    66,    86,   165,  -100,   190,   207,
-     232,    91,  -100,   274,  -100,  -100,   374,   374,   249,  -100,
-      78,  -100,  -100,  -100,   105,    18,    95,  -100,  -100,  -100,
-    -100,   107,    82,  -100,   374,  -100,  -100,  -100,   344,  -100
+     -24,   -32,    28,   -97,    -7,   -97,    -1,     1,    -3,   -97,
+      40,    23,    55,    26,    59,    60,   -97,   -97,   -97,     6,
+     286,   -97,    10,   -97,   -97,   -97,   -97,   -97,   -97,   -97,
+     -97,    56,   -97,    31,    58,   -97,    57,    58,    66,    67,
+      69,    10,    70,    58,   -97,   -97,   -97,   -11,   -97,   -97,
+     -97,   -97,    72,   278,    63,    48,    74,    71,   -97,    12,
+     -97,   317,   -97,   278,    58,    58,    58,    78,    86,    58,
+      54,    58,    58,   -97,   -97,   -97,   -97,   -97,   -97,   -97,
+     -97,   -97,    58,   -28,   -97,    58,   -97,    89,   -97,   -97,
+     -97,   -97,   110,   127,   152,    58,    90,   169,   -97,   194,
+     211,   236,   -97,    92,   278,    10,    82,   379,   379,   253,
+     -97,    85,   -97,   -97,   -97,    94,    68,   -97,    13,   -97,
+      97,   -97,   -97,   -97,   -97,   -97,    93,    10,   379,   -97,
+     -97,   -97,   348,   -97
   };
 
   const signed char
   parser::yydefact_[] =
   {
        0,     0,     0,     7,     0,     1,     2,     0,     0,     8,
-       0,     4,     0,     0,     0,     0,     5,    11,    36,     0,
-       0,     6,     0,    20,    21,    22,    25,    12,     9,    10,
-      19,    18,    23,     0,     0,    36,     3,     0,     0,     0,
-       0,     0,     0,     0,    51,    52,    53,    49,    50,    38,
-      27,    37,     0,     0,    54,     0,     0,     0,    49,     0,
-      54,     0,    47,     0,     0,     0,     0,    23,     0,     0,
-       0,     0,    55,    56,    57,    58,    59,    60,    61,    62,
-      63,     0,     0,    64,     0,    35,     0,    24,    13,    48,
-      28,     0,     0,     0,     0,     0,     0,    34,     0,     0,
-       0,     0,    44,    42,    16,    26,     0,     0,     0,    46,
-       0,    41,    33,    43,     0,     0,    29,    31,    45,    32,
-      39,     0,     0,    17,     0,    36,    15,    30,     0,    14
+       0,     4,     0,     0,     0,     0,     5,    11,    37,     0,
+       0,     6,     0,    21,    22,    23,    26,    12,     9,    10,
+      20,    19,    24,     0,     0,    37,     0,     0,     0,     0,
+       0,     0,     0,     0,    52,    53,    54,    50,    51,    39,
+      28,    38,     0,     0,    55,     0,     0,     0,    50,     0,
+      55,     0,     3,    48,     0,     0,     0,     0,    24,     0,
+       0,     0,     0,    56,    57,    58,    59,    60,    61,    62,
+      63,    64,     0,     0,    65,     0,    36,     0,    25,    13,
+      49,    29,     0,     0,     0,     0,     0,     0,    35,     0,
+       0,     0,    45,     0,    43,    16,     0,     0,     0,     0,
+      47,     0,    42,    34,    44,     0,     0,    17,     0,    27,
+      30,    32,    46,    33,    40,    15,     0,     0,     0,    37,
+      18,    31,     0,    14
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-    -100,  -100,  -100,  -100,  -100,  -100,  -100,  -100,   104,  -100,
-    -100,   -99,   -33,  -100,    94,    96,   -21,  -100,  -100,  -100,
-     -31,  -100,   -20
+     -97,   -97,   -97,   -97,   -97,   -97,   -97,   -97,   105,   -97,
+     -97,   -96,   -33,   -97,    87,    98,   -21,   -16,   -97,   -97,
+     -29,   -97,   -20
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
       -1,     2,     3,     9,     6,    14,    27,    19,    49,    50,
-      29,    51,    20,    30,    31,    32,    33,   123,   115,    52,
-      53,    84,    60
+      29,    51,    20,    30,    31,    32,    33,   117,   118,    52,
+      53,    85,    60
   };
 
   const short
   parser::yytable_[] =
   {
-      54,    55,    61,    59,     1,     4,    62,   116,   117,   -40,
-      70,   101,    69,   102,    72,    73,    74,    75,    76,    77,
-      78,    79,    80,    21,    89,   127,    81,     5,     8,     7,
-      82,   121,    91,    92,    93,   -25,    10,    96,    22,    98,
-      99,    54,    23,    24,    25,    26,    23,    24,    25,    26,
-     100,    12,    13,   103,    83,    23,    24,    25,    26,    11,
-      15,    17,    16,   108,    56,    72,    73,    74,    75,    76,
-      77,    78,    79,    80,    18,    57,    63,    81,    34,    64,
-      65,    82,    97,    68,    71,    85,    54,    54,    37,    87,
-      86,    94,   128,    41,   122,    88,    95,   104,   119,   109,
-      44,    45,    46,   114,    54,    83,    58,    48,    54,    72,
-      73,    74,    75,    76,    77,    78,    79,    80,   120,   105,
-     124,    81,   126,    28,   125,    82,    72,    73,    74,    75,
-      76,    77,    78,    79,    80,    66,   106,    67,    81,     0,
-       0,     0,    82,     0,     0,     0,     0,     0,     0,    83,
-       0,    72,    73,    74,    75,    76,    77,    78,    79,    80,
-       0,   107,     0,    81,     0,     0,    83,    82,    72,    73,
-      74,    75,    76,    77,    78,    79,    80,     0,   110,     0,
-      81,     0,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,    83,     0,    72,    73,    74,    75,    76,    77,    78,
-      79,    80,     0,     0,     0,    81,   111,     0,    83,    82,
-      72,    73,    74,    75,    76,    77,    78,    79,    80,     0,
-       0,     0,    81,     0,     0,     0,    82,   112,     0,     0,
-       0,     0,     0,    83,     0,    72,    73,    74,    75,    76,
-      77,    78,    79,    80,     0,     0,     0,    81,   113,     0,
-      83,    82,    72,    73,    74,    75,    76,    77,    78,    79,
-      80,     0,     0,     0,    81,   118,     0,     0,    82,     0,
-       0,     0,     0,     0,     0,    83,     0,    72,    73,    74,
-      75,    76,    77,    78,    79,    80,     0,     0,     0,    81,
-       0,     0,    83,    82,     0,     0,    34,     0,     0,     0,
-       0,    35,    36,     0,     0,     0,    37,    38,    39,     0,
-      40,    41,    42,    43,     0,     0,     0,    83,    44,    45,
-      46,    23,    24,    25,    47,    48,    34,     0,     0,     0,
-       0,    35,    90,     0,     0,     0,    37,    38,    39,     0,
-      40,    41,    42,    43,     0,     0,     0,     0,    44,    45,
-      46,    23,    24,    25,    47,    48,    34,     0,     0,     0,
-       0,    35,   129,     0,     0,     0,    37,    38,    39,     0,
-      40,    41,    42,    43,     0,     0,     0,     0,    44,    45,
-      46,    23,    24,    25,    47,    48,    34,     0,     0,     0,
-       0,    35,     0,     0,     0,     0,    37,    38,    39,     0,
-      40,    41,    42,    43,     0,     0,     0,     0,    44,    45,
-      46,    23,    24,    25,    47,    48
+      54,    55,    61,   -41,    71,    59,     1,   102,    63,     4,
+       7,   120,   121,   103,    70,    73,    74,    75,    76,    77,
+      78,    79,    80,    81,    21,    90,   126,    82,     5,     8,
+     -26,    83,   131,    10,   127,    92,    93,    94,    11,    22,
+      97,    54,    99,   100,    23,    24,    25,    26,    23,    24,
+      25,    26,    12,   101,    13,    84,   104,    73,    74,    75,
+      76,    77,    78,    79,    80,    81,   109,    16,    15,    82,
+      34,    56,    57,    83,    98,    62,    17,    18,    64,    65,
+      37,    66,    69,    86,   116,    41,    72,    54,    54,    87,
+      88,    89,    44,    95,    45,    46,   132,    84,    96,    58,
+      48,   105,   119,   110,   115,   123,   116,   124,    54,   125,
+     129,   130,    54,    73,    74,    75,    76,    77,    78,    79,
+      80,    81,   128,   106,    28,    82,     0,     0,    67,    83,
+      73,    74,    75,    76,    77,    78,    79,    80,    81,    68,
+     107,     0,    82,     0,     0,     0,    83,     0,     0,     0,
+       0,     0,     0,    84,     0,    73,    74,    75,    76,    77,
+      78,    79,    80,    81,     0,   108,     0,    82,     0,     0,
+      84,    83,    73,    74,    75,    76,    77,    78,    79,    80,
+      81,     0,   111,     0,    82,     0,     0,     0,    83,     0,
+       0,     0,     0,     0,     0,    84,     0,    73,    74,    75,
+      76,    77,    78,    79,    80,    81,     0,     0,     0,    82,
+     112,     0,    84,    83,    73,    74,    75,    76,    77,    78,
+      79,    80,    81,     0,     0,     0,    82,     0,     0,     0,
+      83,   113,     0,     0,     0,     0,     0,    84,     0,    73,
+      74,    75,    76,    77,    78,    79,    80,    81,     0,     0,
+       0,    82,   114,     0,    84,    83,    73,    74,    75,    76,
+      77,    78,    79,    80,    81,     0,     0,     0,    82,   122,
+       0,     0,    83,     0,     0,     0,     0,     0,     0,    84,
+       0,    73,    74,    75,    76,    77,    78,    79,    80,    81,
+       0,     0,     0,    82,     0,     0,    84,    83,    34,     0,
+       0,     0,     0,    35,    36,     0,     0,     0,    37,    38,
+      39,     0,    40,    41,    42,    43,     0,     0,     0,     0,
+      44,    84,    45,    46,    23,    24,    25,    47,    48,    34,
+       0,     0,     0,     0,    35,    91,     0,     0,     0,    37,
+      38,    39,     0,    40,    41,    42,    43,     0,     0,     0,
+       0,    44,     0,    45,    46,    23,    24,    25,    47,    48,
+      34,     0,     0,     0,     0,    35,   133,     0,     0,     0,
+      37,    38,    39,     0,    40,    41,    42,    43,     0,     0,
+       0,     0,    44,     0,    45,    46,    23,    24,    25,    47,
+      48,    34,     0,     0,     0,     0,    35,     0,     0,     0,
+       0,    37,    38,    39,     0,    40,    41,    42,    43,     0,
+       0,     0,     0,    44,     0,    45,    46,    23,    24,    25,
+      47,    48
   };
 
   const short
   parser::yycheck_[] =
   {
-      20,    22,    35,    34,    30,    40,    37,   106,   107,    14,
-      15,    40,    43,    42,     3,     4,     5,     6,     7,     8,
-       9,    10,    11,    18,    13,   124,    15,     0,    30,    17,
-      19,    13,    63,    64,    65,    40,    32,    68,    33,    70,
-      71,    61,    37,    38,    39,    40,    37,    38,    39,    40,
-      81,    12,    31,    84,    43,    37,    38,    39,    40,    40,
-      13,    17,    40,    94,    15,     3,     4,     5,     6,     7,
-       8,     9,    10,    11,    17,    40,    12,    15,    12,    12,
-      12,    19,    20,    12,    14,    20,   106,   107,    22,    16,
-      40,    15,   125,    27,   115,    20,    12,    12,    20,    13,
-      34,    35,    36,    12,   124,    43,    40,    41,   128,     3,
-       4,     5,     6,     7,     8,     9,    10,    11,    13,    13,
-      25,    15,    40,    19,    17,    19,     3,     4,     5,     6,
-       7,     8,     9,    10,    11,    41,    13,    41,    15,    -1,
-      -1,    -1,    19,    -1,    -1,    -1,    -1,    -1,    -1,    43,
-      -1,     3,     4,     5,     6,     7,     8,     9,    10,    11,
-      -1,    13,    -1,    15,    -1,    -1,    43,    19,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    -1,    13,    -1,
-      15,    -1,    -1,    -1,    19,    -1,    -1,    -1,    -1,    -1,
-      -1,    43,    -1,     3,     4,     5,     6,     7,     8,     9,
-      10,    11,    -1,    -1,    -1,    15,    16,    -1,    43,    19,
-       3,     4,     5,     6,     7,     8,     9,    10,    11,    -1,
-      -1,    -1,    15,    -1,    -1,    -1,    19,    20,    -1,    -1,
+      20,    22,    35,    14,    15,    34,    30,    35,    37,    41,
+      17,   107,   108,    41,    43,     3,     4,     5,     6,     7,
+       8,     9,    10,    11,    18,    13,    13,    15,     0,    30,
+      41,    19,   128,    32,    21,    64,    65,    66,    41,    33,
+      69,    61,    71,    72,    38,    39,    40,    41,    38,    39,
+      40,    41,    12,    82,    31,    43,    85,     3,     4,     5,
+       6,     7,     8,     9,    10,    11,    95,    41,    13,    15,
+      12,    15,    41,    19,    20,    18,    17,    17,    12,    12,
+      22,    12,    12,    20,   105,    27,    14,   107,   108,    41,
+      16,    20,    34,    15,    36,    37,   129,    43,    12,    41,
+      42,    12,    20,    13,    12,    20,   127,    13,   128,    41,
+      17,   127,   132,     3,     4,     5,     6,     7,     8,     9,
+      10,    11,    25,    13,    19,    15,    -1,    -1,    41,    19,
+       3,     4,     5,     6,     7,     8,     9,    10,    11,    41,
+      13,    -1,    15,    -1,    -1,    -1,    19,    -1,    -1,    -1,
       -1,    -1,    -1,    43,    -1,     3,     4,     5,     6,     7,
-       8,     9,    10,    11,    -1,    -1,    -1,    15,    16,    -1,
+       8,     9,    10,    11,    -1,    13,    -1,    15,    -1,    -1,
       43,    19,     3,     4,     5,     6,     7,     8,     9,    10,
-      11,    -1,    -1,    -1,    15,    16,    -1,    -1,    19,    -1,
+      11,    -1,    13,    -1,    15,    -1,    -1,    -1,    19,    -1,
       -1,    -1,    -1,    -1,    -1,    43,    -1,     3,     4,     5,
        6,     7,     8,     9,    10,    11,    -1,    -1,    -1,    15,
-      -1,    -1,    43,    19,    -1,    -1,    12,    -1,    -1,    -1,
-      -1,    17,    18,    -1,    -1,    -1,    22,    23,    24,    -1,
-      26,    27,    28,    29,    -1,    -1,    -1,    43,    34,    35,
-      36,    37,    38,    39,    40,    41,    12,    -1,    -1,    -1,
-      -1,    17,    18,    -1,    -1,    -1,    22,    23,    24,    -1,
-      26,    27,    28,    29,    -1,    -1,    -1,    -1,    34,    35,
-      36,    37,    38,    39,    40,    41,    12,    -1,    -1,    -1,
-      -1,    17,    18,    -1,    -1,    -1,    22,    23,    24,    -1,
-      26,    27,    28,    29,    -1,    -1,    -1,    -1,    34,    35,
-      36,    37,    38,    39,    40,    41,    12,    -1,    -1,    -1,
-      -1,    17,    -1,    -1,    -1,    -1,    22,    23,    24,    -1,
-      26,    27,    28,    29,    -1,    -1,    -1,    -1,    34,    35,
-      36,    37,    38,    39,    40,    41
+      16,    -1,    43,    19,     3,     4,     5,     6,     7,     8,
+       9,    10,    11,    -1,    -1,    -1,    15,    -1,    -1,    -1,
+      19,    20,    -1,    -1,    -1,    -1,    -1,    43,    -1,     3,
+       4,     5,     6,     7,     8,     9,    10,    11,    -1,    -1,
+      -1,    15,    16,    -1,    43,    19,     3,     4,     5,     6,
+       7,     8,     9,    10,    11,    -1,    -1,    -1,    15,    16,
+      -1,    -1,    19,    -1,    -1,    -1,    -1,    -1,    -1,    43,
+      -1,     3,     4,     5,     6,     7,     8,     9,    10,    11,
+      -1,    -1,    -1,    15,    -1,    -1,    43,    19,    12,    -1,
+      -1,    -1,    -1,    17,    18,    -1,    -1,    -1,    22,    23,
+      24,    -1,    26,    27,    28,    29,    -1,    -1,    -1,    -1,
+      34,    43,    36,    37,    38,    39,    40,    41,    42,    12,
+      -1,    -1,    -1,    -1,    17,    18,    -1,    -1,    -1,    22,
+      23,    24,    -1,    26,    27,    28,    29,    -1,    -1,    -1,
+      -1,    34,    -1,    36,    37,    38,    39,    40,    41,    42,
+      12,    -1,    -1,    -1,    -1,    17,    18,    -1,    -1,    -1,
+      22,    23,    24,    -1,    26,    27,    28,    29,    -1,    -1,
+      -1,    -1,    34,    -1,    36,    37,    38,    39,    40,    41,
+      42,    12,    -1,    -1,    -1,    -1,    17,    -1,    -1,    -1,
+      -1,    22,    23,    24,    -1,    26,    27,    28,    29,    -1,
+      -1,    -1,    -1,    34,    -1,    36,    37,    38,    39,    40,
+      41,    42
   };
 
   const signed char
   parser::yystos_[] =
   {
-       0,    30,    45,    46,    40,     0,    48,    17,    30,    47,
-      32,    40,    12,    31,    49,    13,    40,    17,    17,    51,
-      56,    18,    33,    37,    38,    39,    40,    50,    52,    54,
+       0,    30,    45,    46,    41,     0,    48,    17,    30,    47,
+      32,    41,    12,    31,    49,    13,    41,    17,    17,    51,
+      56,    18,    33,    38,    39,    40,    41,    50,    52,    54,
       57,    58,    59,    60,    12,    17,    18,    22,    23,    24,
-      26,    27,    28,    29,    34,    35,    36,    40,    41,    52,
-      53,    55,    63,    64,    66,    60,    15,    40,    40,    64,
-      66,    56,    64,    12,    12,    12,    58,    59,    12,    64,
-      15,    14,     3,     4,     5,     6,     7,     8,     9,    10,
-      11,    15,    19,    43,    65,    20,    40,    16,    20,    13,
-      18,    64,    64,    64,    15,    12,    64,    20,    64,    64,
-      64,    40,    42,    64,    12,    13,    13,    13,    64,    13,
-      13,    16,    20,    16,    12,    62,    55,    55,    16,    20,
-      13,    13,    60,    61,    25,    17,    40,    55,    56,    18
+      26,    27,    28,    29,    34,    36,    37,    41,    42,    52,
+      53,    55,    63,    64,    66,    60,    15,    41,    41,    64,
+      66,    56,    18,    64,    12,    12,    12,    58,    59,    12,
+      64,    15,    14,     3,     4,     5,     6,     7,     8,     9,
+      10,    11,    15,    19,    43,    65,    20,    41,    16,    20,
+      13,    18,    64,    64,    64,    15,    12,    64,    20,    64,
+      64,    64,    35,    41,    64,    12,    13,    13,    13,    64,
+      13,    13,    16,    20,    16,    12,    60,    61,    62,    20,
+      55,    55,    16,    20,    13,    41,    13,    21,    25,    17,
+      61,    55,    56,    18
   };
 
   const signed char
   parser::yyr1_[] =
   {
        0,    44,    45,    46,    49,    49,    47,    48,    48,    50,
-      50,    51,    51,    52,    54,    61,    62,    62,    60,    60,
-      58,    58,    58,    58,    57,    59,    55,    55,    55,    55,
-      55,    55,    55,    55,    55,    55,    56,    56,    53,    66,
-      63,    63,    64,    64,    64,    64,    64,    64,    64,    64,
-      64,    64,    64,    64,    64,    65,    65,    65,    65,    65,
-      65,    65,    65,    65,    65
+      50,    51,    51,    52,    54,    61,    62,    62,    62,    60,
+      60,    58,    58,    58,    58,    57,    59,    55,    55,    55,
+      55,    55,    55,    55,    55,    55,    55,    56,    56,    53,
+      66,    63,    63,    64,    64,    64,    64,    64,    64,    64,
+      64,    64,    64,    64,    64,    64,    65,    65,    65,    65,
+      65,    65,    65,    65,    65,    65
   };
 
   const signed char
   parser::yyr2_[] =
   {
-       0,     2,     2,     9,     0,     2,     6,     0,     2,     1,
-       1,     0,     2,     3,     9,     2,     0,     2,     1,     1,
-       1,     1,     1,     1,     3,     1,     4,     1,     3,     5,
-       7,     5,     5,     4,     3,     2,     0,     2,     1,     5,
-       1,     4,     3,     4,     3,     5,     4,     2,     3,     1,
+       0,     2,     2,    10,     0,     2,     6,     0,     2,     1,
+       1,     0,     2,     3,     9,     2,     0,     1,     3,     1,
+       1,     1,     1,     1,     1,     3,     1,     5,     1,     3,
+       5,     7,     5,     5,     4,     3,     2,     0,     2,     1,
+       5,     1,     4,     3,     4,     3,     5,     4,     2,     3,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1
+       1,     1,     1,     1,     1,     1
   };
 
 
@@ -1780,9 +1791,9 @@ namespace yy {
   "\"=\"", "\"[\"", "\"]\"", "\"{\"", "\"}\"", "\".\"", "\";\"", "\",\"",
   "\"!\"", "\"assert\"", "\"if\"", "\"else\"", "\"while\"", "\"new\"",
   "\"System.out.println\"", "\"return\"", "\"class\"", "\"extends\"",
-  "\"public static void main\"", "\"public\"", "\"this\"", "\"true\"",
-  "\"false\"", "\"int\"", "\"boolean\"", "\"void\"", "\"identifier\"",
-  "\"number\"", "\"length\"", "\"%\"", "$accept", "unit", "mainClass",
+  "\"public static void main\"", "\"public\"", "\"this\"", "\"length\"",
+  "\"true\"", "\"false\"", "\"int\"", "\"boolean\"", "\"void\"",
+  "\"identifier\"", "\"number\"", "\"%\"", "$accept", "unit", "mainClass",
   "class", "classes", "extension", "declaration", "declarations",
   "variableDeclaration", "localVariableDeclaration", "methodDeclaration",
   "statement", "statements", "arrayType", "simpleType", "typeIdentifier",
@@ -1794,13 +1805,13 @@ namespace yy {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,   122,   122,   125,   129,   130,   133,   137,   138,   141,
-     142,   145,   146,   149,   153,   157,   161,   162,   165,   166,
-     169,   170,   171,   172,   175,   178,   181,   182,   183,   184,
-     185,   186,   187,   188,   189,   190,   193,   194,   198,   202,
-     206,   207,   210,   211,   212,   213,   214,   215,   216,   217,
-     218,   219,   220,   221,   222,   228,   229,   230,   231,   232,
-     233,   234,   235,   236,   237
+       0,   123,   123,   126,   130,   131,   134,   138,   139,   142,
+     143,   146,   147,   150,   154,   158,   161,   162,   163,   166,
+     167,   170,   171,   172,   173,   176,   179,   182,   183,   184,
+     185,   186,   187,   188,   189,   190,   191,   194,   195,   199,
+     203,   207,   208,   211,   212,   213,   214,   215,   216,   217,
+     218,   219,   220,   221,   222,   223,   229,   230,   231,   232,
+     233,   234,   235,   236,   237,   238
   };
 
   // Print the state stack on the debug stream.
@@ -1834,9 +1845,9 @@ namespace yy {
 
 
 } // yy
-#line 1838 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1849 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
-#line 239 "parser/parser.y"
+#line 240 "parser/parser.y"
 
 
 void

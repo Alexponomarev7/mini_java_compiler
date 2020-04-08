@@ -17,6 +17,8 @@ public:
 private:
     Expression* expr_;
     Statement* statement_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_WHILE_STATEMENT_H

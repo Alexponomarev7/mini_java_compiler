@@ -525,13 +525,14 @@ namespace yy {
         TOK_MAIN = 287,
         TOK_PUBLIC = 288,
         TOK_THIS = 289,
-        TOK_TRUE = 290,
-        TOK_FALSE = 291,
-        TOK_TYPEINT = 292,
-        TOK_TYPEBOOL = 293,
-        TOK_TYPEVOID = 294,
-        TOK_IDENTIFIER = 295,
-        TOK_NUMBER = 296
+        TOK_LENGTH = 290,
+        TOK_TRUE = 291,
+        TOK_FALSE = 292,
+        TOK_TYPEINT = 293,
+        TOK_TYPEBOOL = 294,
+        TOK_TYPEVOID = 295,
+        TOK_IDENTIFIER = 296,
+        TOK_NUMBER = 297
       };
     };
 
@@ -857,11 +858,11 @@ switch (yytype)
         value.template destroy< VariableDeclaration* > ();
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.template destroy< int > ();
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -964,13 +965,13 @@ switch (yytype)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YY_ASSERT (tok == token::TOK_END || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_EQUAL || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_ASSIGN || tok == token::TOK_LBRACKET || tok == token::TOK_RBRACKET || tok == token::TOK_LBRACE || tok == token::TOK_RBRACE || tok == token::TOK_DOT || tok == token::TOK_ENDLINE || tok == token::TOK_COMMA || tok == token::TOK_NOT || tok == token::TOK_ASSERT || tok == token::TOK_IF || tok == token::TOK_ELSE || tok == token::TOK_WHILE || tok == token::TOK_NEW || tok == token::TOK_PRINTLN || tok == token::TOK_RETURN || tok == token::TOK_CLASS || tok == token::TOK_EXTENDS || tok == token::TOK_MAIN || tok == token::TOK_PUBLIC || tok == token::TOK_THIS || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_TYPEINT || tok == token::TOK_TYPEBOOL || tok == token::TOK_TYPEVOID || tok == 297 || tok == 298);
+        YY_ASSERT (tok == token::TOK_END || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_EQUAL || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_ASSIGN || tok == token::TOK_LBRACKET || tok == token::TOK_RBRACKET || tok == token::TOK_LBRACE || tok == token::TOK_RBRACE || tok == token::TOK_DOT || tok == token::TOK_ENDLINE || tok == token::TOK_COMMA || tok == token::TOK_NOT || tok == token::TOK_ASSERT || tok == token::TOK_IF || tok == token::TOK_ELSE || tok == token::TOK_WHILE || tok == token::TOK_NEW || tok == token::TOK_PRINTLN || tok == token::TOK_RETURN || tok == token::TOK_CLASS || tok == token::TOK_EXTENDS || tok == token::TOK_MAIN || tok == token::TOK_PUBLIC || tok == token::TOK_THIS || tok == token::TOK_LENGTH || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_TYPEINT || tok == token::TOK_TYPEBOOL || tok == token::TOK_TYPEVOID || tok == 298);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YY_ASSERT (tok == token::TOK_END || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_EQUAL || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_ASSIGN || tok == token::TOK_LBRACKET || tok == token::TOK_RBRACKET || tok == token::TOK_LBRACE || tok == token::TOK_RBRACE || tok == token::TOK_DOT || tok == token::TOK_ENDLINE || tok == token::TOK_COMMA || tok == token::TOK_NOT || tok == token::TOK_ASSERT || tok == token::TOK_IF || tok == token::TOK_ELSE || tok == token::TOK_WHILE || tok == token::TOK_NEW || tok == token::TOK_PRINTLN || tok == token::TOK_RETURN || tok == token::TOK_CLASS || tok == token::TOK_EXTENDS || tok == token::TOK_MAIN || tok == token::TOK_PUBLIC || tok == token::TOK_THIS || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_TYPEINT || tok == token::TOK_TYPEBOOL || tok == token::TOK_TYPEVOID || tok == 297 || tok == 298);
+        YY_ASSERT (tok == token::TOK_END || tok == token::TOK_AND || tok == token::TOK_OR || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_EQUAL || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_ASSIGN || tok == token::TOK_LBRACKET || tok == token::TOK_RBRACKET || tok == token::TOK_LBRACE || tok == token::TOK_RBRACE || tok == token::TOK_DOT || tok == token::TOK_ENDLINE || tok == token::TOK_COMMA || tok == token::TOK_NOT || tok == token::TOK_ASSERT || tok == token::TOK_IF || tok == token::TOK_ELSE || tok == token::TOK_WHILE || tok == token::TOK_NEW || tok == token::TOK_PRINTLN || tok == token::TOK_RETURN || tok == token::TOK_CLASS || tok == token::TOK_EXTENDS || tok == token::TOK_MAIN || tok == token::TOK_PUBLIC || tok == token::TOK_THIS || tok == token::TOK_LENGTH || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_TYPEINT || tok == token::TOK_TYPEBOOL || tok == token::TOK_TYPEVOID || tok == 298);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1534,6 +1535,21 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_LENGTH (location_type l)
+      {
+        return symbol_type (token::TOK_LENGTH, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_LENGTH (const location_type& l)
+      {
+        return symbol_type (token::TOK_LENGTH, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_TRUE (location_type l)
       {
         return symbol_type (token::TOK_TRUE, std::move (l));
@@ -1942,7 +1958,7 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 415,     ///< Last index in yytable_.
+      yylast_ = 421,     ///< Last index in yytable_.
       yynnts_ = 23,  ///< Number of nonterminal symbols.
       yyfinal_ = 5, ///< Termination state number.
       yyntokens_ = 44  ///< Number of tokens.
@@ -2056,11 +2072,11 @@ switch (yytype)
         value.move< VariableDeclaration* > (std::move (that.value));
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.move< int > (std::move (that.value));
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -2143,11 +2159,11 @@ switch (yytype)
         value.copy< VariableDeclaration* > (YY_MOVE (that.value));
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.copy< int > (YY_MOVE (that.value));
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -2237,11 +2253,11 @@ switch (yytype)
         value.move< VariableDeclaration* > (YY_MOVE (s.value));
         break;
 
-      case 41: // "number"
+      case 42: // "number"
         value.move< int > (YY_MOVE (s.value));
         break;
 
-      case 40: // "identifier"
+      case 41: // "identifier"
       case 49: // extension
       case 57: // arrayType
       case 58: // simpleType
@@ -2323,7 +2339,7 @@ switch (yytype)
   }
 
 } // yy
-#line 2327 "/Users/lexolordan/compilers/compiler/parser/parser.hh"
+#line 2343 "/Users/lexolordan/compilers/compiler/parser/parser.hh"
 
 
 

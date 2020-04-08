@@ -20,6 +20,8 @@ private:
     Identifier id_;
     Extension extension_;
     std::vector<Declaration*> declarations_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_CLASS_H

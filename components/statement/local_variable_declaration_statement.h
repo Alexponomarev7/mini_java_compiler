@@ -15,6 +15,8 @@ public:
 
 private:
     VariableDeclaration* variableDeclaration_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_LOCAL_VARIABLE_DECLARATION_STATEMENT_H

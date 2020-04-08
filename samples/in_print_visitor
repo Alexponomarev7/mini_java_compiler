@@ -1,0 +1,48 @@
+class Main {
+    public static void main() {
+        int x;
+        x = 5;
+
+        if (x == 2)
+            x = 3;
+
+        if (x > 2) {
+            x = 6;
+        } else {
+            System.out.println(x);
+        }
+
+        return 0;
+    }
+}
+
+class Test {
+    int x;
+
+    public void set() {
+        x = 6;
+    }
+
+    public void run() {
+        this.set();
+    }
+}
+
+class TestExtends extends Test {
+    public void printOne(int x) {
+        System.out.println(x);
+        assert(true);
+    }
+
+    public void printTwo(int x, int y) {
+        System.out.println(x);
+        System.out.println(y);
+    }
+
+    public void main() {
+        Test test;
+        test = new Test();
+
+        test.run();
+    }
+}

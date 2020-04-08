@@ -15,6 +15,8 @@ public:
 
 private:
     Expression* expr_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_RETURN_STATEMENT_H

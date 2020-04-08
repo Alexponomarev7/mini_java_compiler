@@ -17,6 +17,8 @@ public:
 private:
     Type type_;
     Identifier id_;
+
+    friend class PrintVisitor;
 };
 
 

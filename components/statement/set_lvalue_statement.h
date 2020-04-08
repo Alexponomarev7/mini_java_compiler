@@ -17,6 +17,8 @@ public:
 private:
     Lvalue lvalue_;
     Expression* expr_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_SET_LVALUE_STATEMENT_H

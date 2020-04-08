@@ -10,13 +10,15 @@ public:
         , statements_(std::move(statements))
     {}
 
-    void Accept(Visitor* visitor) {
+    void Accept(Visitor* visitor) override {
         visitor->Visit(this);
     }
 
 private:
     Identifier id_;
     std::vector<Statement*> statements_;
+
+    friend PrintVisitor;
 };
 
 #endif //COMPILER_MAIN_CLASS_H

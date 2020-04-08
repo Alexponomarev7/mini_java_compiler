@@ -19,6 +19,8 @@ private:
     Expression* leftExpr_;
     Expression* rightExpr_;
     BinaryOperator binaryOperator_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_BINARY_EXPRESSION_H

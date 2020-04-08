@@ -77,6 +77,7 @@ main  public[ ]static[ ]void[ ]main
 {main}     return yy::parser::make_MAIN     (loc);
 "public"   return yy::parser::make_PUBLIC   (loc);
 "this"     return yy::parser::make_THIS     (loc);
+"length"   return yy::parser::make_LENGTH   (loc);
 
 {int}      return make_NUMBER       (yytext, loc);
 "true"     return yy::parser::make_TRUE     (loc);

@@ -19,6 +19,8 @@ private:
     Expression* expr_;
     Statement* if_statement_;
     Statement* else_statement_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_IF_ELSE_STATEMENT_H

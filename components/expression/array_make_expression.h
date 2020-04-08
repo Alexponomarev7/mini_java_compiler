@@ -17,6 +17,8 @@ public:
 private:
     SimpleType simpleType_;
     Expression* sizeExpr_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_ARRAY_MAKE_EXPRESSION_H

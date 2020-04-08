@@ -21,6 +21,8 @@ private:
     Identifier id_;
     std::vector<Formal*> formals_;
     std::vector<Statement*> statements_;
+
+    friend class PrintVisitor;
 };
 
 #endif //COMPILER_METHOD_DECLARATION_H
