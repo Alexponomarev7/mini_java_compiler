@@ -21,6 +21,7 @@ private:
     Statement* else_statement_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_IF_ELSE_STATEMENT_H

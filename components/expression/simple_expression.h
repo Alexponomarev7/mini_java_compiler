@@ -17,6 +17,7 @@ private:
     std::string value_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_SIMPLE_EXPRESSION_H

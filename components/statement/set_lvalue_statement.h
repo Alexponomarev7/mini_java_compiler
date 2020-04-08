@@ -19,6 +19,7 @@ private:
     Expression* expr_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_SET_LVALUE_STATEMENT_H

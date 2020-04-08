@@ -21,7 +21,8 @@ private:
     MainClass* main_;
     std::vector<Class*> classes_;
 
-    friend PrintVisitor;
+    friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_PROGRAM_H

@@ -21,6 +21,7 @@ private:
     BinaryOperator binaryOperator_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_BINARY_EXPRESSION_H

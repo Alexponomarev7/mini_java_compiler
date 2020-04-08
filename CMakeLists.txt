@@ -59,6 +59,7 @@ add_executable(
     main.cpp
     driver/driver.cpp
     visitors/print_visitor.cpp
+    visitors/interpreter_visitor.cpp
     ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )

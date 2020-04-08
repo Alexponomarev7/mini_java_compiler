@@ -18,7 +18,8 @@ private:
     Identifier id_;
     std::vector<Statement*> statements_;
 
-    friend PrintVisitor;
+    friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_MAIN_CLASS_H

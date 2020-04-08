@@ -19,6 +19,7 @@ private:
     Statement* statement_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_WHILE_STATEMENT_H

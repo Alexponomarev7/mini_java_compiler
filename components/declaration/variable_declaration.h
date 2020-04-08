@@ -19,6 +19,7 @@ private:
     Identifier id_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 

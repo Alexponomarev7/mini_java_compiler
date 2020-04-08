@@ -1,0 +1,68 @@
+Program:
+	Main class <Main>:
+		Local variable declaration statement:
+			Variable declaration <int x>:
+		Set lvalue statement<x>:
+			Simple expression<5>:
+		While expression:
+			Binary expression <<>:
+				Simple expression<x>:
+				Simple expression<10>:
+		While statement:
+			Scope statements:
+				Set lvalue statement<x>:
+					Binary expression <+>:
+						Simple expression<x>:
+						Simple expression<1>:
+		If expression:
+			Binary expression <==>:
+				Simple expression<x>:
+				Simple expression<10>:
+		If statement:
+			Scope statements:
+				Println statement:
+					Simple expression<1>:
+		Else statement:
+			Scope statements:
+				Println statement:
+					Simple expression<0>:
+		Local variable declaration statement:
+			Variable declaration <boolean flag>:
+		Set lvalue statement<flag>:
+			Simple expression<true>:
+		If expression:
+			Simple expression<flag>:
+		If statement:
+			Scope statements:
+				Set lvalue statement<flag>:
+					Inverse expression:
+						Simple expression<flag>:
+				Println statement:
+					Simple expression<2>:
+		Local variable declaration statement:
+			Variable declaration <int y>:
+		Set lvalue statement<y>:
+			Simple expression<218>:
+		Println statement:
+			Simple expression<y>:
+		Scope statements:
+			Local variable declaration statement:
+				Variable declaration <int y>:
+			Set lvalue statement<y>:
+				Simple expression<1592>:
+			Println statement:
+				Simple expression<y>:
+		Println statement:
+			Simple expression<y>:
+		Println statement:
+			Simple expression<x>:
+		Println statement:
+			Binary expression </>:
+				Binary expression <*>:
+					Binary expression <+>:
+						Simple expression<1>:
+						Simple expression<2>:
+					Simple expression<2>:
+				Simple expression<6>:
+		Return statement:
+			Simple expression<0>:

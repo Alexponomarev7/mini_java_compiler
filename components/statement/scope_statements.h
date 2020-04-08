@@ -17,6 +17,7 @@ private:
     std::vector<Statement*> statements_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
 };
 
 #endif //COMPILER_SCOPESTATEMENTS_H

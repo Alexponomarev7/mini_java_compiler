@@ -35,6 +35,11 @@ void Driver::PrintTree(const std::string& filename) {
     visitor.Visit(program);
 }
 
+int Driver::Evaluate() {
+    InterpreterVisitor interpreter;
+    interpreter.Visit(program);
+}
+
 void Driver::scan_end()
 {
     stream.close();
