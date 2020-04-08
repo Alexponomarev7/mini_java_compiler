@@ -19,6 +19,7 @@
 #include "expression/inverse_expression.h"
 #include "expression/simple_expression.h"
 #include "expression/method_invocation_expression.h"
+#include "expression/length_expression.h"
 
 #include "statement/statement.h"
 #include "statement/assert_statement.h"

@@ -164,7 +164,7 @@ formals:
 
 type:
     simpleType { $$ = $1; }
-    | arrayType { $$ = $1; }
+    | arrayType { $$ = $1 + "[]"; }
 
 simpleType:
     "int" { $$ = "int"; }
@@ -205,12 +205,12 @@ methodInvocation:
 // need fix
 lvalue:
     "identifier" { $$ = $1; }
-    | "identifier" "[" expr "]" { $$ = $1; }
+    | "identifier" "[" expr "]" { $$ = $1; } // need fix
 
 expr:
     expr binaryOperator expr { $$ = new BinaryExpression($1, $3, $2); }
     | expr "[" expr "]" { $$ = new InverseExpression($1); } // need fix
-    | expr "." "length" { $$ = new InverseExpression($1); } // need fix
+    | expr "." "length" { $$ = new LengthExpression($1); }
     | "new" simpleType "[" expr "]" { $$ = new ArrayMakeExpression($2, $4); }
     | "new" typeIdentifier "(" ")" { $$ = new ObjectMakeExpression($2); }
     | "!" expr { $$ = new InverseExpression($2); }

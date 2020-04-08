@@ -1,0 +1,104 @@
+Program:
+	Main class <Main>:
+		If expression:
+			Inverse expression:
+				Simple expression<false>:
+		If statement:
+			Scope statements:
+				Local variable declaration statement:
+					Variable declaration <int test>:
+				Set lvalue statement<test>:
+					Binary expression <->:
+						Binary expression <+>:
+							Simple expression<2>:
+							Binary expression <*>:
+								Simple expression<3>:
+								Simple expression<5>:
+						Binary expression <*>:
+							Simple expression<2>:
+							Binary expression <+>:
+								Simple expression<3>:
+								Simple expression<5>:
+		Local variable declaration statement:
+			Variable declaration <int x>:
+		Set lvalue statement<x>:
+			Simple expression<5>:
+		If expression:
+			Binary expression <==>:
+				Simple expression<x>:
+				Simple expression<2>:
+		If statement:
+			Set lvalue statement<x>:
+				Simple expression<3>:
+		If expression:
+			Binary expression <>>:
+				Simple expression<x>:
+				Simple expression<2>:
+		If statement:
+			Scope statements:
+				Set lvalue statement<x>:
+					Simple expression<6>:
+		Else statement:
+			Scope statements:
+				Println statement:
+					Simple expression<x>:
+		Return statement:
+			Simple expression<0>:
+	Class <Test>:
+		Variable declaration <int x>:
+		Method declaration <void set>:
+		Method formals:
+		Method statements:
+			Set lvalue statement<x>:
+				Simple expression<6>:
+		Method declaration <void run>:
+		Method formals:
+		Method statements:
+			Method invocation statement:
+				Method invocation <set>:
+	Class <TestExtends>:
+		Extension <Test>:
+		Method declaration <void printOne>:
+		Method formals:
+			int x
+		Method statements:
+			Println statement:
+				Simple expression<x>:
+			Assert statement:
+				Simple expression<true>:
+		Method declaration <void printTwo>:
+		Method formals:
+			int x
+			int y
+		Method statements:
+			Println statement:
+				Simple expression<x>:
+			Println statement:
+				Simple expression<y>:
+		Method declaration <void main>:
+		Method formals:
+		Method statements:
+			Local variable declaration statement:
+				Variable declaration <Test test>:
+			Set lvalue statement<test>:
+				Object make expression<Test>:
+			Local variable declaration statement:
+				Variable declaration <int[] x>:
+			Set lvalue statement<x>:
+				Array make expression <int>:
+					Binary expression <*>:
+						Simple expression<2>:
+						Simple expression<10>:
+			Println statement:
+				Length expression:
+					Simple expression<x>:
+			While expression:
+				Binary expression <>>:
+					Simple expression<1>:
+					Simple expression<2>:
+			While statement:
+				Scope statements:
+					Return statement:
+						Simple expression<0>:
+			Method invocation statement:
+				Method invocation <run>:

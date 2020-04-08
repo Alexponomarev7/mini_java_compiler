@@ -21,6 +21,7 @@ public:
     virtual void Visit(MethodInvocationExpression* expression) = 0;
     virtual void Visit(ObjectMakeExpression* expression) = 0;
     virtual void Visit(SimpleExpression* expression) = 0;
+    virtual void Visit(LengthExpression* expression) = 0;
 
     virtual void Visit(AssertStatement* statement) = 0;
     virtual void Visit(IfElseStatement* statement) = 0;

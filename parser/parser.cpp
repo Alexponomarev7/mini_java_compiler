@@ -1036,7 +1036,7 @@ namespace yy {
 
   case 20:
 #line 167 "parser/parser.y"
-                { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+                { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > () + "[]"; }
 #line 1041 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1186,7 +1186,7 @@ namespace yy {
 
   case 45:
 #line 213 "parser/parser.y"
-                        { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[2].value.as < Expression* > ()); }
+                        { yylhs.value.as < Expression* > () = new LengthExpression(yystack_[2].value.as < Expression* > ()); }
 #line 1191 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 

@@ -24,6 +24,7 @@ public:
     void Visit(MethodInvocationExpression* expression) override;
     void Visit(ObjectMakeExpression* expression) override;
     void Visit(SimpleExpression* expression) override;
+    void Visit(LengthExpression* expression) override;
 
     void Visit(AssertStatement* statement) override;
     void Visit(IfElseStatement* statement) override;

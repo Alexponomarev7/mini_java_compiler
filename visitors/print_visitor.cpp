@@ -138,6 +138,15 @@ void PrintVisitor::Visit(SimpleExpression* simpleExpression) {
     stream_ << "Simple expression<" << simpleExpression->value_ << ">:" << std::endl;
 }
 
+void PrintVisitor::Visit(LengthExpression* lengthExpression) {
+    PrintTabs_();
+
+    stream_ << "Length expression:" << std::endl;
+    auto addTab = AddTab(this);
+
+    lengthExpression->expr_->Accept(this);
+}
+
 void PrintVisitor::Visit(AssertStatement* statement) {
     PrintTabs_();
 
