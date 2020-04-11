@@ -30,6 +30,7 @@ class InverseExpression;
 class MethodInvocationExpression;
 class ObjectMakeExpression;
 class SimpleExpression;
+class NumberExpression;
 class LengthExpression;
 
 class Statement;

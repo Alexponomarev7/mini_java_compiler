@@ -5,7 +5,9 @@
 #include <fstream>
 #include "scanner/scanner.h"
 #include "parser/parser.hh"
-
+#include "visitors/print_visitor.h"
+#include "visitors/symbol_tree_visitor.h"
+#include "visitors/interpreter_visitor.h"
 
 class Driver {
 public:

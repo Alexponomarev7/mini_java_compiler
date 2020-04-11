@@ -216,7 +216,7 @@ expr:
     | "!" expr { $$ = new InverseExpression($2); }
     | "(" expr ")" { $$ = $2; }
     | "identifier" { $$ = new SimpleExpression($1); }
-    | "number" { $$ = new SimpleExpression(std::to_string($1)); }
+    | "number" { $$ = new NumberExpression($1); }
     | "this" { $$ = new SimpleExpression("this"); }
     | "true" { $$ = new SimpleExpression("true"); }
     | "false" { $$ = new SimpleExpression("false"); }

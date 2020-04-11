@@ -1,7 +1,8 @@
 #ifndef COMPILER_INTERPRETER_H
 #define COMPILER_INTERPRETER_H
 
-#include "visitor.h"
+#include "template_visitor.h"
+#include "visitors/symbol_tree_visitor.h"
 
 #include <map>
 #include <exception>
@@ -9,9 +10,11 @@
 #include <vector>
 #include <cassert>
 
-class InterpreterVisitor : public Visitor {
+#include "types/types.h"
+
+class InterpreterVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
 public:
-    InterpreterVisitor();
+    InterpreterVisitor(ScopeLayer* root);
 
     void Visit(Program* program) override;
 
@@ -30,6 +33,7 @@ public:
     void Visit(ObjectMakeExpression* expression) override;
     void Visit(SimpleExpression* expression) override;
     void Visit(LengthExpression* expression) override;
+    void Visit(NumberExpression* expression) override;
 
     void Visit(AssertStatement* statement) override;
     void Visit(IfElseStatement* statement) override;
@@ -43,22 +47,8 @@ public:
     void Visit(WhileStatement* statement) override;
 
 private:
-    std::vector<std::map<Identifier, int>> variables_;
-    std::vector<std::map<Identifier, std::string>> types_;
-
-    std::string lastType_;
-    int lastValue_;
-
-    static bool IsNumber_(const std::string& value);
-
-    int LoadInt_();
-    bool LoadBool_();
-
-    void SaveInt_(int value);
-    void SaveBool_(bool value);
-
-    std::pair<std::string, int> Load_();
-    void Save_(std::string type, int value);
+    ScopeLayer* current_layer_;
+    std::stack<int> offsets_;
 };
 
 #endif //COMPILER_PRINTER_H

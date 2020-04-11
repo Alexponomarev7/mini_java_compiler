@@ -60,7 +60,15 @@ add_executable(
     driver/driver.cpp
     visitors/print_visitor.cpp
     visitors/interpreter_visitor.cpp
-    ${BISON_CompilerParser_OUTPUTS}
+    visitors/symbol_tree_visitor.cpp
+    visitors/template_visitor.cpp
+        symbol_table/scope_layer.cpp
+        symbol_table/scope_layer_tree.cpp
+        symbol_table/symbol.cpp
+        types/types.cpp
+        types/boolean.cpp
+        types/integer.cpp
+        ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )
 target_include_directories(Compiler PRIVATE ${Compiler_SOURCE_DIR})

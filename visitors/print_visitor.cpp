@@ -138,6 +138,12 @@ void PrintVisitor::Visit(SimpleExpression* simpleExpression) {
     stream_ << "Simple expression<" << simpleExpression->value_ << ">:" << std::endl;
 }
 
+void PrintVisitor::Visit(NumberExpression *expression) {
+    PrintTabs_();
+
+    stream_ << "Number expression<" << expression->value_ << ">:" << std::endl;
+}
+
 void PrintVisitor::Visit(LengthExpression* lengthExpression) {
     PrintTabs_();
 

@@ -1222,7 +1222,7 @@ namespace yy {
 
   case 51:
 #line 219 "parser/parser.y"
-               { yylhs.value.as < Expression* > () = new SimpleExpression(std::to_string(yystack_[0].value.as < int > ())); }
+               { yylhs.value.as < Expression* > () = new NumberExpression(yystack_[0].value.as < int > ()); }
 #line 1227 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 

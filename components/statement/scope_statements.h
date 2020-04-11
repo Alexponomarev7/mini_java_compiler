@@ -18,6 +18,7 @@ private:
 
     friend class PrintVisitor;
     friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_SCOPESTATEMENTS_H

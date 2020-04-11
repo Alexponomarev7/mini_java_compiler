@@ -36,7 +36,10 @@ void Driver::PrintTree(const std::string& filename) {
 }
 
 int Driver::Evaluate() {
-    InterpreterVisitor interpreter;
+    SymbolTreeVisitor symbolTreeVisitor;
+    symbolTreeVisitor.Visit(program);
+
+    InterpreterVisitor interpreter(symbolTreeVisitor.GetRoot());
     interpreter.Visit(program);
 }
 

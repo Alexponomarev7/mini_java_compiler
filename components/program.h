@@ -23,6 +23,7 @@ private:
 
     friend class PrintVisitor;
     friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_PROGRAM_H

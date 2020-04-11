@@ -22,6 +22,7 @@ private:
 
     friend class PrintVisitor;
     friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_IF_ELSE_STATEMENT_H

@@ -1,12 +1,14 @@
-#ifndef COMPILER_PRINTER_H
-#define COMPILER_PRINTER_H
+#ifndef COMPILER_SYMBOL_TREE_VISITOR_H
+#define COMPILER_SYMBOL_TREE_VISITOR_H
 
-#include "visitor.h"
-#include <fstream>
+#include "template_visitor.h"
+#include "symbol_table/table.h"
+#include "symbol_table/scope_layer_tree.h"
 
-class PrintVisitor : public Visitor {
+
+class SymbolTreeVisitor : public TemplateVisitor<Type> {
 public:
-    PrintVisitor(const std::string& filename);
+    explicit SymbolTreeVisitor();
 
     void Visit(Program* program) override;
 
@@ -38,23 +40,24 @@ public:
     void Visit(SetLvalueStatement* statement) override;
     void Visit(WhileStatement* statement) override;
 
+    ScopeLayer* GetRoot();
+
 private:
-    struct AddTab {
-        explicit AddTab(PrintVisitor* visitor) : visitor_(visitor) {
-            visitor_->num_tabs_++;
+    ScopeLayerTree tree_;
+    ScopeLayer* current_layer_;
+
+    struct CreateScopeLayer {
+        explicit CreateScopeLayer(SymbolTreeVisitor* symbolTreeVisitor) : symbolTreeVisitor_(symbolTreeVisitor) {
+            symbolTreeVisitor_->current_layer_ = new ScopeLayer(symbolTreeVisitor_->current_layer_);
         }
 
-        ~AddTab() {
-            visitor_->num_tabs_--;
+        ~CreateScopeLayer() {
+            symbolTreeVisitor_->current_layer_ = symbolTreeVisitor_->current_layer_->GetParent();
         }
 
-        PrintVisitor* visitor_;
+        SymbolTreeVisitor* symbolTreeVisitor_;
     };
-
-    void PrintTabs_();
-
-    std::ofstream stream_;
-    int num_tabs_ = 0;
 };
 
-#endif //COMPILER_PRINTER_H
+
+#endif //COMPILER_SYMBOL_TREE_VISITOR_H

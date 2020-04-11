@@ -22,6 +22,7 @@ private:
     std::vector<Declaration*> declarations_;
 
     friend class PrintVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_CLASS_H

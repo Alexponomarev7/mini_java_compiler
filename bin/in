@@ -1,0 +1,30 @@
+class Test {
+    public static void main() {
+        y = 6;
+        System.out.println(y);
+
+
+        int x;
+        x = 5 + 2;
+        System.out.println(x);
+
+        int y;
+        y = 2;
+
+        x = y;
+
+        bool flag;
+        flag = true;
+
+        if (flag) {
+            int x;
+            x = 6;
+
+            System.out.println(x);
+        } else {
+            System.out.println(2*2);
+        }
+
+        System.out.println(x);
+    }
+}	

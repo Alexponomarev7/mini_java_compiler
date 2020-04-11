@@ -1,22 +1,31 @@
 #include <components/program.h>
 #include "interpreter_visitor.h"
 
-InterpreterVisitor::InterpreterVisitor() {}
+InterpreterVisitor::InterpreterVisitor(ScopeLayer* root) : current_layer_(root)
+{
+    current_layer_->Put(Symbol("true"), std::make_shared<Boolean>(true));
+    current_layer_->Put(Symbol("false"), std::make_shared<Boolean>(false));
+
+    offsets_.push(0);
+}
 
 void InterpreterVisitor::Visit(Program* program) {
     program->main_->Accept(this);
 }
 
 void InterpreterVisitor::Visit(MainClass* mainClass) {
-    variables_.emplace_back();
-    types_.emplace_back();
+    current_layer_ = current_layer_->GetChild(offsets_.top());
+    offsets_.push(0);
 
     for (const auto& statement : mainClass->statements_) {
         statement->Accept(this);
     }
 
-    variables_.pop_back();
-    types_.pop_back();
+    offsets_.pop();
+    size_t index = offsets_.top();
+    offsets_.pop();
+    offsets_.push(index + 1);
+    current_layer_ = current_layer_->GetParent();
 }
 
 void InterpreterVisitor::Visit(Class* classObj) {
@@ -32,14 +41,7 @@ void InterpreterVisitor::Visit(MethodInvocation* methodInvocation) {
 }
 
 void InterpreterVisitor::Visit(VariableDeclaration* variableDeclaration) {
-    const auto& id = variableDeclaration->id_;
-
-    if (variables_.back().find(id) != variables_.back().end()) {
-        throw std::runtime_error("Duplicate variable name.");
-    }
-
-    variables_.back()[id] = 0;
-    types_.back()[id] = variableDeclaration->type_;
+    //std::cout << "Var decl called" << std::endl;
 }
 
 void InterpreterVisitor::Visit(MethodDeclaration* methodDeclaration) {
@@ -51,62 +53,37 @@ void InterpreterVisitor::Visit(ArrayMakeExpression* arrayMakeExpression) {
 }
 
 void InterpreterVisitor::Visit(BinaryExpression* binaryExpression) {
-    binaryExpression->leftExpr_->Accept(this);
-    auto leftResult = Load_();
+    auto leftResult = Accept(binaryExpression->leftExpr_);
+    auto rightResult = Accept(binaryExpression->rightExpr_);
 
-    binaryExpression->rightExpr_->Accept(this);
-    auto rightResult = Load_();
-
-    auto binary = binaryExpression->binaryOperator_;
-
-    if (binary == "+") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveInt_(leftResult.second + rightResult.second);
-    } else if (binary == "-") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveInt_(leftResult.second - rightResult.second);
-    } else if (binary == "*") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveInt_(leftResult.second * rightResult.second);
-    } else if (binary == "/") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveInt_(leftResult.second / rightResult.second);
-    } else if (binary == "%") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveInt_(leftResult.second % rightResult.second);
-    } else if (binary == ">") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveBool_(leftResult.second > rightResult.second);
-    } else if (binary == "<") {
-        assert(leftResult.first == "int");
-        assert(rightResult.first == "int");
-        SaveBool_(leftResult.second < rightResult.second);
-    } else if (binary == "==") {
-        assert(leftResult.first == rightResult.first);
-        SaveBool_(leftResult.second == rightResult.second);
-    } else if (binary == "||") {
-        assert(leftResult.first == "bool");
-        assert(rightResult.first == "bool");
-        SaveBool_(leftResult.second || rightResult.second);
-    } else if (binary == "&&") {
-        assert(leftResult.first == "bool");
-        assert(rightResult.first == "bool");
-        SaveBool_(leftResult.second && rightResult.second);
+    if (binaryExpression->binaryOperator_ == "+") {
+        tos_value_ = std::make_shared<Integer>(GetIntOrThrow(leftResult) + GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "-") {
+        tos_value_ = std::make_shared<Integer>(GetIntOrThrow(leftResult) - GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "*") {
+        tos_value_ = std::make_shared<Integer>(GetIntOrThrow(leftResult) * GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "/") {
+        tos_value_ = std::make_shared<Integer>(GetIntOrThrow(leftResult) / GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "%") {
+        tos_value_ = std::make_shared<Integer>(GetIntOrThrow(leftResult) % GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "&&") {
+        tos_value_ = std::make_shared<Boolean>(GetBoolOrThrow(leftResult) && GetBoolOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "||") {
+        tos_value_ = std::make_shared<Boolean>(GetBoolOrThrow(leftResult) || GetBoolOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "==") {
+        tos_value_ = std::make_shared<Boolean>(GetIntOrThrow(leftResult) == GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == "<") {
+        tos_value_ = std::make_shared<Boolean>(GetIntOrThrow(leftResult) < GetIntOrThrow(rightResult));
+    } else if (binaryExpression->binaryOperator_ == ">") {
+        tos_value_ = std::make_shared<Boolean>(GetIntOrThrow(leftResult) > GetIntOrThrow(rightResult));
     } else {
-        throw std::runtime_error("Unknown binary operator.");
+        throw std::runtime_error("Unknown binary operator");
     }
 }
 
 void InterpreterVisitor::Visit(InverseExpression* inverseExpression) {
-    inverseExpression->expr_->Accept(this);
-    auto result = LoadBool_();
-    SaveBool_(!result);
+    auto result = GetBoolOrThrow(Accept(inverseExpression->expr_));
+    tos_value_ = std::make_shared<Boolean>(!result);
 }
 
 void InterpreterVisitor::Visit(MethodInvocationExpression* methodInvocationExpression) {
@@ -117,26 +94,12 @@ void InterpreterVisitor::Visit(ObjectMakeExpression* objectMakeExpression) {
     // pass
 }
 
-void InterpreterVisitor::Visit(SimpleExpression* simpleExpression) {
-    auto value = simpleExpression->value_;
+void InterpreterVisitor::Visit(NumberExpression* numberExpression) {
+    tos_value_ = std::make_shared<Integer>(numberExpression->value_);
+}
 
-    if (value == "true") {
-        SaveBool_(true);
-    } else if (value == "false") {
-        SaveBool_(false);
-    } else if (value == "this") {
-        throw std::runtime_error("Unimplemented.");
-    } else if (IsNumber_(value)) {
-        SaveInt_(std::stoi(value));
-    } else {
-        for (int i = (int)variables_.size() - 1; i >= 0; i--) {
-            if (variables_[i].find(value) != variables_[i].end()) {
-                Save_(types_[i][value], variables_[i][value]);
-                return;
-            }
-        }
-        throw std::runtime_error("Invalid token.");
-    }
+void InterpreterVisitor::Visit(SimpleExpression* simpleExpression) {
+    tos_value_ = current_layer_->Get(Symbol(simpleExpression->value_));
 }
 
 void InterpreterVisitor::Visit(LengthExpression* lengthExpression) {
@@ -144,19 +107,17 @@ void InterpreterVisitor::Visit(LengthExpression* lengthExpression) {
 }
 
 void InterpreterVisitor::Visit(AssertStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadBool_();
+    auto result = Accept(statement->expr_);
 
-    if (!result) {
+    if (!GetBoolOrThrow(result)) {
         throw std::runtime_error("Assertion failed.");
     }
 }
 
 void InterpreterVisitor::Visit(IfElseStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadBool_();
+    auto result = Accept(statement->expr_);
 
-    if (result) {
+    if (GetBoolOrThrow(result)) {
         statement->if_statement_->Accept(this);
     } else {
         statement->else_statement_->Accept(this);
@@ -164,10 +125,9 @@ void InterpreterVisitor::Visit(IfElseStatement* statement) {
 }
 
 void InterpreterVisitor::Visit(IfStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadBool_();
+    auto result = Accept(statement->expr_);
 
-    if (result) {
+    if (GetBoolOrThrow(result)) {
         statement->statement_->Accept(this);
     }
 }
@@ -181,86 +141,40 @@ void InterpreterVisitor::Visit(MethodInvocationStatement* statement) {
 }
 
 void InterpreterVisitor::Visit(PrintlnStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadInt_();
-
+    auto result = GetIntOrThrow(Accept(statement->expr_));
     std::cout << result << std::endl;
 }
 
 void InterpreterVisitor::Visit(ReturnStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadInt_();
-
+    auto result = GetIntOrThrow(Accept(statement->expr_));
     exit(result);
 }
 
 void InterpreterVisitor::Visit(ScopeStatements* statement) {
-    variables_.emplace_back();
-    types_.emplace_back();
+    //std::cout << "Going inside" << std::endl;
+    current_layer_ = current_layer_->GetChild(offsets_.top());
+    offsets_.push(0);
 
     for (const auto& subStatement : statement->statements_) {
         subStatement->Accept(this);
     }
 
-    variables_.pop_back();
-    types_.pop_back();
+    offsets_.pop();
+    size_t index = offsets_.top();
+    offsets_.pop();
+    offsets_.push(index + 1);
+    current_layer_ = current_layer_->GetParent();
 }
 
 void InterpreterVisitor::Visit(SetLvalueStatement* statement) {
-    statement->expr_->Accept(this);
-
-    auto result = Load_();
-    auto variableName = statement->lvalue_;
-
-    for (int i = (int)variables_.size() - 1; i >= 0; i--) {
-        if (variables_[i].find(variableName) != variables_[i].end()) {
-            assert(types_[i][variableName] == result.first);
-            variables_[i][variableName] = result.second;
-            return;
-        }
-    }
-    throw std::runtime_error("No such variable in this scope.");
+    current_layer_->Put(Symbol(statement->lvalue_), Accept(statement->expr_));
 }
 
 void InterpreterVisitor::Visit(WhileStatement* statement) {
-    statement->expr_->Accept(this);
-    auto result = LoadBool_();
+    auto result = Accept(statement->expr_);
 
-    while (result) {
+    while (GetBoolOrThrow(result)) {
         statement->statement_->Accept(this);
-        statement->expr_->Accept(this);
-        result = LoadBool_();
+        result = Accept(statement->expr_);
     }
-}
-
-bool InterpreterVisitor::IsNumber_(const std::string& value) {
-    return !value.empty() && std::all_of(value.begin(), value.end(), ::isdigit);
-}
-
-int InterpreterVisitor::LoadInt_() {
-    assert(lastType_ == "int");
-    return (int) lastValue_;}
-
-bool InterpreterVisitor::LoadBool_() {
-    assert(lastType_ == "boolean");
-    return (bool) lastValue_;
-}
-
-std::pair<std::string, int> InterpreterVisitor::Load_() {
-    return std::make_pair(lastType_, lastValue_);
-}
-
-void InterpreterVisitor::SaveInt_(int value) {
-    lastType_ = "int";
-    lastValue_ = value;
-}
-
-void InterpreterVisitor::SaveBool_(bool value) {
-    lastType_ = "boolean";
-    lastValue_ = (int) value;
-}
-
-void InterpreterVisitor::Save_(std::string type, int value) {
-    lastType_ = std::move(type);
-    lastValue_ = value;
 }

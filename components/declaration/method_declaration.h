@@ -23,6 +23,7 @@ private:
     std::vector<Statement*> statements_;
 
     friend class PrintVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_METHOD_DECLARATION_H

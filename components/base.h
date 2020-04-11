@@ -2,8 +2,6 @@
 #define COMPILER_BASE_H
 
 #include "visitors/visitor.h"
-#include "visitors/print_visitor.h"
-#include "visitors/interpreter_visitor.h"
 
 #include <vector>
 #include <string>
