@@ -14,25 +14,25 @@ SymbolTreeVisitor::SymbolTreeVisitor() :
 }
 
 void SymbolTreeVisitor::Visit(Program* program) {
-    current_layer_->DeclareVariable(Symbol("int"), "int");
     auto intType = std::make_shared<Integer>();
     intType->MarkType();
-    current_layer_->Put(Symbol("int"), intType);
+    current_layer_->DeclareVariable(Symbol("int"), intType);
 
-    current_layer_->DeclareVariable(Symbol("bool"), "bool");
     auto boolType = std::make_shared<Boolean>();
     boolType->MarkType();
-    current_layer_->Put(Symbol("bool"), boolType);
+    current_layer_->DeclareVariable(Symbol("bool"), boolType);
 
-    current_layer_->DeclareVariable(Symbol("true"), "bool");
-    current_layer_->DeclareVariable(Symbol("false"), "bool");
+    auto trueValue = std::make_shared<Boolean>(true);
+    current_layer_->DeclareVariable(Symbol("true"), trueValue);
+    auto falseValue = std::make_shared<Boolean>(false);
+    current_layer_->DeclareVariable(Symbol("false"), falseValue);
 
     for (const auto& classObj : program->classes_) {
-        current_layer_->DeclareVariable(Symbol(classObj->id_), "class");
         classObj->Accept(this);
+
         auto classImpl = std::make_shared<ClassType>(classObj->id_, variables_, methods_);
         classImpl->MarkType();
-        current_layer_->Put(Symbol(classObj->id_), classImpl);
+        current_layer_->DeclareVariable(Symbol(classObj->id_), classImpl);
 
         variables_.clear();
         methods_.clear();
@@ -62,11 +62,8 @@ void SymbolTreeVisitor::Visit(Formal* formal) {
 }
 
 void SymbolTreeVisitor::Visit(MethodInvocation* methodInvocation) {
-    std::cout << 1 << std::endl;
     auto type = Accept(methodInvocation->expr_);
-    std::cout << type->IsType() << std::endl;
     auto classObj = GetClassOrThrow(type);
-    std::cout << 2 << std::endl;
 
     if (!classObj->HasMethod(methodInvocation->id_)) {
         throw std::runtime_error("Class object has no such method.");
@@ -81,12 +78,11 @@ void SymbolTreeVisitor::Visit(VariableDeclaration* variableDeclaration) {
     auto typeObject = current_layer_->Get(Symbol(type));
     assert(typeObject->IsType());
 
-    current_layer_->DeclareVariable(Symbol(variable), typeObject->GetType());
+    current_layer_->DeclareVariable(Symbol(variable), typeObject);
 };
 
 void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
     auto id = methodDeclaration->id_;
-    current_layer_->DeclareVariable(Symbol(id), "method");
 
     auto returnType = methodDeclaration->type_;
     for (const auto& formal : methodDeclaration->formals_) {
@@ -97,7 +93,7 @@ void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
 
     methods_.push_back({returnType, id, formals});
     auto method = std::make_shared<ClassMethodType>(returnType, id, formals);
-    current_layer_->Put(Symbol(id), method);
+    current_layer_->DeclareVariable(Symbol(id), method);
 
     auto scopeLayer = CreateScopeLayer(this);
     for (const auto& subStatement : methodDeclaration->statements_) {
@@ -183,7 +179,6 @@ void SymbolTreeVisitor::Visit(LocalVariableDeclarationStatement* statement) {
 }
 
 void SymbolTreeVisitor::Visit(MethodInvocationStatement* statement) {
-    std::cout << 1 << std::endl;
     statement->methodInvocation_->Accept(this);
 }
 

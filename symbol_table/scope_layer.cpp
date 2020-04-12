@@ -17,12 +17,12 @@ void ScopeLayer::AttachParent() {
 ScopeLayer::ScopeLayer(): parent_(nullptr) {}
 
 
-void ScopeLayer::DeclareVariable(Symbol symbol, Type type) {
+void ScopeLayer::DeclareVariable(Symbol symbol, std::shared_ptr<Object> type) {
     if (values_.find(symbol) != values_.end()) {
         throw std::runtime_error("Variable has declared");
     }
 
-    values_[symbol] = std::shared_ptr<Object>(GetType(type));
+    values_[symbol] = type;
     offsets_[symbol] = symbols_.size();
     symbols_.push_back(symbol);
 }

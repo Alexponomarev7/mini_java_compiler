@@ -41,9 +41,6 @@ std::string ClassType::GetType() const {
 }
 
 const ClassType* GetClassOrThrow(const std::shared_ptr<Object>& object) {
-    std::cout << 2 << std::endl;
     auto ptr = dynamic_cast<ClassType*>(object.get());
-    std::cout << 3 << std::endl;
-
     return ptr;
 }

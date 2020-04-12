@@ -1,0 +1,31 @@
+class Test {
+    public static void main() {
+        int x;
+	x = 5 + 2;
+	System.out.println(x);
+	
+	bool flag;
+ 	flag = true;
+	
+	NewType t;
+	
+	t.get();
+			
+        if (flag) {
+            int x;
+            x = 6;
+
+            
+        } else {
+            System.out.println(2*2);
+        }
+	
+	System.out.println(x);
+    }
+}
+
+class NewType {
+	public int get() {
+
+	}
+}	
