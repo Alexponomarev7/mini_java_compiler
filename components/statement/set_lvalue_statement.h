@@ -20,6 +20,7 @@ private:
 
     friend class PrintVisitor;
     friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_SET_LVALUE_STATEMENT_H

@@ -6,20 +6,24 @@
 #define COMPILER_CLASS_METHOD_H
 
 #include "object.h"
+#include "help.h"
 
-class ClassMethod : public Object {
+class ClassMethodType : public Object {
 public:
-    ClassMethod();
+    ClassMethodType() = default;
 
-    explicit ClassMethod(std::string returnType, std::vector<std::string> types);
+    ClassMethodType(std::string returnType, std::string id, std::vector<Variable> variables);
     void Set(const std::shared_ptr<Object>& other) override;
-    bool Value();
+    std::string GetType() const override;
+
+    std::string GetReturnType() const;
+    std::string GetId() const;
+    std::vector<Variable> GetVariables() const;
 
 private:
-    bool value_;
+    std::string returnType_;
+    std::vector<Variable> variables_;
+    std::string id_;
 };
-
-bool GetBoolOrThrow(const std::shared_ptr<Object>& object);
-
 
 #endif //COMPILER_CLASS_METHOD_H

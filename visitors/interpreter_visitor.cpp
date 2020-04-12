@@ -10,6 +10,10 @@ InterpreterVisitor::InterpreterVisitor(ScopeLayer* root) : current_layer_(root)
 }
 
 void InterpreterVisitor::Visit(Program* program) {
+    for (const auto& classObj : program->classes_) {
+        classObj->Accept(this);
+    }
+
     program->main_->Accept(this);
 }
 
@@ -30,6 +34,14 @@ void InterpreterVisitor::Visit(MainClass* mainClass) {
 
 void InterpreterVisitor::Visit(Class* classObj) {
     // pass
+    current_layer_ = current_layer_->GetChild(offsets_.top());
+    offsets_.push(0);
+
+    offsets_.pop();
+    size_t index = offsets_.top();
+    offsets_.pop();
+    offsets_.push(index + 1);
+    current_layer_ = current_layer_->GetParent();
 }
 
 void InterpreterVisitor::Visit(Formal* formal) {

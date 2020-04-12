@@ -17,6 +17,7 @@ private:
     MethodInvocation* methodInvocation_;
 
     friend class PrintVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_METHOD_INVOCATION_EXPRESSION_H

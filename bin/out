@@ -1,9 +1,5 @@
 Program:
 	Main class <Test>:
-		Set lvalue statement<y>:
-			Number expression<6>:
-		Println statement:
-			Simple expression<y>:
 		Local variable declaration statement:
 			Variable declaration <int x>:
 		Set lvalue statement<x>:
@@ -13,15 +9,13 @@ Program:
 		Println statement:
 			Simple expression<x>:
 		Local variable declaration statement:
-			Variable declaration <int y>:
-		Set lvalue statement<y>:
-			Number expression<2>:
-		Set lvalue statement<x>:
-			Simple expression<y>:
-		Local variable declaration statement:
 			Variable declaration <bool flag>:
 		Set lvalue statement<flag>:
 			Simple expression<true>:
+		Local variable declaration statement:
+			Variable declaration <NewType t>:
+		Method invocation statement:
+			Method invocation <get>:
 		If expression:
 			Simple expression<flag>:
 		If statement:
@@ -30,8 +24,6 @@ Program:
 					Variable declaration <int x>:
 				Set lvalue statement<x>:
 					Number expression<6>:
-				Println statement:
-					Simple expression<x>:
 		Else statement:
 			Scope statements:
 				Println statement:
@@ -40,3 +32,7 @@ Program:
 						Number expression<2>:
 		Println statement:
 			Simple expression<x>:
+	Class <NewType>:
+		Method declaration <int get>:
+		Method formals:
+		Method statements:

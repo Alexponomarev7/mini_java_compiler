@@ -1,6 +1,7 @@
 #include "boolean.h"
 
-Boolean::Boolean() : Object(), value_(false) {
+Boolean::Boolean() : value_(false) {
+    initialized_ = false;
 }
 
 Boolean::Boolean(bool value) :
@@ -12,6 +13,11 @@ Boolean::Boolean(bool value) :
 void Boolean::Set(const std::shared_ptr<Object>& other) {
     auto ptr = dynamic_cast<Boolean*>(other.get());
     value_ = ptr->Value();
+    Object::Set(other);
+}
+
+std::string Boolean::GetType() const {
+    return "bool";
 }
 
 bool Boolean::Value() {

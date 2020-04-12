@@ -8,9 +8,23 @@ public:
     Object() : initialized_(false) {}
     virtual ~Object() = default;
 
-    virtual void Set(const std::shared_ptr<Object>& other) = 0;
+    virtual std::string GetType() const = 0;
+
+    virtual void Set(const std::shared_ptr<Object>& other) {
+        is_type_ = other->is_type_;
+        initialized_ = other->initialized_;
+    };
+
+    void MarkType() {
+        is_type_ = true;
+    }
+
+    bool IsType() const {
+        return is_type_;
+    }
 
 protected:
+    bool is_type_;
     bool initialized_;
 };
 

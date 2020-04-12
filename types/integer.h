@@ -8,7 +8,9 @@ public:
     Integer();
 
     explicit Integer(int value);
-    void Set(const std::shared_ptr<Object>& other);
+    void Set(const std::shared_ptr<Object>& other) override;
+    std::string GetType() const override;
+
     int Value();
 
 private:

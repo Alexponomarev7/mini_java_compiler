@@ -68,6 +68,8 @@ add_executable(
         types/types.cpp
         types/boolean.cpp
         types/integer.cpp
+        types/class.cpp
+        types/class_method.cpp
         ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )

@@ -6,7 +6,7 @@
 #include "symbol_table/scope_layer_tree.h"
 
 
-class SymbolTreeVisitor : public TemplateVisitor<Type> {
+class SymbolTreeVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
 public:
     explicit SymbolTreeVisitor();
 
@@ -45,6 +45,10 @@ public:
 private:
     ScopeLayerTree tree_;
     ScopeLayer* current_layer_;
+
+    std::vector<Variable> variables_;
+    std::vector<Method> methods_;
+    std::vector<Variable> formals_;
 
     struct CreateScopeLayer {
         explicit CreateScopeLayer(SymbolTreeVisitor* symbolTreeVisitor) : symbolTreeVisitor_(symbolTreeVisitor) {

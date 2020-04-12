@@ -9,6 +9,7 @@ public:
 
     explicit Boolean(bool value);
     void Set(const std::shared_ptr<Object>& other) override;
+    std::string GetType() const override;
     bool Value();
 
 private:
