@@ -9,11 +9,18 @@ Program:
 		Println statement:
 			Simple expression<x>:
 		Local variable declaration statement:
+			Variable declaration <int[] a>:
+		Set lvalue statement<a>:
+			Array make expression <int>:
+				Number expression<100>:
+		Local variable declaration statement:
 			Variable declaration <bool flag>:
 		Set lvalue statement<flag>:
 			Simple expression<true>:
 		Local variable declaration statement:
-			Variable declaration <NewType t>:
+			Variable declaration <NewType1 t>:
+		Set lvalue statement<t>:
+			Object make expression<NewType1>:
 		Method invocation statement:
 			Method invocation <get>:
 		If expression:
@@ -32,7 +39,11 @@ Program:
 						Number expression<2>:
 		Println statement:
 			Simple expression<x>:
-	Class <NewType>:
+	Class <NewType1>:
+		Method declaration <int get>:
+		Method formals:
+		Method statements:
+	Class <NewType2>:
 		Method declaration <int get>:
 		Method formals:
 		Method statements:
