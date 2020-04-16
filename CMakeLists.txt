@@ -70,6 +70,7 @@ add_executable(
         types/integer.cpp
         types/class.cpp
         types/class_method.cpp
+        types/array.cpp
         ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )

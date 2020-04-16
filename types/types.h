@@ -8,10 +8,12 @@
 #include "boolean.h"
 #include "class.h"
 #include "class_method.h"
+#include "array.h"
 
 #include <vector>
 #include <string>
 #include <set>
+#include <memory>
 
 #define INT_TYPE "int"
 #define BOOL_TYPE "bool"

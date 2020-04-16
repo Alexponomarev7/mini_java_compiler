@@ -19,6 +19,8 @@ private:
     Expression* sizeExpr_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_ARRAY_MAKE_EXPRESSION_H

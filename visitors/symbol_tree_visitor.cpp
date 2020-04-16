@@ -75,10 +75,20 @@ void SymbolTreeVisitor::Visit(VariableDeclaration* variableDeclaration) {
     auto variable = variableDeclaration->id_;
     variables_.push_back({type, variable});
 
+    bool isArray = false;
+    if (IsArrayType(type)) {
+        type = GetBasicType(type);
+        isArray = true;
+    }
+
     auto typeObject = current_layer_->Get(Symbol(type));
     assert(typeObject->IsType());
 
-    current_layer_->DeclareVariable(Symbol(variable), typeObject);
+    if (isArray) {
+        current_layer_->DeclareVariable(Symbol(variable), std::make_shared<Array>(typeObject));
+    } else {
+        current_layer_->DeclareVariable(Symbol(variable), typeObject);
+    }
 };
 
 void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
@@ -102,7 +112,11 @@ void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
 };
 
 void SymbolTreeVisitor::Visit(ArrayMakeExpression* expression) {
-    // pass
+    auto size = Accept(expression->sizeExpr_);
+    GetIntOrThrow(size);
+
+    auto simpleType = current_layer_->Get(expression->simpleType_);
+    tos_value_ = std::make_shared<Array>(simpleType);
 }
 
 void SymbolTreeVisitor::Visit(BinaryExpression* binaryExpression) {
@@ -137,7 +151,7 @@ void SymbolTreeVisitor::Visit(MethodInvocationExpression* expression) {
 }
 
 void SymbolTreeVisitor::Visit(ObjectMakeExpression* expression) {
-    // pass
+    tos_value_ = current_layer_->Get(expression->typeIdentifier_);
 }
 
 void SymbolTreeVisitor::Visit(SimpleExpression* expression) {
@@ -151,7 +165,10 @@ void SymbolTreeVisitor::Visit(NumberExpression *expression) {
 
 void SymbolTreeVisitor::Visit(LengthExpression* expression) {
     // pass
-    tos_value_ = std::make_shared<Boolean>();
+    auto value = Accept(expression->expr_);
+    GetArrayOrThrow(value);
+
+    tos_value_ = std::make_shared<Integer>();
 }
 
 void SymbolTreeVisitor::Visit(AssertStatement* statement) {

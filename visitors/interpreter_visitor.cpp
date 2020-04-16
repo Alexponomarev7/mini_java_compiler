@@ -61,6 +61,9 @@ void InterpreterVisitor::Visit(MethodDeclaration* methodDeclaration) {
 }
 
 void InterpreterVisitor::Visit(ArrayMakeExpression* arrayMakeExpression) {
+    auto length = GetIntOrThrow(Accept(arrayMakeExpression->sizeExpr_));
+    auto simpleType = current_layer_->Get(arrayMakeExpression->simpleType_);
+    tos_value_ = std::make_shared<Array>(simpleType, length);
     // pass
 }
 
@@ -104,6 +107,7 @@ void InterpreterVisitor::Visit(MethodInvocationExpression* methodInvocationExpre
 
 void InterpreterVisitor::Visit(ObjectMakeExpression* objectMakeExpression) {
     // pass
+    tos_value_ = current_layer_->Get(Symbol(objectMakeExpression->typeIdentifier_));
 }
 
 void InterpreterVisitor::Visit(NumberExpression* numberExpression) {
@@ -116,6 +120,8 @@ void InterpreterVisitor::Visit(SimpleExpression* simpleExpression) {
 
 void InterpreterVisitor::Visit(LengthExpression* lengthExpression) {
     // pass
+    auto array = GetArrayOrThrow(Accept(lengthExpression->expr_));
+    tos_value_ = std::make_shared<Integer>(array.size());
 }
 
 void InterpreterVisitor::Visit(AssertStatement* statement) {

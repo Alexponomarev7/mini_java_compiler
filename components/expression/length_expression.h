@@ -17,6 +17,8 @@ private:
     Expression* expr_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_LENGTH_EXPRESSION_H

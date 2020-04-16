@@ -2,6 +2,7 @@
 #define COMPILER_OBJECT_H
 
 #include <iostream>
+#include <memory>
 
 class Object {
 public:

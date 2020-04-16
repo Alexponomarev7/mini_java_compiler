@@ -15,6 +15,8 @@ private:
     TypeIdentifier typeIdentifier_;
 
     friend class PrintVisitor;
+    friend class InterpreterVisitor;
+    friend class SymbolTreeVisitor;
 };
 
 #endif //COMPILER_OBJECT_MAKE_EXPRESSION_H
