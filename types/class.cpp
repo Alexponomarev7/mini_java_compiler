@@ -37,7 +37,7 @@ void ClassType::Set(const std::shared_ptr<Object>& other) {
 }
 
 std::string ClassType::GetType() const {
-    return "class";
+    return "class " + id_;
 }
 
 const ClassType* GetClassOrThrow(const std::shared_ptr<Object>& object) {
