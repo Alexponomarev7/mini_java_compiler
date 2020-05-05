@@ -1,14 +1,11 @@
-#include "table.h"
+//
+// Created by Alexey A. Ponomarev on 03.05.2020.
+//
 
-#include <utility>
-#include <iostream>
+#include "function_table.h"
 
-#include "types/types.h"
-
-Table::Table() {}
-
-void Table::Put(Symbol symbol, std::shared_ptr<Object> value) {
-    std::cerr << "Put " << symbol.GetName() << " value " << GetIntOrThrow(value) << std::endl;
+void FunctionTable::Put(Symbol symbol, int value) {
+    std::cerr << "Put " << symbol.GetName() << " value " << value << std::endl;
     if (values_.find(symbol) == values_.end()) {
         throw std::runtime_error(symbol.GetName() +  ": variable not declared");
     }
@@ -17,26 +14,26 @@ void Table::Put(Symbol symbol, std::shared_ptr<Object> value) {
     symbols_.push(symbol);
 }
 
-std::shared_ptr<Object> Table::Get(Symbol symbol) {
+int FunctionTable::Get(Symbol symbol) {
     if (values_.find(symbol) == values_.end()) {
         throw std::runtime_error(symbol.GetName() + ": variable not declared");
     }
     return values_[symbol].top();
 }
 
-void Table::CreateVariable(Type type, Symbol symbol) {
+void FunctionTable::CreateVariable(Symbol symbol) {
     std::cerr << "Creating variable " << symbol.GetName() << std::endl;
     if (values_.find(symbol) == values_.end()) {
-        values_[symbol] = std::stack<std::shared_ptr<Object>>();
+        values_[symbol] = std::stack<int>();
     }
-    values_[symbol].push(std::shared_ptr<Object>(GetType(type)));
+    values_[symbol].push(0);
 }
 
-void Table::BeginScope() {
+void FunctionTable::BeginScope() {
     symbols_.push(Symbol("{"));
 }
 
-void Table::EndScope() {
+void FunctionTable::EndScope() {
     while (symbols_.top() != Symbol("{")) {
         Symbol symbol = symbols_.top();
 
@@ -49,16 +46,4 @@ void Table::EndScope() {
         symbols_.pop();
     }
     symbols_.pop();
-}
-
-Symbol Table::GetSymbol(const std::string& name) {
-    auto it = symbols_map_.find(name);
-
-    if (it == symbols_map_.end()) {
-        Symbol symbol(name);
-        symbols_map_.insert({name, symbol});
-        return symbol;
-    } else {
-        return it->second;
-    }
 }

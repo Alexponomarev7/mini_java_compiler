@@ -62,16 +62,20 @@ add_executable(
     visitors/interpreter_visitor.cpp
     visitors/symbol_tree_visitor.cpp
     visitors/template_visitor.cpp
-        symbol_table/scope_layer.cpp
-        symbol_table/scope_layer_tree.cpp
-        symbol_table/symbol.cpp
-        types/types.cpp
-        types/boolean.cpp
-        types/integer.cpp
-        types/class.cpp
-        types/class_method.cpp
-        types/array.cpp
-        ${BISON_CompilerParser_OUTPUTS}
+    visitors/function_call_visitor.cpp
+    symbol_table/scope_layer.cpp
+    symbol_table/scope_layer_tree.cpp
+    symbol_table/symbol.cpp
+    types/types.cpp
+    types/boolean.cpp
+    types/integer.cpp
+    types/class.cpp
+    types/class_method.cpp
+    types/array.cpp
+    function-mechanisms/frame.cpp
+    function-mechanisms/function_storage.cpp
+    function-mechanisms/function_table.cpp
+    ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )
 target_include_directories(Compiler PRIVATE ${Compiler_SOURCE_DIR})

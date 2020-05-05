@@ -1,8 +1,18 @@
-#ifndef COMPILER_INTERPRETER_H
-#define COMPILER_INTERPRETER_H
+//
+// Created by Alexey A. Ponomarev on 03.05.2020.
+//
+
+#ifndef COMPILER_FUNCTION_CALL_VISITOR_H
+#define COMPILER_FUNCTION_CALL_VISITOR_H
 
 #include "template_visitor.h"
 #include "visitors/symbol_tree_visitor.h"
+#include "symbol_table/scope_layer.h"
+#include <stack>
+#include "function-mechanisms/frame.h"
+#include "function-mechanisms/function_table.h"
+#include "symbol_table/scope_layer_tree.h"
+#include "components/program.h"
 
 #include <map>
 #include <exception>
@@ -12,9 +22,12 @@
 
 #include "types/types.h"
 
-class InterpreterVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
+class FunctionCallVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
 public:
-    InterpreterVisitor(ScopeLayerTree root);
+    FunctionCallVisitor(ScopeLayer* function_scope, std::shared_ptr<ClassMethodType> function);
+
+    void SetTree(ScopeLayerTree* tree);
+    void SetParams(const std::vector<std::shared_ptr<Object>>& params);
 
     void Visit(Program* program) override;
 
@@ -46,13 +59,18 @@ public:
     void Visit(SetLvalueStatement* statement) override;
     void Visit(WhileStatement* statement) override;
 
-    int GetResult(Program* program);
+    Frame& GetFrame();
 
 private:
-    ScopeLayerTree tree_;
+    ScopeLayer* root_layer;
     ScopeLayer* current_layer_;
-
     std::stack<int> offsets_;
+
+    Frame frame;
+    FunctionTable table_;
+    ScopeLayerTree* tree_;
+    bool returned_ = false;
 };
 
-#endif //COMPILER_PRINTER_H
+
+#endif //COMPILER_FUNCTION_CALL_VISITOR_H

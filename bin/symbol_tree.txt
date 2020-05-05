@@ -1,0 +1,9 @@
+int
+bool
+true
+false
+NewType1
+		y
+	x
+	flag
+	t

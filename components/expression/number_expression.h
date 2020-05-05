@@ -18,6 +18,7 @@ private:
 
     friend class PrintVisitor;
     friend class InterpreterVisitor;
+    friend class FunctionCallVisitor;
 };
 
 #endif //COMPILER_NUMBER_EXPRESSION_H

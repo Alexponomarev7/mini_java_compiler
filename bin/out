@@ -9,41 +9,30 @@ Program:
 		Println statement:
 			Simple expression<x>:
 		Local variable declaration statement:
-			Variable declaration <int[] a>:
-		Set lvalue statement<a>:
-			Array make expression <int>:
-				Number expression<100>:
-		Local variable declaration statement:
 			Variable declaration <bool flag>:
 		Set lvalue statement<flag>:
 			Simple expression<true>:
+		If expression:
+			Simple expression<flag>:
+		If statement:
+			Scope statements:
+				Println statement:
+					Number expression<218>:
 		Local variable declaration statement:
 			Variable declaration <NewType1 t>:
 		Set lvalue statement<t>:
 			Object make expression<NewType1>:
 		Method invocation statement:
 			Method invocation <get>:
-		If expression:
-			Simple expression<flag>:
-		If statement:
-			Scope statements:
-				Local variable declaration statement:
-					Variable declaration <int x>:
-				Set lvalue statement<x>:
-					Number expression<6>:
-		Else statement:
-			Scope statements:
-				Println statement:
-					Binary expression <*>:
-						Number expression<2>:
-						Number expression<2>:
 		Println statement:
 			Simple expression<x>:
 	Class <NewType1>:
 		Method declaration <int get>:
 		Method formals:
 		Method statements:
-	Class <NewType2>:
-		Method declaration <int get>:
-		Method formals:
-		Method statements:
+			Local variable declaration statement:
+				Variable declaration <int y>:
+			Set lvalue statement<y>:
+				Number expression<2>:
+			Println statement:
+				Simple expression<y>:

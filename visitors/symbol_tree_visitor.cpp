@@ -24,6 +24,7 @@ void SymbolTreeVisitor::Visit(Program* program) {
 
     auto trueValue = std::make_shared<Boolean>(true);
     current_layer_->DeclareVariable(Symbol("true"), trueValue);
+
     auto falseValue = std::make_shared<Boolean>(false);
     current_layer_->DeclareVariable(Symbol("false"), falseValue);
 
@@ -42,11 +43,22 @@ void SymbolTreeVisitor::Visit(Program* program) {
 }
 
 void SymbolTreeVisitor::Visit(MainClass* mainClass) {
-    auto scopeLayer = CreateScopeLayer(this);
+    // Main class Scope
+    //auto scopeLayerMainClass = CreateScopeLayer(this);
 
-    for (const auto& statement : mainClass->statements_) {
+    // main method scope
+    // Declaring main method
+    auto mainDeclaration = new MethodDeclaration("void", "main", {}, mainClass->statements_);
+    current_layer_->DeclareFunction(Symbol("main"), mainDeclaration);
+    auto new_layer = new ScopeLayer(current_layer_);
+    current_layer_ = new_layer;
+    for (const auto &statement : mainClass->statements_) {
         statement->Accept(this);
     }
+
+    tree_.AddMapping(Symbol("main"), new_layer);
+    current_layer_ = current_layer_->GetParent();
+    functions_[Symbol("main")] = mainDeclaration;
 }
 
 void SymbolTreeVisitor::Visit(Class* classObj) {
@@ -58,22 +70,18 @@ void SymbolTreeVisitor::Visit(Class* classObj) {
 }
 
 void SymbolTreeVisitor::Visit(Formal* formal) {
-    formals_.push_back({formal->type_, formal->id_});
+    formals_.emplace_back(formal->type_, formal->id_);
 }
 
 void SymbolTreeVisitor::Visit(MethodInvocation* methodInvocation) {
-    auto type = Accept(methodInvocation->expr_);
-    auto classObj = GetClassOrThrow(type);
-
-    if (!classObj->HasMethod(methodInvocation->id_)) {
-        throw std::runtime_error("Class object has no such method.");
-    }
+    // We don't check function name because function could be created after
+    methodInvocation->expr_->Accept(this);
 };
 
 void SymbolTreeVisitor::Visit(VariableDeclaration* variableDeclaration) {
     auto type = variableDeclaration->type_;
     auto variable = variableDeclaration->id_;
-    variables_.push_back({type, variable});
+    variables_.emplace_back(type, variable);
 
     bool isArray = false;
     if (IsArrayType(type)) {
@@ -93,23 +101,28 @@ void SymbolTreeVisitor::Visit(VariableDeclaration* variableDeclaration) {
 
 void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
     auto id = methodDeclaration->id_;
+    current_layer_->DeclareFunction(Symbol(id), methodDeclaration);
 
-    auto returnType = methodDeclaration->type_;
-    for (const auto& formal : methodDeclaration->formals_) {
+    auto new_layer = new ScopeLayer(current_layer_);
+    current_layer_ = new_layer;
+
+    for (auto formal : methodDeclaration->formals_) {
         formal->Accept(this);
     }
-    auto formals = formals_;
-    formals_.clear();
 
-    methods_.push_back({returnType, id, formals});
-    auto method = std::make_shared<ClassMethodType>(returnType, id, formals);
-    current_layer_->DeclareVariable(Symbol(id), method);
-
-    auto scopeLayer = CreateScopeLayer(this);
-    for (const auto& subStatement : methodDeclaration->statements_) {
-        subStatement->Accept(this);
+    for (auto statement : methodDeclaration->statements_) {
+        statement->Accept(this);
     }
+
+    tree_.AddMapping(Symbol(id), new_layer);
+    current_layer_ = current_layer_->GetParent();
+
+    functions_[Symbol(id)] = methodDeclaration;
 };
+
+std::unordered_map<Symbol, MethodDeclaration*> SymbolTreeVisitor::GetFunctions() const {
+    return functions_;
+}
 
 void SymbolTreeVisitor::Visit(ArrayMakeExpression* expression) {
     auto size = Accept(expression->sizeExpr_);
@@ -231,6 +244,6 @@ void SymbolTreeVisitor::Visit(WhileStatement* statement) {
     statement->statement_->Accept(this);
 }
 
-ScopeLayer* SymbolTreeVisitor::GetRoot() {
-    return current_layer_;
+ScopeLayerTree SymbolTreeVisitor::GetRoot() {
+    return tree_;
 }

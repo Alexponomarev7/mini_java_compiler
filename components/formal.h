@@ -20,6 +20,7 @@ private:
 
     friend class PrintVisitor;
     friend class SymbolTreeVisitor;
+    friend class ScopeLayer;
 };
 
 #endif //COMPILER_FORMAL_H

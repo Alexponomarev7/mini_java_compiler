@@ -36,11 +36,37 @@ void Driver::PrintTree(const std::string& filename) {
 }
 
 int Driver::Evaluate() {
-    SymbolTreeVisitor symbolTreeVisitor;
-    symbolTreeVisitor.Visit(program);
+    SymbolTreeVisitor visitor;
+    visitor.Visit(program);
 
-    InterpreterVisitor interpreter(symbolTreeVisitor.GetRoot());
-    interpreter.Visit(program);
+    std::cerr << "Symbol tree built" << std::endl;
+    ScopeLayerTree root = visitor.GetRoot();
+
+    auto functions = visitor.GetFunctions();
+
+    FunctionStorage& storage = FunctionStorage::GetInstance();
+    for (auto it : functions) {
+        storage.Set(it.first, it.second);
+    }
+
+    MethodDeclaration* main_function = storage.Get(Symbol("main"));
+
+    std::shared_ptr<ClassMethodType> function_type = std::dynamic_pointer_cast<ClassMethodType>(
+            root.Get(Symbol("main"))
+    );
+
+    FunctionCallVisitor function_visitor(
+            root.GetFunctionScopeByName(Symbol("main")),
+            function_type
+    );
+
+    function_visitor.SetTree(&root);
+
+    function_visitor.Visit(main_function);
+
+    root.PrintTree("symbol_tree.txt");
+    //InterpreterVisitor interpreter(root);
+    //int interpreter_result = interpreter.GetResult(program);
 }
 
 void Driver::scan_end()

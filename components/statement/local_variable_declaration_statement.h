@@ -19,6 +19,7 @@ private:
     friend class PrintVisitor;
     friend class InterpreterVisitor;
     friend class SymbolTreeVisitor;
+    friend class FunctionCallVisitor;
 };
 
 #endif //COMPILER_LOCAL_VARIABLE_DECLARATION_STATEMENT_H

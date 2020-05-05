@@ -24,6 +24,8 @@ private:
 
     friend class PrintVisitor;
     friend class SymbolTreeVisitor;
+    friend class ScopeLayer;
+    friend class FunctionCallVisitor;
 };
 
 #endif //COMPILER_METHOD_DECLARATION_H

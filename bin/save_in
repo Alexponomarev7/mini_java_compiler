@@ -4,17 +4,24 @@ class Test {
 	    x = 5 + 2;
 	    System.out.println(x);
 
-        bool flag;
-        flag = true;
+	    int[] a;
+	    a = new int[100];
 
-        if (flag) {
-            System.out.println(218);
-        }
+	    bool flag;
+ 	    flag = true;
 
 	    NewType1 t;
 	    t = new NewType1();
 
 	    t.get();
+
+        if (flag) {
+            int x;
+            x = 6;
+
+        } else {
+            System.out.println(2*2);
+        }
 
     	System.out.println(x);
     }
@@ -22,8 +29,6 @@ class Test {
 
 class NewType1 {
 	public int get() {
-	    int y;
-	    y = 2;
-	    System.out.println(y);
+
 	}
-}	
+}

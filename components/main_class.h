@@ -21,6 +21,7 @@ private:
     friend class PrintVisitor;
     friend class InterpreterVisitor;
     friend class SymbolTreeVisitor;
+    friend class FunctionCallVisitor;
 };
 
 #endif //COMPILER_MAIN_CLASS_H

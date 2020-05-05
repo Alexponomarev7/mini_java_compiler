@@ -8,6 +8,7 @@
 #include "visitors/print_visitor.h"
 #include "visitors/symbol_tree_visitor.h"
 #include "visitors/interpreter_visitor.h"
+#include "visitors/function_call_visitor.h"
 
 class Driver {
 public:

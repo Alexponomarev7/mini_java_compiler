@@ -4,7 +4,9 @@
 #include "template_visitor.h"
 #include "symbol_table/table.h"
 #include "symbol_table/scope_layer_tree.h"
-
+#include "function-mechanisms/function_table.h"
+#include "function-mechanisms/frame.h"
+#include "function-mechanisms/function_storage.h"
 
 class SymbolTreeVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
 public:
@@ -40,7 +42,9 @@ public:
     void Visit(SetLvalueStatement* statement) override;
     void Visit(WhileStatement* statement) override;
 
-    ScopeLayer* GetRoot();
+    ScopeLayerTree GetRoot();
+
+    std::unordered_map<Symbol, MethodDeclaration*> GetFunctions() const;
 
 private:
     ScopeLayerTree tree_;
@@ -49,6 +53,9 @@ private:
     std::vector<Variable> variables_;
     std::vector<Method> methods_;
     std::vector<Variable> formals_;
+
+    std::unordered_map<Symbol, MethodDeclaration*> functions_;
+
 
     struct CreateScopeLayer {
         explicit CreateScopeLayer(SymbolTreeVisitor* symbolTreeVisitor) : symbolTreeVisitor_(symbolTreeVisitor) {

@@ -1,8 +1,9 @@
 #include <components/program.h>
 #include "interpreter_visitor.h"
 
-InterpreterVisitor::InterpreterVisitor(ScopeLayer* root) : current_layer_(root)
+InterpreterVisitor::InterpreterVisitor(ScopeLayerTree root) : tree_(root)
 {
+    current_layer_ = tree_.root_;
     current_layer_->Put(Symbol("true"), std::make_shared<Boolean>(true));
     current_layer_->Put(Symbol("false"), std::make_shared<Boolean>(false));
 
@@ -195,4 +196,9 @@ void InterpreterVisitor::Visit(WhileStatement* statement) {
         statement->statement_->Accept(this);
         result = Accept(statement->expr_);
     }
+}
+
+int InterpreterVisitor::GetResult(Program *program) {
+    Visit(program);
+    return GetIntOrThrow(tos_value_);
 }

@@ -16,8 +16,11 @@ class ScopeLayer {
 public:
     explicit ScopeLayer(ScopeLayer* parent);
     ScopeLayer();
+    ~ScopeLayer();
 
     void DeclareVariable(Symbol symbol, std::shared_ptr<Object> type);
+    void DeclareFunction(Symbol symbol, MethodDeclaration* function);
+
     void Put(Symbol symbol, std::shared_ptr<Object> value);
     std::shared_ptr<Object> Get(Symbol symbol);
     bool Has(Symbol symbol);
@@ -27,6 +30,8 @@ public:
 
     ScopeLayer* GetChild(size_t index);
     ScopeLayer* GetParent() const;
+
+    void PrintLayer(std::ostream& stream, int num_tabs) const;
 private:
     std::unordered_map<Symbol, std::shared_ptr<Object>> values_;
     std::unordered_map<Symbol, size_t> offsets_;

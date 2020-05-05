@@ -7,6 +7,8 @@
 struct Variable {
     std::string type;
     std::string name;
+
+    Variable(std::string type, std::string name) : type(std::move(type)), name(std::move(name)) {}
 };
 
 struct Method {
