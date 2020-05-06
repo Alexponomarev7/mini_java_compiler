@@ -92,6 +92,7 @@ void FunctionCallVisitor::Visit(MethodInvocation* methodInvocation) {
 
     std::vector<std::shared_ptr<Object>> params;
     // TODO: Add param this to invocation
+    params.push_back(expr);
 
     for (const auto& param : methodInvocation->params_) {
         int index = table_.Get(Symbol(param));
@@ -121,6 +122,10 @@ void FunctionCallVisitor::Visit(VariableDeclaration* variableDeclaration) {
 void FunctionCallVisitor::Visit(MethodDeclaration* methodDeclaration) {
     // TODO: fix
     int index = -1;
+    table_.CreateVariable(Symbol("this"));
+    table_.Put(Symbol("this"), index);
+    --index;
+
     for (auto formal : methodDeclaration->formals_) {
         table_.CreateVariable(Symbol(formal->id_));
         table_.Put(Symbol(formal->id_), index);
@@ -128,7 +133,9 @@ void FunctionCallVisitor::Visit(MethodDeclaration* methodDeclaration) {
     }
 
     for (auto statement : methodDeclaration->statements_) {
-        statement->Accept(this);
+        if (!returned_) {
+            statement->Accept(this);
+        }
     }
 }
 
@@ -192,13 +199,14 @@ void FunctionCallVisitor::Visit(SimpleExpression* simpleExpression) {
 }
 
 void FunctionCallVisitor::Visit(LengthExpression* lengthExpression) {
-    // pass
     auto array = GetArrayOrThrow(Accept(lengthExpression->expr_));
     tos_value_ = std::make_shared<Integer>(array.size());
 }
 
 void FunctionCallVisitor::Visit(AssertStatement* statement) {
     auto result = Accept(statement->expr_);
+
+    std::cerr << "LOCATION: " << statement->GetLocation() << std::endl;
 
     if (!GetBoolOrThrow(result)) {
         throw std::runtime_error("Assertion failed.");

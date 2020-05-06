@@ -3,7 +3,7 @@
 
 #include "components/base.h"
 
-class Statement : BaseElement {
+class Statement : public BaseElement {
 public:
     virtual void Accept(Visitor* visitor) = 0;
 };

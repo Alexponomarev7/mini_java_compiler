@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <memory>
+#include "location/location.h"
+#include "error/errors.h"
 
 class Object {
 public:

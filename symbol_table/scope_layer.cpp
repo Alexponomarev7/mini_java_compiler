@@ -3,6 +3,7 @@
 #include <iostream>
 #include <components/declaration/method_declaration.h>
 #include <components/formal.h>
+#include "location/location.h"
 
 ScopeLayer::ScopeLayer(ScopeLayer* parent): parent_(parent) {
     std::cerr << "Constructor called" << std::endl;
@@ -21,7 +22,7 @@ ScopeLayer::ScopeLayer(): parent_(nullptr) {}
 
 void ScopeLayer::DeclareVariable(Symbol symbol, std::shared_ptr<Object> type) {
     if (values_.find(symbol) != values_.end()) {
-        throw std::runtime_error("Variable has declared");
+        throw runtime_error_location("Variable \"" + symbol.GetName() + "\" has declared");
     }
 
     std::cerr << "Variable " + symbol.GetName() << " declared" << std::endl;
@@ -31,19 +32,20 @@ void ScopeLayer::DeclareVariable(Symbol symbol, std::shared_ptr<Object> type) {
     symbols_.push_back(symbol);
 }
 
-void ScopeLayer::DeclareFunction(Symbol symbol, MethodDeclaration *function) {
-    if (values_.find(symbol) != values_.end()) {
-        throw std::runtime_error("Function has declared");
+void ScopeLayer::DeclareFunction(Symbol method_class, Symbol method, MethodDeclaration *function) {
+    if (values_.find(method) != values_.end()) {
+        throw std::runtime_error("Function \"" + method.GetName() + "\" has declared");
     }
 
-    std::cerr << "Method " + symbol.GetName() << " declared" << std::endl;
+    std::cerr << "Method " + method.GetName() << " declared" << std::endl;
 
     std::vector<Variable> variables;
+    variables.emplace_back(method_class.GetName(), "this");
     for (Formal* formal : function->formals_) {
         variables.emplace_back(formal->type_, formal->id_);
     }
 
-    values_[symbol] = std::make_shared<ClassMethodType>(function->type_, function->id_, variables);
+    values_[method] = std::make_shared<ClassMethodType>(function->type_, function->id_, variables);
 }
 
 void ScopeLayer::Put(Symbol symbol, std::shared_ptr<Object> value) {
@@ -56,7 +58,7 @@ void ScopeLayer::Put(Symbol symbol, std::shared_ptr<Object> value) {
     if (current_layer->Has(symbol)) {
         current_layer->values_.find(symbol)->second->Set(value);
     } else {
-        throw std::runtime_error("Variable " + symbol.GetName() + " not declared");
+        throw std::runtime_error("Variable \"" + symbol.GetName() + "\" not declared");
     }
 
 }
@@ -76,7 +78,7 @@ std::shared_ptr<Object> ScopeLayer::Get(Symbol symbol) {
     if (current_layer->Has(symbol)) {
         return current_layer->values_.find(symbol)->second;
     } else {
-        throw std::runtime_error("Variable " + symbol.GetName() + " not declared");
+        throw std::runtime_error("Variable \"" + symbol.GetName() + "\" not declared");
     }
 }
 

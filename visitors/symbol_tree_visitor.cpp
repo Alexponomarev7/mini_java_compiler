@@ -41,7 +41,7 @@ void SymbolTreeVisitor::Visit(MainClass* mainClass) {
     // main method scope
     // Declaring main method
     auto mainDeclaration = new MethodDeclaration("void", "main", {}, mainClass->statements_);
-    current_layer_->DeclareFunction(Symbol("main"), mainDeclaration);
+    current_layer_->DeclareFunction(Symbol(mainClass->id_), Symbol("main"), mainDeclaration);
     auto new_layer = new ScopeLayer(current_layer_);
     current_layer_ = new_layer;
     for (const auto &statement : mainClass->statements_) {
@@ -93,11 +93,14 @@ void SymbolTreeVisitor::Visit(VariableDeclaration* variableDeclaration) {
 void SymbolTreeVisitor::Visit(MethodDeclaration* methodDeclaration) {
     // TODO: fix this name
     auto id = "class " + current_class_->id_ + "::" + methodDeclaration->id_;
-    current_layer_->DeclareFunction(Symbol(id), methodDeclaration);
+    current_layer_->DeclareFunction(Symbol(current_class_->id_), Symbol(id), methodDeclaration);
 
     auto new_layer = new ScopeLayer(current_layer_);
     current_layer_ = new_layer;
 
+    // TODO delete!
+    current_layer_->DeclareVariable(Symbol("this"),
+            std::shared_ptr<Object>(new ClassType(current_class_->id_, {})));
     for (auto formal : methodDeclaration->formals_) {
         current_layer_->DeclareVariable(Symbol(formal->id_), tree_.GetType(formal->type_));
     }

@@ -10,7 +10,7 @@ Table::Table() {}
 void Table::Put(Symbol symbol, std::shared_ptr<Object> value) {
     std::cerr << "Put " << symbol.GetName() << " value " << GetIntOrThrow(value) << std::endl;
     if (values_.find(symbol) == values_.end()) {
-        throw std::runtime_error(symbol.GetName() +  ": variable not declared");
+        throw runtime_error_location("Variable" + symbol.GetName() + "not declared");
     }
     values_[symbol].pop();
     values_[symbol].push(value);
@@ -19,7 +19,7 @@ void Table::Put(Symbol symbol, std::shared_ptr<Object> value) {
 
 std::shared_ptr<Object> Table::Get(Symbol symbol) {
     if (values_.find(symbol) == values_.end()) {
-        throw std::runtime_error(symbol.GetName() + ": variable not declared");
+        throw runtime_error_location("Variable" + symbol.GetName() + "not declared");
     }
     return values_[symbol].top();
 }

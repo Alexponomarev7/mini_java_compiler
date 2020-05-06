@@ -6,7 +6,7 @@
 
 #include <vector>
 
-class Program : BaseElement {
+class Program : public BaseElement {
 public:
     Program(MainClass* main, std::vector<Class*> classes) :
         main_(main)
@@ -14,7 +14,12 @@ public:
     {}
 
     void Accept(Visitor* visitor) override {
+        auto current_location = Location::GetInstance()->GetLocation();
+        Location::GetInstance()->SetLocation(this->GetLocation());
+
         visitor->Visit(this);
+
+        Location::GetInstance()->SetLocation(current_location);
     }
 
 private:

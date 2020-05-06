@@ -66,6 +66,9 @@ add_executable(
     symbol_table/scope_layer.cpp
     symbol_table/scope_layer_tree.cpp
     symbol_table/symbol.cpp
+    symbol_table/table.cpp
+    location/location.cpp
+    error/errors.cpp
     types/types.cpp
     types/boolean.cpp
     types/integer.cpp

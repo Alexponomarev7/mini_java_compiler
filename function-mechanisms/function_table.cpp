@@ -7,7 +7,7 @@
 void FunctionTable::Put(Symbol symbol, int value) {
     std::cerr << "Put " << symbol.GetName() << " value " << value << std::endl;
     if (values_.find(symbol) == values_.end()) {
-        throw std::runtime_error(symbol.GetName() +  ": variable not declared");
+        throw runtime_error_location("Variable " + symbol.GetName() + " not declared");
     }
     values_[symbol].pop();
     values_[symbol].push(value);
@@ -16,7 +16,7 @@ void FunctionTable::Put(Symbol symbol, int value) {
 
 int FunctionTable::Get(Symbol symbol) {
     if (values_.find(symbol) == values_.end()) {
-        throw std::runtime_error(symbol.GetName() + ": variable not declared");
+        throw runtime_error_location("Variable " + symbol.GetName() + " not declared");
     }
     return values_[symbol].top();
 }

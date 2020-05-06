@@ -10,7 +10,7 @@
 #include <memory>
 #include <vector>
 #include "types/types.h"
-
+#include "error/errors.h"
 
 class ScopeLayer {
 public:
@@ -19,7 +19,7 @@ public:
     ~ScopeLayer();
 
     void DeclareVariable(Symbol symbol, std::shared_ptr<Object> type);
-    void DeclareFunction(Symbol symbol, MethodDeclaration* function);
+    void DeclareFunction(Symbol method_class, Symbol method, MethodDeclaration* function);
 
     void Put(Symbol symbol, std::shared_ptr<Object> value);
     std::shared_ptr<Object> Get(Symbol symbol);

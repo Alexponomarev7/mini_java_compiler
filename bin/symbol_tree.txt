@@ -1,8 +1,26 @@
 true
 false
+		this
 		y
+		this
 		x
 		y
+	x
+		this
+		this
+		result
+	x
+		this
+		y
+		this
+		this
+		this
+		a
+		b
+		result
+		new_a
+		new_b
+			swap
 	test
 	t
 	a
@@ -12,3 +30,10 @@ false
 	result
 	flag
 	start
+	t2
+	out
+	t3
+	gcd
+	ga
+	gb
+	gcd_res

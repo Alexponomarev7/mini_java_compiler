@@ -7,6 +7,7 @@
 
 
 #include "symbol_table/symbol.h"
+#include "error/errors.h"
 #include <iostream>
 
 #include <stack>

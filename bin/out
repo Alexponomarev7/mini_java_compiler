@@ -1,5 +1,7 @@
 Program:
 	Main class <Test>:
+		Assert statement:
+			Simple expression<true>:
 		Local variable declaration statement:
 			Variable declaration <int test>:
 		Set lvalue statement<test>:
@@ -83,6 +85,40 @@ Program:
 			Simple expression<start>:
 		Println statement:
 			Simple expression<result>:
+		Local variable declaration statement:
+			Variable declaration <NewType2 t2>:
+		Set lvalue statement<t2>:
+			Object make expression<NewType2>:
+		Local variable declaration statement:
+			Variable declaration <int out>:
+		Set lvalue statement<out>:
+			Method invocation expression:
+				Method invocation <get>:
+		Println statement:
+			Simple expression<out>:
+		Local variable declaration statement:
+			Variable declaration <NewType3 t3>:
+		Set lvalue statement<t3>:
+			Object make expression<NewType3>:
+		Local variable declaration statement:
+			Variable declaration <GCD gcd>:
+		Set lvalue statement<gcd>:
+			Object make expression<GCD>:
+		Local variable declaration statement:
+			Variable declaration <int ga>:
+		Local variable declaration statement:
+			Variable declaration <int gb>:
+		Set lvalue statement<ga>:
+			Number expression<10>:
+		Set lvalue statement<gb>:
+			Number expression<5>:
+		Local variable declaration statement:
+			Variable declaration <int gcd_res>:
+		Set lvalue statement<gcd_res>:
+			Method invocation expression:
+				Method invocation <eval>:
+		Println statement:
+			Simple expression<gcd_res>:
 	Class <NewType1>:
 		Method declaration <int get>:
 		Method formals:
@@ -102,3 +138,85 @@ Program:
 				Binary expression <+>:
 					Simple expression<x>:
 					Simple expression<y>:
+	Class <NewType2>:
+		Variable declaration <int x>:
+		Method declaration <int init>:
+		Method formals:
+		Method statements:
+			Return statement:
+				Number expression<19>:
+		Method declaration <int get>:
+		Method formals:
+		Method statements:
+			Local variable declaration statement:
+				Variable declaration <int result>:
+			Set lvalue statement<result>:
+				Method invocation expression:
+					Method invocation <init>:
+			Return statement:
+				Simple expression<result>:
+	Class <NewType3>:
+		Variable declaration <int x>:
+		Method declaration <void set>:
+		Method formals:
+			int y
+		Method statements:
+			Set lvalue statement<x>:
+				Simple expression<y>:
+		Method declaration <void inc>:
+		Method formals:
+		Method statements:
+			Set lvalue statement<x>:
+				Binary expression <+>:
+					Simple expression<x>:
+					Number expression<1>:
+		Method declaration <int get>:
+		Method formals:
+		Method statements:
+			Return statement:
+				Simple expression<x>:
+	Class <GCD>:
+		Method declaration <int eval>:
+		Method formals:
+			int a
+			int b
+		Method statements:
+			If expression:
+				Binary expression <<>:
+					Simple expression<a>:
+					Simple expression<b>:
+			If statement:
+				Scope statements:
+					Local variable declaration statement:
+						Variable declaration <int swap>:
+					Set lvalue statement<swap>:
+						Simple expression<a>:
+					Set lvalue statement<a>:
+						Simple expression<b>:
+					Set lvalue statement<b>:
+						Simple expression<swap>:
+			If expression:
+				Binary expression <==>:
+					Simple expression<b>:
+					Number expression<0>:
+			If statement:
+				Scope statements:
+					Return statement:
+						Simple expression<a>:
+			Local variable declaration statement:
+				Variable declaration <int result>:
+			Local variable declaration statement:
+				Variable declaration <int new_a>:
+			Set lvalue statement<new_a>:
+				Simple expression<b>:
+			Local variable declaration statement:
+				Variable declaration <int new_b>:
+			Set lvalue statement<new_b>:
+				Binary expression <->:
+					Simple expression<a>:
+					Simple expression<b>:
+			Set lvalue statement<result>:
+				Method invocation expression:
+					Method invocation <eval>:
+			Return statement:
+				Simple expression<result>:

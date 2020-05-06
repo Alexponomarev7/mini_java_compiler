@@ -11,7 +11,12 @@ public:
     {}
 
     void Accept(Visitor* visitor) override {
+        auto current_location = Location::GetInstance()->GetLocation();
+        Location::GetInstance()->SetLocation(this->GetLocation());
+
         visitor->Visit(this);
+
+        Location::GetInstance()->SetLocation(current_location);
     }
 
 private:

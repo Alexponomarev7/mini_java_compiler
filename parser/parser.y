@@ -121,11 +121,11 @@
 %%
 %start unit;
 
-unit: mainClass classes { $$ = new Program($1, $2); driver.program = $$; };
+unit: mainClass classes { $$ = new Program($1, $2); driver.program = $$; $$->SetLocation(@$); };
 
 mainClass:
     "class" "identifier" "{" "public static void main" "(" ")" "{" statements "}" "}"
-    { $$ = new MainClass($2, std::move($8)); }
+    { $$ = new MainClass($2, std::move($8)); $$->SetLocation(@$); }
 
 extension:
     %empty { $$ = ""; }
@@ -133,15 +133,15 @@ extension:
 
 class:
     "class" "identifier" extension "{" declarations "}"
-    { $$ = new Class($2, $3, $5); }
+    { $$ = new Class($2, $3, $5); $$->SetLocation(@$); }
 
 classes:
     %empty {}
     | classes class { $$ = std::move($1); $$.push_back($2); }
 
 declaration:
-    variableDeclaration { $$ = $1; }
-    | methodDeclaration { $$ = $1; }
+    variableDeclaration { $$ = $1; $$->SetLocation(@$); }
+    | methodDeclaration { $$ = $1; $$->SetLocation(@$); }
 
 declarations:
     %empty {}
@@ -149,14 +149,14 @@ declarations:
 
 variableDeclaration:
     type "identifier" ";"
-    { $$ = new VariableDeclaration($1, $2); }
+    { $$ = new VariableDeclaration($1, $2); $$->SetLocation(@$); }
 
 methodDeclaration:
     "public" type "identifier" "(" formals ")" "{" statements "}"
-    { $$ = new MethodDeclaration($2, $3, $5, $8); }
+    { $$ = new MethodDeclaration($2, $3, $5, $8); $$->SetLocation(@$); }
 
 formal:
-    type "identifier" { $$ = new Formal($1, $2); }
+    type "identifier" { $$ = new Formal($1, $2); $$->SetLocation(@$); }
 
 formals:
     %empty {}
@@ -180,16 +180,16 @@ typeIdentifier:
     "identifier" { $$ = $1; }
 
 statement:
-    "assert" "(" expr ")" ";" { $$ = new AssertStatement($3); }
-    | localVariableDeclaration { $$ = new LocalVariableDeclarationStatement($1); }
-    | "{" statements "}" { $$ = new ScopeStatements($2); }
-    | "if" "(" expr ")" statement { $$ = new IfStatement($3, $5); }
-    | "if" "(" expr ")" statement "else" statement { $$ = new IfElseStatement($3, $5, $7); }
-    | "while" "(" expr ")" statement { $$ = new WhileStatement($3, $5); }
-    | "System.out.println" "(" expr ")" ";" { $$ = new PrintlnStatement($3); }
-    | lvalue "=" expr ";" { $$ = new SetLvalueStatement($1, $3); }
-    | "return" expr ";" { $$ = new ReturnStatement($2); }
-    | methodInvocation ";" { $$ = new MethodInvocationStatement($1); }
+    "assert" "(" expr ")" ";" { $$ = new AssertStatement($3); $$->SetLocation(@$); }
+    | localVariableDeclaration { $$ = new LocalVariableDeclarationStatement($1); $$->SetLocation(@$);}
+    | "{" statements "}" { $$ = new ScopeStatements($2); $$->SetLocation(@$); }
+    | "if" "(" expr ")" statement { $$ = new IfStatement($3, $5); $$->SetLocation(@$); }
+    | "if" "(" expr ")" statement "else" statement { $$ = new IfElseStatement($3, $5, $7); $$->SetLocation(@$); }
+    | "while" "(" expr ")" statement { $$ = new WhileStatement($3, $5); $$->SetLocation(@$); }
+    | "System.out.println" "(" expr ")" ";" { $$ = new PrintlnStatement($3); $$->SetLocation(@$); }
+    | lvalue "=" expr ";" { $$ = new SetLvalueStatement($1, $3); $$->SetLocation(@$); }
+    | "return" expr ";" { $$ = new ReturnStatement($2); $$->SetLocation(@$); }
+    | methodInvocation ";" { $$ = new MethodInvocationStatement($1); $$->SetLocation(@$); }
 
 statements:
     %empty {}
@@ -197,7 +197,7 @@ statements:
 
 
 localVariableDeclaration:
-    variableDeclaration { $$ = $1; }
+    variableDeclaration { $$ = $1; $$->SetLocation(@$); }
 
 params:
     %empty {}
@@ -206,7 +206,7 @@ params:
 
 // Need Fix
 methodInvocation:
-    expr "." "identifier" "(" params ")" { $$ = new MethodInvocation($1, $3, $5); }
+    expr "." "identifier" "(" params ")" { $$ = new MethodInvocation($1, $3, $5); $$->SetLocation(@$); }
 
 // need fix
 lvalue:
@@ -214,19 +214,19 @@ lvalue:
     | "identifier" "[" expr "]" { $$ = $1; } // need fix
 
 expr:
-    expr binaryOperator expr { $$ = new BinaryExpression($1, $3, $2); }
-    | expr "[" expr "]" { $$ = new InverseExpression($1); } // need fix
-    | expr "." "length" { $$ = new LengthExpression($1); }
-    | "new" simpleType "[" expr "]" { $$ = new ArrayMakeExpression($2, $4); }
-    | "new" typeIdentifier "(" ")" { $$ = new ObjectMakeExpression($2); }
-    | "!" expr { $$ = new InverseExpression($2); }
-    | "(" expr ")" { $$ = $2; }
-    | "identifier" { $$ = new SimpleExpression($1); }
-    | "number" { $$ = new NumberExpression($1); }
-    | "this" { $$ = new SimpleExpression("this"); }
-    | "true" { $$ = new SimpleExpression("true"); }
-    | "false" { $$ = new SimpleExpression("false"); }
-    | methodInvocation { $$ = new MethodInvocationExpression($1); }
+    expr binaryOperator expr { $$ = new BinaryExpression($1, $3, $2); $$->SetLocation(@$); }
+    | expr "[" expr "]" { $$ = new InverseExpression($1); $$->SetLocation(@$); } // need fix
+    | expr "." "length" { $$ = new LengthExpression($1); $$->SetLocation(@$); }
+    | "new" simpleType "[" expr "]" { $$ = new ArrayMakeExpression($2, $4); $$->SetLocation(@$); }
+    | "new" typeIdentifier "(" ")" { $$ = new ObjectMakeExpression($2); $$->SetLocation(@$); }
+    | "!" expr { $$ = new InverseExpression($2); $$->SetLocation(@$); }
+    | "(" expr ")" { $$ = $2; $$->SetLocation(@$); }
+    | "identifier" { $$ = new SimpleExpression($1); $$->SetLocation(@$); }
+    | "number" { $$ = new NumberExpression($1); $$->SetLocation(@$); }
+    | "this" { $$ = new SimpleExpression("this"); $$->SetLocation(@$); }
+    | "true" { $$ = new SimpleExpression("true"); $$->SetLocation(@$); }
+    | "false" { $$ = new SimpleExpression("false"); $$->SetLocation(@$); }
+    | methodInvocation { $$ = new MethodInvocationExpression($1); $$->SetLocation(@$); }
 
 %left "+" "-";
 %left "*" "/" "%";

@@ -1,5 +1,7 @@
 class Test {
     public static void main() {
+	    assert(true);
+
 	    int test;
         test = 1;
 
@@ -50,6 +52,31 @@ class Test {
 
     	System.out.println(start);
     	System.out.println(result);
+
+        NewType2 t2;
+        t2 = new NewType2();
+
+        int out;
+        out = t2.get();
+
+        System.out.println(out);
+
+        NewType3 t3;
+        t3 = new NewType3();
+
+
+
+        GCD gcd;
+        gcd = new GCD();
+
+        int ga;
+        int gb;
+
+        ga = 10;
+        gb = 5;
+        int gcd_res;
+        gcd_res = gcd.eval(ga, gb);
+        System.out.println(gcd_res);
     }
 }
 
@@ -63,4 +90,60 @@ class NewType1 {
 	public int add(int x, int y) {
 	    return x + y;
 	}
-}	
+}
+
+class NewType2 {
+    int x;
+
+    public int init() {
+        return 19;
+    }
+
+    public int get() {
+        int result;
+        result = this.init();
+        return result;
+    }
+}
+
+class NewType3 {
+    int x;
+
+    public void set(int y) {
+        x = y;
+    }
+
+    public void inc() {
+        x = x + 1;
+    }
+
+    public int get() {
+        return x;
+    }
+}
+
+class GCD {
+    public int eval(int a, int b) {
+        if (a < b) {
+            int swap;
+            swap = a;
+            a = b;
+            b = swap;
+        }
+
+        if (b == 0) {
+            return a;
+        }
+
+        int result;
+        int new_a;
+
+        new_a = b;
+
+        int new_b;
+        new_b = a - b;
+
+        result = this.eval(new_a, new_b);
+        return result;
+    }
+}

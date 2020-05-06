@@ -948,13 +948,13 @@ namespace yy {
             {
   case 2:
 #line 124 "parser/parser.y"
-                        { yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < MainClass* > (), yystack_[0].value.as < std::vector<Class*> > ()); driver.program = yylhs.value.as < Program* > (); }
+                        { yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < MainClass* > (), yystack_[0].value.as < std::vector<Class*> > ()); driver.program = yylhs.value.as < Program* > (); yylhs.value.as < Program* > ()->SetLocation(yylhs.location); }
 #line 953 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 3:
 #line 128 "parser/parser.y"
-    { yylhs.value.as < MainClass* > () = new MainClass(yystack_[8].value.as < std::string > (), std::move(yystack_[2].value.as < std::vector<Statement*> > ())); }
+    { yylhs.value.as < MainClass* > () = new MainClass(yystack_[8].value.as < std::string > (), std::move(yystack_[2].value.as < std::vector<Statement*> > ())); yylhs.value.as < MainClass* > ()->SetLocation(yylhs.location); }
 #line 959 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -972,7 +972,7 @@ namespace yy {
 
   case 6:
 #line 136 "parser/parser.y"
-    { yylhs.value.as < Class* > () = new Class(yystack_[4].value.as < std::string > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<Declaration*> > ()); }
+    { yylhs.value.as < Class* > () = new Class(yystack_[4].value.as < std::string > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<Declaration*> > ()); yylhs.value.as < Class* > ()->SetLocation(yylhs.location); }
 #line 977 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -990,13 +990,13 @@ namespace yy {
 
   case 9:
 #line 143 "parser/parser.y"
-                        { yylhs.value.as < Declaration* > () = yystack_[0].value.as < VariableDeclaration* > (); }
+                        { yylhs.value.as < Declaration* > () = yystack_[0].value.as < VariableDeclaration* > (); yylhs.value.as < Declaration* > ()->SetLocation(yylhs.location); }
 #line 995 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 10:
 #line 144 "parser/parser.y"
-                        { yylhs.value.as < Declaration* > () = yystack_[0].value.as < MethodDeclaration* > (); }
+                        { yylhs.value.as < Declaration* > () = yystack_[0].value.as < MethodDeclaration* > (); yylhs.value.as < Declaration* > ()->SetLocation(yylhs.location); }
 #line 1001 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1014,19 +1014,19 @@ namespace yy {
 
   case 13:
 #line 152 "parser/parser.y"
-    { yylhs.value.as < VariableDeclaration* > () = new VariableDeclaration(yystack_[2].value.as < std::string > (), yystack_[1].value.as < std::string > ()); }
+    { yylhs.value.as < VariableDeclaration* > () = new VariableDeclaration(yystack_[2].value.as < std::string > (), yystack_[1].value.as < std::string > ()); yylhs.value.as < VariableDeclaration* > ()->SetLocation(yylhs.location); }
 #line 1019 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 14:
 #line 156 "parser/parser.y"
-    { yylhs.value.as < MethodDeclaration* > () = new MethodDeclaration(yystack_[7].value.as < std::string > (), yystack_[6].value.as < std::string > (), yystack_[4].value.as < std::vector<Formal*> > (), yystack_[1].value.as < std::vector<Statement*> > ()); }
+    { yylhs.value.as < MethodDeclaration* > () = new MethodDeclaration(yystack_[7].value.as < std::string > (), yystack_[6].value.as < std::string > (), yystack_[4].value.as < std::vector<Formal*> > (), yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < MethodDeclaration* > ()->SetLocation(yylhs.location); }
 #line 1025 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 15:
 #line 159 "parser/parser.y"
-                      { yylhs.value.as < Formal* > () = new Formal(yystack_[1].value.as < std::string > (), yystack_[0].value.as < std::string > ()); }
+                      { yylhs.value.as < Formal* > () = new Formal(yystack_[1].value.as < std::string > (), yystack_[0].value.as < std::string > ()); yylhs.value.as < Formal* > ()->SetLocation(yylhs.location); }
 #line 1031 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1098,61 +1098,61 @@ namespace yy {
 
   case 27:
 #line 183 "parser/parser.y"
-                              { yylhs.value.as < Statement* > () = new AssertStatement(yystack_[2].value.as < Expression* > ()); }
+                              { yylhs.value.as < Statement* > () = new AssertStatement(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1103 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 28:
 #line 184 "parser/parser.y"
-                               { yylhs.value.as < Statement* > () = new LocalVariableDeclarationStatement(yystack_[0].value.as < VariableDeclaration* > ()); }
+                               { yylhs.value.as < Statement* > () = new LocalVariableDeclarationStatement(yystack_[0].value.as < VariableDeclaration* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location);}
 #line 1109 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 29:
 #line 185 "parser/parser.y"
-                         { yylhs.value.as < Statement* > () = new ScopeStatements(yystack_[1].value.as < std::vector<Statement*> > ()); }
+                         { yylhs.value.as < Statement* > () = new ScopeStatements(yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1115 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 30:
 #line 186 "parser/parser.y"
-                                  { yylhs.value.as < Statement* > () = new IfStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
+                                  { yylhs.value.as < Statement* > () = new IfStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1121 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 31:
 #line 187 "parser/parser.y"
-                                                   { yylhs.value.as < Statement* > () = new IfElseStatement(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Statement* > (), yystack_[0].value.as < Statement* > ()); }
+                                                   { yylhs.value.as < Statement* > () = new IfElseStatement(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Statement* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1127 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 32:
 #line 188 "parser/parser.y"
-                                     { yylhs.value.as < Statement* > () = new WhileStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); }
+                                     { yylhs.value.as < Statement* > () = new WhileStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1133 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 33:
 #line 189 "parser/parser.y"
-                                            { yylhs.value.as < Statement* > () = new PrintlnStatement(yystack_[2].value.as < Expression* > ()); }
+                                            { yylhs.value.as < Statement* > () = new PrintlnStatement(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1139 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 34:
 #line 190 "parser/parser.y"
-                          { yylhs.value.as < Statement* > () = new SetLvalueStatement(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
+                          { yylhs.value.as < Statement* > () = new SetLvalueStatement(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1145 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 35:
 #line 191 "parser/parser.y"
-                        { yylhs.value.as < Statement* > () = new ReturnStatement(yystack_[1].value.as < Expression* > ()); }
+                        { yylhs.value.as < Statement* > () = new ReturnStatement(yystack_[1].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1151 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 36:
 #line 192 "parser/parser.y"
-                           { yylhs.value.as < Statement* > () = new MethodInvocationStatement(yystack_[1].value.as < MethodInvocation* > ()); }
+                           { yylhs.value.as < Statement* > () = new MethodInvocationStatement(yystack_[1].value.as < MethodInvocation* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
 #line 1157 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1170,7 +1170,7 @@ namespace yy {
 
   case 39:
 #line 200 "parser/parser.y"
-                        { yylhs.value.as < VariableDeclaration* > () = yystack_[0].value.as < VariableDeclaration* > (); }
+                        { yylhs.value.as < VariableDeclaration* > () = yystack_[0].value.as < VariableDeclaration* > (); yylhs.value.as < VariableDeclaration* > ()->SetLocation(yylhs.location); }
 #line 1175 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1194,7 +1194,7 @@ namespace yy {
 
   case 43:
 #line 209 "parser/parser.y"
-                                         { yylhs.value.as < MethodInvocation* > () = new MethodInvocation(yystack_[5].value.as < Expression* > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<std::string> > ()); }
+                                         { yylhs.value.as < MethodInvocation* > () = new MethodInvocation(yystack_[5].value.as < Expression* > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<std::string> > ()); yylhs.value.as < MethodInvocation* > ()->SetLocation(yylhs.location); }
 #line 1199 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
@@ -1212,79 +1212,79 @@ namespace yy {
 
   case 46:
 #line 217 "parser/parser.y"
-                             { yylhs.value.as < Expression* > () = new BinaryExpression(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > (), yystack_[1].value.as < std::string > ()); }
+                             { yylhs.value.as < Expression* > () = new BinaryExpression(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > (), yystack_[1].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1217 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 47:
 #line 218 "parser/parser.y"
-                        { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[3].value.as < Expression* > ()); }
+                        { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[3].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1223 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 48:
 #line 219 "parser/parser.y"
-                        { yylhs.value.as < Expression* > () = new LengthExpression(yystack_[2].value.as < Expression* > ()); }
+                        { yylhs.value.as < Expression* > () = new LengthExpression(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1229 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 49:
 #line 220 "parser/parser.y"
-                                    { yylhs.value.as < Expression* > () = new ArrayMakeExpression(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); }
+                                    { yylhs.value.as < Expression* > () = new ArrayMakeExpression(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1235 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 50:
 #line 221 "parser/parser.y"
-                                   { yylhs.value.as < Expression* > () = new ObjectMakeExpression(yystack_[2].value.as < std::string > ()); }
+                                   { yylhs.value.as < Expression* > () = new ObjectMakeExpression(yystack_[2].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1241 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 51:
 #line 222 "parser/parser.y"
-               { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[0].value.as < Expression* > ()); }
+               { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[0].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1247 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 52:
 #line 223 "parser/parser.y"
-                   { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); }
+                   { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1253 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 53:
 #line 224 "parser/parser.y"
-                   { yylhs.value.as < Expression* > () = new SimpleExpression(yystack_[0].value.as < std::string > ()); }
+                   { yylhs.value.as < Expression* > () = new SimpleExpression(yystack_[0].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1259 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 54:
 #line 225 "parser/parser.y"
-               { yylhs.value.as < Expression* > () = new NumberExpression(yystack_[0].value.as < int > ()); }
+               { yylhs.value.as < Expression* > () = new NumberExpression(yystack_[0].value.as < int > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1265 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 55:
 #line 226 "parser/parser.y"
-             { yylhs.value.as < Expression* > () = new SimpleExpression("this"); }
+             { yylhs.value.as < Expression* > () = new SimpleExpression("this"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1271 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 56:
 #line 227 "parser/parser.y"
-             { yylhs.value.as < Expression* > () = new SimpleExpression("true"); }
+             { yylhs.value.as < Expression* > () = new SimpleExpression("true"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1277 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 57:
 #line 228 "parser/parser.y"
-              { yylhs.value.as < Expression* > () = new SimpleExpression("false"); }
+              { yylhs.value.as < Expression* > () = new SimpleExpression("false"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1283 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 58:
 #line 229 "parser/parser.y"
-                       { yylhs.value.as < Expression* > () = new MethodInvocationExpression(yystack_[0].value.as < MethodInvocation* > ()); }
+                       { yylhs.value.as < Expression* > () = new MethodInvocationExpression(yystack_[0].value.as < MethodInvocation* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
 #line 1289 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 

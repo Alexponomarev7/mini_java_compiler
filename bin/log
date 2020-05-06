@@ -4,22 +4,75 @@ Variable true declared
 Variable false declared
 Constructor called
 End contstructor called
-Method NewType1::get declared
+Method class NewType1::get declared
 Constructor called
 End contstructor called
+Variable this declared
 Variable y declared
-Method NewType1::add declared
+Method class NewType1::add declared
 Constructor called
 End contstructor called
+Variable this declared
 Variable x declared
 Variable y declared
 Variable NewType1 declared
+Constructor called
+End contstructor called
+Variable x declared
+Method class NewType2::init declared
+Constructor called
+End contstructor called
+Variable this declared
+Method class NewType2::get declared
+Constructor called
+End contstructor called
+Variable this declared
+Variable result declared
+Variable NewType2 declared
+Constructor called
+End contstructor called
+Variable x declared
+Method class NewType3::set declared
+Constructor called
+End contstructor called
+Variable this declared
+Variable y declared
+Method class NewType3::inc declared
+Constructor called
+End contstructor called
+Variable this declared
+Method class NewType3::get declared
+Constructor called
+End contstructor called
+Variable this declared
+Variable NewType3 declared
+Constructor called
+End contstructor called
+Method class GCD::eval declared
+Constructor called
+End contstructor called
+Variable this declared
+Variable a declared
+Variable b declared
+Constructor called
+End contstructor called
+Variable swap declared
+Constructor called
+End contstructor called
+Variable result declared
+Variable new_a declared
+Variable new_b declared
+Variable GCD declared
 Method main declared
+Constructor called
+End contstructor called
+Variable test declared
 Constructor called
 End contstructor called
 Variable t declared
 Variable a declared
 Variable b declared
+Variable check declared
 Variable sum_ab declared
 Variable result declared
 Variable flag declared
@@ -30,18 +83,138 @@ Constructor called
 End contstructor called
 Constructor called
 End contstructor called
+Variable t2 declared
+Variable out declared
+Variable t3 declared
+Variable gcd declared
+Variable ga declared
+Variable gb declared
+Variable gcd_res declared
 Symbol tree built
 Creating variable true
 Put true value 0
 Creating variable false
 Put false value 1
+Creating variable this
+Put this value -1
+LOCATION: in:3.6-18
+Creating variable test
+Put test value 2
+Going inside
 Creating variable t
-Put t value 2
+Put t value 3
 Creating variable a
-Put a value 3
+Put a value 4
 Creating variable b
-Put b value 4
+Put b value 5
+Creating variable check
+Put check value 6
 Creating variable sum_ab
-Put sum_ab value 5
+Put sum_ab value 7
 Function called class NewType1::add
-libc++abi.dylib: terminating with uncaught exception of type std::runtime_error: No such function
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable x
+Put x value -2
+Creating variable y
+Put y value -3
+Creating variable result
+Put result value 8
+Function called class NewType1::get
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable y
+Put y value 2
+Creating variable flag
+Put flag value 9
+Creating variable start
+Put start value 10
+Going inside
+Going inside
+Going inside
+Going inside
+Going inside
+Creating variable t2
+Put t2 value 11
+Creating variable out
+Put out value 12
+Function called class NewType2::get
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable result
+Put result value 2
+Function called class NewType2::init
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable t3
+Put t3 value 13
+Creating variable gcd
+Put gcd value 14
+Creating variable ga
+Put ga value 15
+Creating variable gb
+Put gb value 16
+Creating variable gcd_res
+Put gcd_res value 17
+Function called class GCD::eval
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable a
+Put a value -2
+Creating variable b
+Put b value -3
+Creating variable result
+Put result value 2
+Creating variable new_a
+Put new_a value 3
+Creating variable new_b
+Put new_b value 4
+Function called class GCD::eval
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable a
+Put a value -2
+Creating variable b
+Put b value -3
+Creating variable result
+Put result value 2
+Creating variable new_a
+Put new_a value 3
+Creating variable new_b
+Put new_b value 4
+Function called class GCD::eval
+Creating variable true
+Put true value 0
+Creating variable false
+Put false value 1
+Creating variable this
+Put this value -1
+Creating variable a
+Put a value -2
+Creating variable b
+Put b value -3
+Going inside

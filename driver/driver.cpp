@@ -36,36 +36,46 @@ void Driver::PrintTree(const std::string& filename) {
 }
 
 int Driver::Evaluate() {
-    SymbolTreeVisitor visitor;
-    visitor.Visit(program);
+    try {
+        SymbolTreeVisitor visitor;
+        visitor.Visit(program);
 
-    std::cerr << "Symbol tree built" << std::endl;
-    ScopeLayerTree root = visitor.GetRoot();
+        std::cerr << "Symbol tree built" << std::endl;
+        ScopeLayerTree root = visitor.GetRoot();
 
-    auto functions = visitor.GetFunctions();
+        auto functions = visitor.GetFunctions();
 
-    FunctionStorage& storage = FunctionStorage::GetInstance();
-    for (auto it : functions) {
-        storage.Set(it.first, it.second);
+        FunctionStorage& storage = FunctionStorage::GetInstance();
+        for (auto it : functions) {
+            storage.Set(it.first, it.second);
+        }
+
+        MethodDeclaration* main_function = storage.Get(Symbol("main"));
+
+        std::shared_ptr<ClassMethodType> function_type = std::dynamic_pointer_cast<ClassMethodType>(
+                root.Get(Symbol("main"))
+        );
+
+        FunctionCallVisitor function_visitor(
+                root.GetFunctionScopeByName(Symbol("main")),
+                function_type,
+                &root
+        );
+
+        function_visitor.Visit(main_function);
+
+        root.PrintTree("symbol_tree.txt");
+    } catch (std::exception& e) {
+        std::cout << RED("Compilation failed!") << std::endl;
+        std::cout << e.what() << std::endl;
+        return -1;
     }
 
-    MethodDeclaration* main_function = storage.Get(Symbol("main"));
+    std::cout << GREEN("Compilation succeeded!") << std::endl;
 
-    std::shared_ptr<ClassMethodType> function_type = std::dynamic_pointer_cast<ClassMethodType>(
-            root.Get(Symbol("main"))
-    );
-
-    FunctionCallVisitor function_visitor(
-            root.GetFunctionScopeByName(Symbol("main")),
-            function_type,
-            &root
-    );
-
-    function_visitor.Visit(main_function);
-
-    root.PrintTree("symbol_tree.txt");
     //InterpreterVisitor interpreter(root);
     //int interpreter_result = interpreter.GetResult(program);
+    return 0;
 }
 
 void Driver::scan_end()

@@ -27,6 +27,11 @@ std::vector<std::shared_ptr<Object>> Array::Value() {
 
 std::vector<std::shared_ptr<Object>> GetArrayOrThrow(const std::shared_ptr<Object>& object) {
     auto ptr = dynamic_cast<Array*>(object.get());
+
+    if (ptr == nullptr) {
+        throw runtime_error_location("cannot be cast to the type Array");
+    }
+
     return ptr->Value();
 }
 
