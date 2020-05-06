@@ -4,35 +4,44 @@ Variable true declared
 Variable false declared
 Constructor called
 End contstructor called
-Method get declared
+Method NewType1::get declared
 Constructor called
 End contstructor called
+Variable y declared
+Method NewType1::add declared
+Constructor called
+End contstructor called
+Variable x declared
 Variable y declared
 Variable NewType1 declared
 Method main declared
 Constructor called
 End contstructor called
-Variable x declared
+Variable t declared
+Variable a declared
+Variable b declared
+Variable sum_ab declared
+Variable result declared
 Variable flag declared
+Variable start declared
 Constructor called
 End contstructor called
-Variable t declared
+Constructor called
+End contstructor called
+Constructor called
+End contstructor called
 Symbol tree built
 Creating variable true
 Put true value 0
 Creating variable false
 Put false value 1
-Creating variable x
-Put x value 2
-Creating variable flag
-Put flag value 3
-Going inside
 Creating variable t
-Put t value 4
-Function called get
-Creating variable true
-Put true value 0
-Creating variable false
-Put false value 1
-Creating variable y
-Put y value 2
+Put t value 2
+Creating variable a
+Put a value 3
+Creating variable b
+Put b value 4
+Creating variable sum_ab
+Put sum_ab value 5
+Function called class NewType1::add
+libc++abi.dylib: terminating with uncaught exception of type std::runtime_error: No such function

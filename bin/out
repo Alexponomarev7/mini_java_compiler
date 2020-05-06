@@ -1,31 +1,88 @@
 Program:
 	Main class <Test>:
 		Local variable declaration statement:
-			Variable declaration <int x>:
-		Set lvalue statement<x>:
-			Binary expression <+>:
-				Number expression<5>:
-				Number expression<2>:
-		Println statement:
-			Simple expression<x>:
-		Local variable declaration statement:
-			Variable declaration <bool flag>:
-		Set lvalue statement<flag>:
-			Simple expression<true>:
+			Variable declaration <int test>:
+		Set lvalue statement<test>:
+			Number expression<1>:
 		If expression:
-			Simple expression<flag>:
+			Simple expression<true>:
 		If statement:
 			Scope statements:
-				Println statement:
-					Number expression<218>:
 		Local variable declaration statement:
 			Variable declaration <NewType1 t>:
 		Set lvalue statement<t>:
 			Object make expression<NewType1>:
-		Method invocation statement:
-			Method invocation <get>:
+		Local variable declaration statement:
+			Variable declaration <int a>:
+		Set lvalue statement<a>:
+			Number expression<2>:
+		Local variable declaration statement:
+			Variable declaration <int b>:
+		Set lvalue statement<b>:
+			Number expression<3>:
+		Local variable declaration statement:
+			Variable declaration <bool check>:
+		Set lvalue statement<check>:
+			Simple expression<true>:
+		Local variable declaration statement:
+			Variable declaration <int sum_ab>:
+		Set lvalue statement<sum_ab>:
+			Method invocation expression:
+				Method invocation <add>:
 		Println statement:
-			Simple expression<x>:
+			Simple expression<sum_ab>:
+		Local variable declaration statement:
+			Variable declaration <int result>:
+		Set lvalue statement<result>:
+			Binary expression <+>:
+				Number expression<1>:
+				Number expression<2>:
+		Set lvalue statement<result>:
+			Method invocation expression:
+				Method invocation <get>:
+		Local variable declaration statement:
+			Variable declaration <bool flag>:
+		Set lvalue statement<flag>:
+			Simple expression<true>:
+		Local variable declaration statement:
+			Variable declaration <int start>:
+		Set lvalue statement<start>:
+			Number expression<1>:
+		If expression:
+			Binary expression <==>:
+				Simple expression<result>:
+				Number expression<4>:
+		If statement:
+			Scope statements:
+				Println statement:
+					Number expression<111>:
+		Else statement:
+			Scope statements:
+				Println statement:
+					Number expression<111>:
+		While expression:
+			Binary expression <<>:
+				Simple expression<start>:
+				Number expression<5>:
+		While statement:
+			Scope statements:
+				Set lvalue statement<start>:
+					Binary expression <+>:
+						Simple expression<start>:
+						Number expression<1>:
+		While expression:
+			Binary expression <<>:
+				Simple expression<start>:
+				Number expression<10>:
+		While statement:
+			Set lvalue statement<start>:
+				Binary expression <+>:
+					Simple expression<start>:
+					Number expression<1>:
+		Println statement:
+			Simple expression<start>:
+		Println statement:
+			Simple expression<result>:
 	Class <NewType1>:
 		Method declaration <int get>:
 		Method formals:
@@ -33,6 +90,15 @@ Program:
 			Local variable declaration statement:
 				Variable declaration <int y>:
 			Set lvalue statement<y>:
-				Number expression<2>:
-			Println statement:
+				Number expression<4>:
+			Return statement:
 				Simple expression<y>:
+		Method declaration <int add>:
+		Method formals:
+			int x
+			int y
+		Method statements:
+			Return statement:
+				Binary expression <+>:
+					Simple expression<x>:
+					Simple expression<y>:

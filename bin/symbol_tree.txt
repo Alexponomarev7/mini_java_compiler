@@ -1,9 +1,14 @@
-int
-bool
 true
 false
-NewType1
 		y
-	x
-	flag
+		x
+		y
+	test
 	t
+	a
+	b
+	check
+	sum_ab
+	result
+	flag
+	start

@@ -1,29 +1,66 @@
 class Test {
     public static void main() {
-        int x;
-	    x = 5 + 2;
-	    System.out.println(x);
+	    int test;
+        test = 1;
 
-        bool flag;
-        flag = true;
+        if (true) {
 
-        if (flag) {
-            System.out.println(218);
         }
+
 
 	    NewType1 t;
 	    t = new NewType1();
 
-	    t.get();
+        int a;
+        a = 2;
+        int b;
+        b = 3;
 
-    	System.out.println(x);
+        bool check;
+        check = true;
+
+        int sum_ab;
+        sum_ab = t.add(a, b);
+        System.out.println(sum_ab);
+
+        int result;
+        result = 1 + 2;
+
+	    result = t.get();
+
+        bool flag;
+        flag = true;
+
+        int start;
+        start = 1;
+
+        if (result == 4) {
+            System.out.println(111);
+        } else {
+            System.out.println(111);
+        }
+
+
+        while (start < 5) {
+    	    start = start + 1;
+        }
+
+        while (start < 10)
+            start = start + 1;
+
+    	System.out.println(start);
+    	System.out.println(result);
     }
 }
 
 class NewType1 {
 	public int get() {
 	    int y;
-	    y = 2;
-	    System.out.println(y);
+	    y = 4;
+        return y;
+	}
+
+	public int add(int x, int y) {
+	    return x + y;
 	}
 }	
