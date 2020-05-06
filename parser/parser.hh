@@ -445,6 +445,9 @@ namespace yy {
 
       // statements
       char dummy16[sizeof (std::vector<Statement*>)];
+
+      // params
+      char dummy17[sizeof (std::vector<std::string>)];
     };
 
     /// The size of the largest semantic type.
@@ -794,6 +797,19 @@ namespace yy {
         , location (l)
       {}
 #endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, std::vector<std::string>&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const std::vector<std::string>& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
 
       /// Destroy the symbol.
       ~basic_symbol ()
@@ -825,7 +841,7 @@ switch (yytype)
         value.template destroy< Declaration* > ();
         break;
 
-      case 64: // expr
+      case 65: // expr
         value.template destroy< Expression* > ();
         break;
 
@@ -841,7 +857,7 @@ switch (yytype)
         value.template destroy< MethodDeclaration* > ();
         break;
 
-      case 66: // methodInvocation
+      case 67: // methodInvocation
         value.template destroy< MethodInvocation* > ();
         break;
 
@@ -868,8 +884,8 @@ switch (yytype)
       case 58: // simpleType
       case 59: // typeIdentifier
       case 60: // type
-      case 63: // lvalue
-      case 65: // binaryOperator
+      case 64: // lvalue
+      case 66: // binaryOperator
         value.template destroy< std::string > ();
         break;
 
@@ -887,6 +903,10 @@ switch (yytype)
 
       case 56: // statements
         value.template destroy< std::vector<Statement*> > ();
+        break;
+
+      case 63: // params
+        value.template destroy< std::vector<std::string> > ();
         break;
 
       default:
@@ -1958,8 +1978,8 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 421,     ///< Last index in yytable_.
-      yynnts_ = 23,  ///< Number of nonterminal symbols.
+      yylast_ = 425,     ///< Last index in yytable_.
+      yynnts_ = 24,  ///< Number of nonterminal symbols.
       yyfinal_ = 5, ///< Termination state number.
       yyntokens_ = 44  ///< Number of tokens.
     };
@@ -2039,7 +2059,7 @@ switch (yytype)
         value.move< Declaration* > (std::move (that.value));
         break;
 
-      case 64: // expr
+      case 65: // expr
         value.move< Expression* > (std::move (that.value));
         break;
 
@@ -2055,7 +2075,7 @@ switch (yytype)
         value.move< MethodDeclaration* > (std::move (that.value));
         break;
 
-      case 66: // methodInvocation
+      case 67: // methodInvocation
         value.move< MethodInvocation* > (std::move (that.value));
         break;
 
@@ -2082,8 +2102,8 @@ switch (yytype)
       case 58: // simpleType
       case 59: // typeIdentifier
       case 60: // type
-      case 63: // lvalue
-      case 65: // binaryOperator
+      case 64: // lvalue
+      case 66: // binaryOperator
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -2101,6 +2121,10 @@ switch (yytype)
 
       case 56: // statements
         value.move< std::vector<Statement*> > (std::move (that.value));
+        break;
+
+      case 63: // params
+        value.move< std::vector<std::string> > (std::move (that.value));
         break;
 
       default:
@@ -2126,7 +2150,7 @@ switch (yytype)
         value.copy< Declaration* > (YY_MOVE (that.value));
         break;
 
-      case 64: // expr
+      case 65: // expr
         value.copy< Expression* > (YY_MOVE (that.value));
         break;
 
@@ -2142,7 +2166,7 @@ switch (yytype)
         value.copy< MethodDeclaration* > (YY_MOVE (that.value));
         break;
 
-      case 66: // methodInvocation
+      case 67: // methodInvocation
         value.copy< MethodInvocation* > (YY_MOVE (that.value));
         break;
 
@@ -2169,8 +2193,8 @@ switch (yytype)
       case 58: // simpleType
       case 59: // typeIdentifier
       case 60: // type
-      case 63: // lvalue
-      case 65: // binaryOperator
+      case 64: // lvalue
+      case 66: // binaryOperator
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -2188,6 +2212,10 @@ switch (yytype)
 
       case 56: // statements
         value.copy< std::vector<Statement*> > (YY_MOVE (that.value));
+        break;
+
+      case 63: // params
+        value.copy< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
       default:
@@ -2220,7 +2248,7 @@ switch (yytype)
         value.move< Declaration* > (YY_MOVE (s.value));
         break;
 
-      case 64: // expr
+      case 65: // expr
         value.move< Expression* > (YY_MOVE (s.value));
         break;
 
@@ -2236,7 +2264,7 @@ switch (yytype)
         value.move< MethodDeclaration* > (YY_MOVE (s.value));
         break;
 
-      case 66: // methodInvocation
+      case 67: // methodInvocation
         value.move< MethodInvocation* > (YY_MOVE (s.value));
         break;
 
@@ -2263,8 +2291,8 @@ switch (yytype)
       case 58: // simpleType
       case 59: // typeIdentifier
       case 60: // type
-      case 63: // lvalue
-      case 65: // binaryOperator
+      case 64: // lvalue
+      case 66: // binaryOperator
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -2282,6 +2310,10 @@ switch (yytype)
 
       case 56: // statements
         value.move< std::vector<Statement*> > (YY_MOVE (s.value));
+        break;
+
+      case 63: // params
+        value.move< std::vector<std::string> > (YY_MOVE (s.value));
         break;
 
       default:
@@ -2339,7 +2371,7 @@ switch (yytype)
   }
 
 } // yy
-#line 2343 "/Users/lexolordan/compilers/compiler/parser/parser.hh"
+#line 2375 "/Users/lexolordan/compilers/compiler/parser/parser.hh"
 
 
 

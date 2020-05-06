@@ -6,16 +6,17 @@
 #define COMPILER_FRAME_H
 
 
-#include <types/class_method.h>
+#include "types/class_method.h"
+#include "types/types.h"
 #include <stack>
-
 #include <memory>
+
 class Frame {
 public:
     explicit Frame(std::shared_ptr<ClassMethodType> &function);
     void SetParams(const std::vector<std::shared_ptr<Object>>& values);
 
-    size_t AllocVariable();
+    size_t AllocVariable(std::shared_ptr<Object> object);
 
     void DeallocScope();
     void AllocScope();
@@ -36,6 +37,8 @@ private:
     std::stack<int> offsets_;
     std::vector<std::shared_ptr<Object>> params_;
     std::vector<std::shared_ptr<Object>> variables_;
+
+    static void SetSafe(std::shared_ptr<Object>& itemInMemory, const std::shared_ptr<Object>& value);
 
     std::shared_ptr<Object> return_value_ = nullptr;
 

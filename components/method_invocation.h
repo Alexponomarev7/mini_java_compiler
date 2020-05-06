@@ -5,9 +5,10 @@
 
 class MethodInvocation : public BaseElement {
 public:
-    MethodInvocation(Expression* expr, Identifier id) :
+    MethodInvocation(Expression* expr, Identifier id, std::vector<std::string> params) :
         expr_(expr)
         , id_(std::move(id))
+        , params_(std::move(params))
     {}
 
     void Accept(Visitor* visitor) override {
@@ -17,6 +18,7 @@ public:
 private:
     Expression* expr_;
     Identifier id_;
+    std::vector<std::string> params_;
 
     friend class PrintVisitor;
     friend class SymbolTreeVisitor;

@@ -57,10 +57,9 @@ int Driver::Evaluate() {
 
     FunctionCallVisitor function_visitor(
             root.GetFunctionScopeByName(Symbol("main")),
-            function_type
+            function_type,
+            &root
     );
-
-    function_visitor.SetTree(&root);
 
     function_visitor.Visit(main_function);
 

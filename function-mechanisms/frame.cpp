@@ -17,9 +17,9 @@ void Frame::SetParams(const std::vector<std::shared_ptr<Object>> &values) {
     params_ = values;
 }
 
-size_t Frame::AllocVariable() {
+size_t Frame::AllocVariable(std::shared_ptr<Object> object) {
     size_t index = variables_.size();
-    variables_.push_back(0);
+    variables_.push_back(object);
 
     return index;
 }
@@ -44,11 +44,17 @@ std::shared_ptr<Object> Frame::Get(int index) const {
     }
 }
 
+void Frame::SetSafe(std::shared_ptr<Object>& itemInMemory, const std::shared_ptr<Object>& value) {
+    //std::cerr << " " << value->GetType() << std::endl;
+    EqualTypesOrThrow(itemInMemory, value);
+    itemInMemory = value;
+}
+
 void Frame::Set(int index, const std::shared_ptr<Object>& value) {
     if (index >= 0) {
-        variables_.at(index) = value;
+        SetSafe(variables_.at(index), value);
     } else {
-        params_.at(-index - 1) = value;
+        SetSafe(params_.at(-index - 1), value);
     }
 }
 

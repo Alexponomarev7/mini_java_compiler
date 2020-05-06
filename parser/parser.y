@@ -110,6 +110,7 @@
 %nterm <std::string> type
 %nterm <Formal*> formal
 %nterm <std::vector<Formal*>> formals
+%nterm <std::vector<std::string>> params
 %nterm <std::string> lvalue
 %nterm <Expression*> expr
 %nterm <std::string> binaryOperator
@@ -198,9 +199,14 @@ statements:
 localVariableDeclaration:
     variableDeclaration { $$ = $1; }
 
+params:
+    %empty {}
+    | "identifier" { $$ = std::vector<std::string>(); $$.push_back($1); }
+    | params "," "identifier" { $$ = std::move($1); $$.push_back($3); }
+
 // Need Fix
 methodInvocation:
-    expr "." "identifier" "(" ")" { $$ = new MethodInvocation($1, $3); }
+    expr "." "identifier" "(" params ")" { $$ = new MethodInvocation($1, $3, $5); }
 
 // need fix
 lvalue:

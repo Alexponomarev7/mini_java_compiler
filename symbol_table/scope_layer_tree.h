@@ -28,8 +28,13 @@ public:
      */
     ScopeLayer* GetFunctionScopeByName(const Symbol& name);
 
+    void AddType(Type name, std::shared_ptr<Object> type);
+
+    std::shared_ptr<Object> GetType(Type type);
+
 public:
     ScopeLayer* root_;
+    ScopeLayer* type_layer_;
 
 private:
     std::ofstream stream_;

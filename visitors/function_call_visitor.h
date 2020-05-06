@@ -24,7 +24,7 @@
 
 class FunctionCallVisitor : public TemplateVisitor<std::shared_ptr<Object>> {
 public:
-    FunctionCallVisitor(ScopeLayer* function_scope, std::shared_ptr<ClassMethodType> function);
+    FunctionCallVisitor(ScopeLayer* function_scope, std::shared_ptr<ClassMethodType> function, ScopeLayerTree* tree);
 
     void SetTree(ScopeLayerTree* tree);
     void SetParams(const std::vector<std::shared_ptr<Object>>& params);
@@ -60,6 +60,8 @@ public:
     void Visit(WhileStatement* statement) override;
 
     Frame& GetFrame();
+
+    void SkipScope();
 
 private:
     ScopeLayer* root_layer;

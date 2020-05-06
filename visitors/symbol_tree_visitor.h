@@ -50,6 +50,8 @@ private:
     ScopeLayerTree tree_;
     ScopeLayer* current_layer_;
 
+    Class* current_class_;
+
     std::vector<Variable> variables_;
     std::vector<Method> methods_;
     std::vector<Variable> formals_;
