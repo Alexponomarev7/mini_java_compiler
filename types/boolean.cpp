@@ -26,5 +26,10 @@ bool Boolean::Value() {
 
 bool GetBoolOrThrow(const std::shared_ptr<Object>& object) {
     auto ptr = dynamic_cast<Boolean*>(object.get());
+
+    if (ptr == nullptr) {
+        throw runtime_error_location("cannot be cast to the type Bool");
+    }
+
     return ptr->Value();
 }

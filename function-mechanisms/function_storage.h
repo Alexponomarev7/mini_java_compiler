@@ -8,6 +8,7 @@
 #include "symbol_table/symbol.h"
 #include <unordered_map>
 #include "components/declaration/method_declaration.h"
+#include "error/errors.h"
 
 class FunctionStorage {
 public:

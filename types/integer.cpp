@@ -28,5 +28,10 @@ int Integer::Value() {
 
 int GetIntOrThrow(const std::shared_ptr<Object>& object) {
     auto ptr = dynamic_cast<Integer*>(object.get());
+
+    if (ptr == nullptr) {
+        throw runtime_error_location("cannot be cast to the type Int");
+    }
+
     return ptr->Value();
 }

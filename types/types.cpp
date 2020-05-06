@@ -7,6 +7,6 @@ Object* GetType(const Type& type) {
 
 void EqualTypesOrThrow(std::shared_ptr<Object> lvalue, std::shared_ptr<Object> rvalue) {
     if (lvalue->GetType() != rvalue->GetType()) {
-        throw std::runtime_error("Incorrect types.");
+        throw runtime_error_location("Incorrect types.");
     }
 }

@@ -18,6 +18,6 @@ MethodDeclaration *FunctionStorage::Get(Symbol symbol) const {
     if (functions_.find(symbol) != functions_.end()) {
         return functions_.at(symbol);
     } else {
-        throw std::runtime_error("Function not found");
+        throw runtime_error_location("Function not found");
     }
 }

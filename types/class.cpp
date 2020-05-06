@@ -26,5 +26,10 @@ std::string ClassType::GetType() const {
 
 const ClassType* GetClassOrThrow(const std::shared_ptr<Object>& object) {
     auto ptr = dynamic_cast<ClassType*>(object.get());
+
+    if (ptr == nullptr) {
+        throw runtime_error_location("cannot be cast to the type Class");
+    }
+
     return ptr;
 }

@@ -12,7 +12,7 @@ Frame::Frame(std::shared_ptr<ClassMethodType> &function) {
 
 void Frame::SetParams(const std::vector<std::shared_ptr<Object>> &values) {
     if (params_.size() != values.size()) {
-        throw std::runtime_error("Mismatched number of arguments");
+        throw runtime_error_location("Mismatched number of arguments");
     }
     params_ = values;
 }

@@ -20,7 +20,7 @@ ScopeLayerTree::ScopeLayerTree(const ScopeLayerTree &other) {
 
 void ScopeLayerTree::AddMapping(const Symbol& name, ScopeLayer *layer) {
     if (layer_mapping_.find(name) != layer_mapping_.end()) {
-        throw std::runtime_error("Function has already been declared");
+        throw runtime_error_location("Function has already been declared");
     }
 
     layer_mapping_[name] = layer;
@@ -28,7 +28,7 @@ void ScopeLayerTree::AddMapping(const Symbol& name, ScopeLayer *layer) {
 
 ScopeLayer *ScopeLayerTree::GetFunctionScopeByName(const Symbol& name) {
     if (layer_mapping_.find(name) == layer_mapping_.end()) {
-        throw std::runtime_error("No such function " + name.GetName());
+        throw runtime_error_location("No such function " + name.GetName());
     }
     return layer_mapping_[name];
 }

@@ -34,7 +34,7 @@ void ScopeLayer::DeclareVariable(Symbol symbol, std::shared_ptr<Object> type) {
 
 void ScopeLayer::DeclareFunction(Symbol method_class, Symbol method, MethodDeclaration *function) {
     if (values_.find(method) != values_.end()) {
-        throw std::runtime_error("Function \"" + method.GetName() + "\" has declared");
+        throw runtime_error_location("Function \"" + method.GetName() + "\" has declared");
     }
 
     std::cerr << "Method " + method.GetName() << " declared" << std::endl;
@@ -58,7 +58,7 @@ void ScopeLayer::Put(Symbol symbol, std::shared_ptr<Object> value) {
     if (current_layer->Has(symbol)) {
         current_layer->values_.find(symbol)->second->Set(value);
     } else {
-        throw std::runtime_error("Variable \"" + symbol.GetName() + "\" not declared");
+        throw runtime_error_location("Variable \"" + symbol.GetName() + "\" not declared");
     }
 
 }
@@ -78,7 +78,7 @@ std::shared_ptr<Object> ScopeLayer::Get(Symbol symbol) {
     if (current_layer->Has(symbol)) {
         return current_layer->values_.find(symbol)->second;
     } else {
-        throw std::runtime_error("Variable \"" + symbol.GetName() + "\" not declared");
+        throw runtime_error_location("Variable \"" + symbol.GetName() + "\" not declared");
     }
 }
 
