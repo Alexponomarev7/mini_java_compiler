@@ -27,6 +27,7 @@ private:
     friend class SymbolTreeVisitor;
     friend class ScopeLayer;
     friend class FunctionCallVisitor;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_FORMAL_H

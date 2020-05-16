@@ -30,6 +30,7 @@ private:
     friend class InterpreterVisitor;
     friend class SymbolTreeVisitor;
     friend class FunctionCallVisitor;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_PROGRAM_H

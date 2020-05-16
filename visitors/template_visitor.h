@@ -14,7 +14,6 @@ public:
     T Accept(BaseElement* element);
 protected:
     T tos_value_;
-
 };
 
 

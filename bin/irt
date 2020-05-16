@@ -1,0 +1,57 @@
+class Test {
+    public static void main() {
+        int test;
+            test = 218;
+
+        int a;
+        a = 129;
+
+        int x;
+        x = 1123;
+
+        bool flag;
+        if (flag) {
+            int y;
+            y = 1234;
+        } else {
+            int z;
+            z = 4321;
+        }
+
+        if (a > 500) {
+            a = 140;
+        }
+
+        while (a > 500) {
+            a = a - 1;
+        }
+
+        while (a > 500)
+            a = a - 1;
+
+
+        Help help;
+        help = new Help();
+        help.test();
+
+        System.out.println(174);
+
+        int arg;
+        arg = 200;
+        help.test_with_param(arg);
+
+        return 0;
+    }
+}
+
+class Help {
+    int x;
+
+    public int test() {
+        return 0;
+    }
+
+    public void test_with_param(int a) {
+        System.out.println(a);
+    }
+}

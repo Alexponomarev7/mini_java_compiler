@@ -31,6 +31,8 @@ private:
     friend class SymbolTreeVisitor;
     friend class ScopeLayer;
     friend class FunctionCallVisitor;
+    friend class FrameEmulator;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_METHOD_DECLARATION_H

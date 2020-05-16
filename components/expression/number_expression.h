@@ -24,6 +24,7 @@ private:
     friend class PrintVisitor;
     friend class InterpreterVisitor;
     friend class FunctionCallVisitor;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_NUMBER_EXPRESSION_H

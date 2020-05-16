@@ -1,19 +1,16 @@
-//
-// Created by Alexey A. Ponomarev on 03.05.2020.
-//
+#ifndef COMPILER_FRAME_EMULATOR_H
+#define COMPILER_FRAME_EMULATOR_H
 
-#ifndef COMPILER_FRAME_H
-#define COMPILER_FRAME_H
-
-
+#include <stack>
 #include "types/class_method.h"
 #include "types/types.h"
-#include <stack>
-#include <memory>
 
-class Frame {
+#include <memory>
+#include <types/object.h>
+
+class FrameEmulator {
 public:
-    explicit Frame(std::shared_ptr<ClassMethodType> &function);
+    explicit FrameEmulator(std::shared_ptr<ClassMethodType> function);
     void SetParams(const std::vector<std::shared_ptr<Object>>& values);
 
     size_t AllocVariable(std::shared_ptr<Object> object);
@@ -23,13 +20,13 @@ public:
 
     std::shared_ptr<Object> Get(int index) const;
 
-    void Set(int index, const std::shared_ptr<Object>& value);
+    void Set(int index, std::shared_ptr<Object> value);
 
-    void SetParentFrame(Frame* frame);
+    void SetParentFrame(FrameEmulator* frame);
 
-    std::shared_ptr<Object> GetReturnValue() const;
+    int GetReturnValue() const;
 
-    void SetParentReturnValue(std::shared_ptr<Object> value);
+    void SetParentReturnValue(int value);
 
     bool HasParent();
 
@@ -40,13 +37,12 @@ private:
 
     static void SetSafe(std::shared_ptr<Object>& itemInMemory, const std::shared_ptr<Object>& value);
 
-    std::shared_ptr<Object> return_value_ = nullptr;
+    int return_value_ = 0;
 
-    void SetReturnValue(std::shared_ptr<Object> value);
+    void SetReturnValue(int value);
 
-    Frame* parent_frame = nullptr;
+    FrameEmulator* parent_frame = nullptr;
 
 };
 
-
-#endif //COMPILER_FRAME_H
+#endif //COMPILER_FRAME_EMULATOR_H

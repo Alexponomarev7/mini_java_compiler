@@ -1,222 +1,86 @@
 Program:
 	Main class <Test>:
-		Assert statement:
-			Simple expression<true>:
 		Local variable declaration statement:
 			Variable declaration <int test>:
 		Set lvalue statement<test>:
-			Number expression<1>:
-		If expression:
-			Simple expression<true>:
-		If statement:
-			Scope statements:
-		Local variable declaration statement:
-			Variable declaration <NewType1 t>:
-		Set lvalue statement<t>:
-			Object make expression<NewType1>:
+			Number expression<218>:
 		Local variable declaration statement:
 			Variable declaration <int a>:
 		Set lvalue statement<a>:
-			Number expression<2>:
+			Number expression<129>:
 		Local variable declaration statement:
-			Variable declaration <int b>:
-		Set lvalue statement<b>:
-			Number expression<3>:
-		Local variable declaration statement:
-			Variable declaration <bool check>:
-		Set lvalue statement<check>:
-			Simple expression<true>:
-		Local variable declaration statement:
-			Variable declaration <int sum_ab>:
-		Set lvalue statement<sum_ab>:
-			Method invocation expression:
-				Method invocation <add>:
-		Println statement:
-			Simple expression<sum_ab>:
-		Local variable declaration statement:
-			Variable declaration <int result>:
-		Set lvalue statement<result>:
-			Binary expression <+>:
-				Number expression<1>:
-				Number expression<2>:
-		Set lvalue statement<result>:
-			Method invocation expression:
-				Method invocation <get>:
+			Variable declaration <int x>:
+		Set lvalue statement<x>:
+			Number expression<1123>:
 		Local variable declaration statement:
 			Variable declaration <bool flag>:
-		Set lvalue statement<flag>:
-			Simple expression<true>:
-		Local variable declaration statement:
-			Variable declaration <int start>:
-		Set lvalue statement<start>:
-			Number expression<1>:
 		If expression:
-			Binary expression <==>:
-				Simple expression<result>:
-				Number expression<4>:
+			Simple expression<flag>:
 		If statement:
 			Scope statements:
-				Println statement:
-					Number expression<111>:
+				Local variable declaration statement:
+					Variable declaration <int y>:
+				Set lvalue statement<y>:
+					Number expression<1234>:
 		Else statement:
 			Scope statements:
-				Println statement:
-					Number expression<111>:
+				Local variable declaration statement:
+					Variable declaration <int z>:
+				Set lvalue statement<z>:
+					Number expression<4321>:
+		If expression:
+			Binary expression <>>:
+				Simple expression<a>:
+				Number expression<500>:
+		If statement:
+			Scope statements:
+				Set lvalue statement<a>:
+					Number expression<140>:
 		While expression:
-			Binary expression <<>:
-				Simple expression<start>:
-				Number expression<5>:
+			Binary expression <>>:
+				Simple expression<a>:
+				Number expression<500>:
 		While statement:
 			Scope statements:
-				Set lvalue statement<start>:
-					Binary expression <+>:
-						Simple expression<start>:
+				Set lvalue statement<a>:
+					Binary expression <->:
+						Simple expression<a>:
 						Number expression<1>:
 		While expression:
-			Binary expression <<>:
-				Simple expression<start>:
-				Number expression<10>:
+			Binary expression <>>:
+				Simple expression<a>:
+				Number expression<500>:
 		While statement:
-			Set lvalue statement<start>:
-				Binary expression <+>:
-					Simple expression<start>:
-					Number expression<1>:
-		Println statement:
-			Simple expression<start>:
-		Println statement:
-			Simple expression<result>:
-		Local variable declaration statement:
-			Variable declaration <NewType2 t2>:
-		Set lvalue statement<t2>:
-			Object make expression<NewType2>:
-		Local variable declaration statement:
-			Variable declaration <int out>:
-		Set lvalue statement<out>:
-			Method invocation expression:
-				Method invocation <get>:
-		Println statement:
-			Simple expression<out>:
-		Local variable declaration statement:
-			Variable declaration <NewType3 t3>:
-		Set lvalue statement<t3>:
-			Object make expression<NewType3>:
-		Local variable declaration statement:
-			Variable declaration <GCD gcd>:
-		Set lvalue statement<gcd>:
-			Object make expression<GCD>:
-		Local variable declaration statement:
-			Variable declaration <int ga>:
-		Local variable declaration statement:
-			Variable declaration <int gb>:
-		Set lvalue statement<ga>:
-			Number expression<10>:
-		Set lvalue statement<gb>:
-			Number expression<5>:
-		Local variable declaration statement:
-			Variable declaration <int gcd_res>:
-		Set lvalue statement<gcd_res>:
-			Method invocation expression:
-				Method invocation <eval>:
-		Println statement:
-			Simple expression<gcd_res>:
-	Class <NewType1>:
-		Method declaration <int get>:
-		Method formals:
-		Method statements:
-			Local variable declaration statement:
-				Variable declaration <int y>:
-			Set lvalue statement<y>:
-				Number expression<4>:
-			Return statement:
-				Simple expression<y>:
-		Method declaration <int add>:
-		Method formals:
-			int x
-			int y
-		Method statements:
-			Return statement:
-				Binary expression <+>:
-					Simple expression<x>:
-					Simple expression<y>:
-	Class <NewType2>:
-		Variable declaration <int x>:
-		Method declaration <int init>:
-		Method formals:
-		Method statements:
-			Return statement:
-				Number expression<19>:
-		Method declaration <int get>:
-		Method formals:
-		Method statements:
-			Local variable declaration statement:
-				Variable declaration <int result>:
-			Set lvalue statement<result>:
-				Method invocation expression:
-					Method invocation <init>:
-			Return statement:
-				Simple expression<result>:
-	Class <NewType3>:
-		Variable declaration <int x>:
-		Method declaration <void set>:
-		Method formals:
-			int y
-		Method statements:
-			Set lvalue statement<x>:
-				Simple expression<y>:
-		Method declaration <void inc>:
-		Method formals:
-		Method statements:
-			Set lvalue statement<x>:
-				Binary expression <+>:
-					Simple expression<x>:
-					Number expression<1>:
-		Method declaration <int get>:
-		Method formals:
-		Method statements:
-			Return statement:
-				Simple expression<x>:
-	Class <GCD>:
-		Method declaration <int eval>:
-		Method formals:
-			int a
-			int b
-		Method statements:
-			If expression:
-				Binary expression <<>:
-					Simple expression<a>:
-					Simple expression<b>:
-			If statement:
-				Scope statements:
-					Local variable declaration statement:
-						Variable declaration <int swap>:
-					Set lvalue statement<swap>:
-						Simple expression<a>:
-					Set lvalue statement<a>:
-						Simple expression<b>:
-					Set lvalue statement<b>:
-						Simple expression<swap>:
-			If expression:
-				Binary expression <==>:
-					Simple expression<b>:
-					Number expression<0>:
-			If statement:
-				Scope statements:
-					Return statement:
-						Simple expression<a>:
-			Local variable declaration statement:
-				Variable declaration <int result>:
-			Local variable declaration statement:
-				Variable declaration <int new_a>:
-			Set lvalue statement<new_a>:
-				Simple expression<b>:
-			Local variable declaration statement:
-				Variable declaration <int new_b>:
-			Set lvalue statement<new_b>:
+			Set lvalue statement<a>:
 				Binary expression <->:
 					Simple expression<a>:
-					Simple expression<b>:
-			Set lvalue statement<result>:
-				Method invocation expression:
-					Method invocation <eval>:
+					Number expression<1>:
+		Local variable declaration statement:
+			Variable declaration <Help help>:
+		Set lvalue statement<help>:
+			Object make expression<Help>:
+		Method invocation statement:
+			Method invocation <test>:
+		Println statement:
+			Number expression<174>:
+		Local variable declaration statement:
+			Variable declaration <int arg>:
+		Set lvalue statement<arg>:
+			Number expression<200>:
+		Method invocation statement:
+			Method invocation <test_with_param>:
+		Return statement:
+			Number expression<0>:
+	Class <Help>:
+		Variable declaration <int x>:
+		Method declaration <int test>:
+		Method formals:
+		Method statements:
 			Return statement:
-				Simple expression<result>:
+				Number expression<0>:
+		Method declaration <void test_with_param>:
+		Method formals:
+			int a
+		Method statements:
+			Println statement:
+				Simple expression<a>:

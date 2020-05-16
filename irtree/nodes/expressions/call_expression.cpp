@@ -1,0 +1,12 @@
+#include "call_expression.h"
+
+void IRT::CallExpression::Accept(IRT::Visitor *visitor) {
+    visitor->Visit(this);
+
+}
+IRT::CallExpression::CallExpression(
+        IRT::Expression *expression,
+        IRT::ExpressionList *args
+): function_name_(expression), args_(args) {
+
+}

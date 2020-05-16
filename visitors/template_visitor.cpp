@@ -1,3 +1,4 @@
+#include <irtree/tree_wrapper/subtree_wrapper.h>
 #include "template_visitor.h"
 
 
@@ -7,5 +8,7 @@ T TemplateVisitor<T>::Accept(BaseElement* element) {
     return tos_value_;
 }
 
+template IRT::SubtreeWrapper* TemplateVisitor<IRT::SubtreeWrapper*>::Accept(BaseElement* element);
 
 template std::shared_ptr<Object> TemplateVisitor<std::shared_ptr<Object>>::Accept(BaseElement* element);
+

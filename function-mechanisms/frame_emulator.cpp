@@ -1,30 +1,26 @@
-//
-// Created by Alexey A. Ponomarev on 03.05.2020.
-//
+#include "frame_emulator.h"
 
-#include "frame.h"
-
-Frame::Frame(std::shared_ptr<ClassMethodType> &function) {
+FrameEmulator::FrameEmulator(std::shared_ptr<ClassMethodType> function) {
     params_.resize(function->GetVariables().size());
 
     AllocScope();
 }
 
-void Frame::SetParams(const std::vector<std::shared_ptr<Object>> &values) {
+void FrameEmulator::SetParams(const std::vector<std::shared_ptr<Object>> &values) {
     if (params_.size() != values.size()) {
-        throw runtime_error_location("Mismatched number of arguments");
+        throw std::runtime_error("Mismatched number of arguments");
     }
     params_ = values;
 }
 
-size_t Frame::AllocVariable(std::shared_ptr<Object> object) {
+size_t FrameEmulator::AllocVariable(std::shared_ptr<Object> object) {
     size_t index = variables_.size();
     variables_.push_back(object);
 
     return index;
 }
 
-void Frame::DeallocScope() {
+void FrameEmulator::DeallocScope() {
     size_t new_size = offsets_.top();
     offsets_.pop();
 
@@ -32,11 +28,11 @@ void Frame::DeallocScope() {
     variables_.resize(new_size);
 }
 
-void Frame::AllocScope() {
+void FrameEmulator::AllocScope() {
     offsets_.push(variables_.size());
 }
 
-std::shared_ptr<Object> Frame::Get(int index) const {
+std::shared_ptr<Object> FrameEmulator::Get(int index) const {
     if (index >= 0) {
         return variables_.at(index);
     } else {
@@ -44,13 +40,13 @@ std::shared_ptr<Object> Frame::Get(int index) const {
     }
 }
 
-void Frame::SetSafe(std::shared_ptr<Object>& itemInMemory, const std::shared_ptr<Object>& value) {
+void FrameEmulator::SetSafe(std::shared_ptr<Object>& itemInMemory, const std::shared_ptr<Object>& value) {
     //std::cerr << " " << value->GetType() << std::endl;
     EqualTypesOrThrow(itemInMemory, value);
     itemInMemory = value;
 }
 
-void Frame::Set(int index, const std::shared_ptr<Object>& value) {
+void FrameEmulator::Set(int index, std::shared_ptr<Object> value) {
     if (index >= 0) {
         SetSafe(variables_.at(index), value);
     } else {
@@ -58,23 +54,24 @@ void Frame::Set(int index, const std::shared_ptr<Object>& value) {
     }
 }
 
-void Frame::SetReturnValue(std::shared_ptr<Object> value) {
+void FrameEmulator::SetReturnValue(int value) {
     return_value_ = value;
 }
 
-void Frame::SetParentFrame(Frame *frame) {
+void FrameEmulator::SetParentFrame(FrameEmulator *frame) {
     parent_frame = frame;
 
 }
 
-void Frame::SetParentReturnValue(std::shared_ptr<Object> value) {
+void FrameEmulator::SetParentReturnValue(int value) {
     parent_frame->return_value_ = value;
+
 }
 
-bool Frame::HasParent() {
+bool FrameEmulator::HasParent() {
     return parent_frame != nullptr;
 }
 
-std::shared_ptr<Object> Frame::GetReturnValue() const {
+int FrameEmulator::GetReturnValue() const {
     return return_value_;
 }

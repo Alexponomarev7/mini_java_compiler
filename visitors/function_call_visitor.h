@@ -9,7 +9,6 @@
 #include "visitors/symbol_tree_visitor.h"
 #include "symbol_table/scope_layer.h"
 #include <stack>
-#include "function-mechanisms/frame.h"
 #include "function-mechanisms/function_table.h"
 #include "symbol_table/scope_layer_tree.h"
 #include "components/program.h"
@@ -19,6 +18,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <function-mechanisms/frame_emulator.h>
 
 #include "types/types.h"
 
@@ -59,7 +59,7 @@ public:
     void Visit(SetLvalueStatement* statement) override;
     void Visit(WhileStatement* statement) override;
 
-    Frame& GetFrame();
+    FrameEmulator& GetFrame();
 
     void SkipScope();
 
@@ -68,7 +68,7 @@ private:
     ScopeLayer* current_layer_;
     std::stack<int> offsets_;
 
-    Frame frame;
+    FrameEmulator frame;
     FunctionTable table_;
     ScopeLayerTree* tree_;
     bool returned_ = false;

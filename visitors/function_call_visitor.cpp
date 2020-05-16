@@ -110,7 +110,7 @@ void FunctionCallVisitor::Visit(MethodInvocation* methodInvocation) {
     new_visitor.GetFrame().SetParentFrame(&frame);
     new_visitor.Visit(FunctionStorage::GetInstance().Get(Symbol(methodID)));
 
-    tos_value_ = frame.GetReturnValue();
+    tos_value_ = std::make_shared<Integer>(frame.GetReturnValue());
 }
 
 void FunctionCallVisitor::Visit(VariableDeclaration* variableDeclaration) {
@@ -259,7 +259,7 @@ void FunctionCallVisitor::Visit(PrintlnStatement* statement) {
 
 void FunctionCallVisitor::Visit(ReturnStatement* statement) {
     if (frame.HasParent()) {
-        frame.SetParentReturnValue(Accept(statement->expr_));
+        frame.SetParentReturnValue(GetIntOrThrow(Accept(statement->expr_)));
     }
     returned_ = true;
 }
@@ -324,7 +324,7 @@ void FunctionCallVisitor::SetParams(const std::vector<std::shared_ptr<Object>>& 
     frame.SetParams(params);
 }
 
-Frame &FunctionCallVisitor::GetFrame() {
+FrameEmulator &FunctionCallVisitor::GetFrame() {
     return frame;
 }
 

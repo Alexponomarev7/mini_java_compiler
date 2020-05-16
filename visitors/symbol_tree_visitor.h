@@ -5,7 +5,6 @@
 #include "symbol_table/table.h"
 #include "symbol_table/scope_layer_tree.h"
 #include "function-mechanisms/function_table.h"
-#include "function-mechanisms/frame.h"
 #include "function-mechanisms/function_storage.h"
 
 class SymbolTreeVisitor : public TemplateVisitor<std::shared_ptr<Object>> {

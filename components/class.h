@@ -28,6 +28,7 @@ private:
 
     friend class PrintVisitor;
     friend class SymbolTreeVisitor;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_CLASS_H

@@ -54,15 +54,43 @@ FLEX_TARGET(
 
 ADD_FLEX_BISON_DEPENDENCY(CompilerScanner CompilerParser)
 
-add_executable(
-    Compiler
-    main.cpp
+set(
+    SOURCES
+    irtree/generators/label.cpp
+    irtree/generators/temporary.cpp
+    irtree/tree_wrapper/expression_wrapper.cpp
+    irtree/nodes/statements/exp_statement.cpp
+    irtree/nodes/expressions/const_expression.cpp
+    irtree/types/logic_operator_type.cpp
+    irtree/types/binary_operator_type.cpp
+    irtree/nodes/statements/jump_conditional_statement.cpp
+    irtree/tree_wrapper/statement_wrapper.cpp
+    irtree/tree_wrapper/conditional_wrappers/conditional_wrapper.cpp
+    irtree/nodes/statements/move_statement.cpp
+    irtree/tree_wrapper/conditional_wrappers/negate_conditional_wrapper.cpp
+    irtree/tree_wrapper/conditional_wrappers/and_conditional_wrapper.cpp
+    irtree/nodes/statements/seq_statement.cpp
+    irtree/nodes/statements/label_statement.cpp
+    irtree/tree_wrapper/conditional_wrappers/or_conditional_wrapper.cpp
+    irtree/nodes/expressions/binop_expression.cpp
+    irtree/nodes/expressions/temp_expression.cpp
+    irtree/nodes/expressions/mem_expression.cpp
+    irtree/nodes/statements/jump_statement.cpp
+    irtree/nodes/expressions/call_expression.cpp
+    irtree/nodes/expression_list.cpp
+    irtree/nodes/expressions/name_expression.cpp
+    irtree/tree_wrapper/conditional_wrappers/relative_conditional_wrapper.cpp
+    irtree/types/logic_operator_type.cpp
+    irtree/types/binary_operator_type.cpp
+    irtree/visitors/print_visitor.cpp
+    irtree/nodes/expressions/eseq_expression.cpp
     driver/driver.cpp
     visitors/print_visitor.cpp
     visitors/interpreter_visitor.cpp
     visitors/symbol_tree_visitor.cpp
     visitors/template_visitor.cpp
     visitors/function_call_visitor.cpp
+    visitors/irtree_build_visitor.cpp
     symbol_table/scope_layer.cpp
     symbol_table/scope_layer_tree.cpp
     symbol_table/symbol.cpp
@@ -75,13 +103,23 @@ add_executable(
     types/class.cpp
     types/class_method.cpp
     types/array.cpp
-    function-mechanisms/frame.cpp
     function-mechanisms/function_storage.cpp
     function-mechanisms/function_table.cpp
+    function-mechanisms/frame_emulator.cpp
+    function-mechanisms/frame_translator.cpp
+    function-mechanisms/address/address_in_frame.cpp
+    function-mechanisms/address/address_in_register.cpp
     ${BISON_CompilerParser_OUTPUTS}
     ${FLEX_CompilerScanner_OUTPUTS}
 )
-target_include_directories(Compiler PRIVATE ${Compiler_SOURCE_DIR})
 
+add_executable(
+    Compiler
+    main.cpp
+    ${SOURCES}
+)
+
+
+target_include_directories(Compiler PRIVATE ${Compiler_SOURCE_DIR})
 
 

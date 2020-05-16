@@ -24,6 +24,7 @@ private:
     friend class PrintVisitor;
     friend class SymbolTreeVisitor;
     friend class FunctionCallVisitor;
+    friend class IrtreeBuildVisitor;
 };
 
 #endif //COMPILER_METHOD_INVOCATION_EXPRESSION_H

@@ -1,13 +1,8 @@
 class Test {
     public static void main() {
-	    assert(true);
-
 	    int test;
         test = 1;
 
-        if (true) {
-
-        }
 
 
 	    NewType1 t;
@@ -19,7 +14,6 @@ class Test {
         b = 3;
 
         bool check;
-        check = true;
 
         int sum_ab;
         sum_ab = t.add(a, b);
@@ -31,7 +25,6 @@ class Test {
 	    result = t.get();
 
         bool flag;
-        flag = true;
 
         int start;
         start = 1;

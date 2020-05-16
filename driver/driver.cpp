@@ -1,6 +1,8 @@
+#include <irtree/visitors/print_visitor.h>
 #include "driver/driver.hh"
 #include "parser/parser.hh"
 
+using IrtMapping = std::unordered_map<std::string, IRT::Statement*>;
 
 
 Driver::Driver() :
@@ -65,6 +67,17 @@ int Driver::Evaluate() {
         function_visitor.Visit(main_function);
 
         root.PrintTree("symbol_tree.txt");
+
+        IrtreeBuildVisitor irt_build_visitor(&root);
+
+        irt_build_visitor.Visit(program);
+
+        IrtMapping methods = irt_build_visitor.GetTrees();
+
+        for (auto func_view = methods.begin(); func_view != methods.end(); ++func_view) {
+            IRT::PrintVisitor print_visitor_irt(func_view->first + "_irt.txt");
+            methods[func_view->first]->Accept(&print_visitor_irt);
+        }
     } catch (std::exception& e) {
         std::cout << RED("Compilation failed!") << std::endl;
         std::cout << e.what() << std::endl;
