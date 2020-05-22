@@ -4,6 +4,7 @@
 
 #include "types/integer.h"
 #include "types/types.h"
+#include "symbol_tree_visitor.h"
 
 #include <iostream>
 
@@ -60,7 +61,16 @@ void IrtreeBuildVisitor::Visit(Formal* formal) {
 void IrtreeBuildVisitor::Visit(MethodInvocation* methodInvocation) {
     auto irt_expressions = new IRT::ExpressionList();
 
-    for (auto it: methodInvocation->params_) {
+    // ADD EXPR
+    /**methodInvocation->
+    SymbolTreeVisitor treeVisitor;
+    auto classObj = GetClassOrThrow(treeVisitor.Accept(methodInvocation->expr_));
+
+    for (auto param : classObj->GetVariables()) {
+        current_frame_->AddLocalVariable(param.name);
+    }**/
+
+    for (auto it : methodInvocation->params_) {
         auto simpleExpression = new SimpleExpression(it);
         irt_expressions->Add(Accept(simpleExpression)->ToExpression());
     }
@@ -84,6 +94,8 @@ void IrtreeBuildVisitor::Visit(VariableDeclaration* variableDeclaration) {
 void IrtreeBuildVisitor::Visit(MethodDeclaration* methodDeclaration) {
     current_frame_ = new IRT::FrameTranslator(methodDeclaration->id_);
     frame_translator_[methodDeclaration->id_] = current_frame_;
+
+    current_frame_->AddLocalVariable("this");
 
     for (auto param : methodDeclaration->formals_) {
         current_frame_->AddArgumentAddress(param->id_);
@@ -222,7 +234,6 @@ void IrtreeBuildVisitor::Visit(NumberExpression* numberExpression) {
 
 void IrtreeBuildVisitor::Visit(SimpleExpression* simpleExpression) {
     auto address = current_frame_->GetAddress(simpleExpression->value_);
-
     tos_value_ = new IRT::ExpressionWrapper(address->ToExpression());
 }
 

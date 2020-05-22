@@ -1,6 +1,7 @@
 #include <function-mechanisms/address/address_in_register.h>
 #include <function-mechanisms/address/address_in_frame.h>
 #include "frame_translator.h"
+#include <iostream>
 
 namespace IRT {
     FrameTranslator::FrameTranslator(const std::string &function_name)
@@ -61,8 +62,13 @@ namespace IRT {
         );
     }
     Address *FrameTranslator::GetAddress(const std::string &name) {
-        return addresses_[name].top();
+        try {
+            return addresses_.at(name).top();
+        } catch (...) {
+            return addresses_.at("this").top();
+        }
     }
+
     void FrameTranslator::AddReturnAddress() {
         AddVariable(return_address_);
     }

@@ -1,4 +1,4 @@
-// A Bison parser, made by GNU Bison 3.5.4.
+// A Bison parser, made by GNU Bison 3.6.1.
 
 // Skeleton implementation for Bison LALR(1) parsers in C++
 
@@ -30,8 +30,9 @@
 // This special exception was added by the Free Software Foundation in
 // version 2.2 of Bison.
 
-// Undocumented macros, especially those whose name start with YY_,
-// are private implementation details.  Do not rely on them.
+// DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+// especially those whose name start with YY_ or yy_.  They are
+// private implementation details that can be changed or removed.
 
 
 
@@ -50,7 +51,7 @@
         return scanner.ScanToken();
     }
 
-#line 54 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 55 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
 
 #ifndef YY_
@@ -64,6 +65,7 @@
 #  define YY_(msgid) msgid
 # endif
 #endif
+
 
 // Whether we are compiled with exception support.
 #ifndef YY_EXCEPTIONS
@@ -120,7 +122,7 @@
 # define YY_STACK_PRINT()               \
   do {                                  \
     if (yydebug_)                       \
-      yystack_print_ ();                \
+      yy_stack_print_ ();                \
   } while (false)
 
 #else // !YYDEBUG
@@ -141,49 +143,7 @@
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 namespace yy {
-#line 145 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
-
-
-  /* Return YYSTR after stripping away unnecessary quotes and
-     backslashes, so that it's suitable for yyerror.  The heuristic is
-     that double-quoting is unnecessary unless the string contains an
-     apostrophe, a comma, or backslash (other than backslash-backslash).
-     YYSTR is taken from yytname.  */
-  std::string
-  parser::yytnamerr_ (const char *yystr)
-  {
-    if (*yystr == '"')
-      {
-        std::string yyr;
-        char const *yyp = yystr;
-
-        for (;;)
-          switch (*++yyp)
-            {
-            case '\'':
-            case ',':
-              goto do_not_strip_quotes;
-
-            case '\\':
-              if (*++yyp != '\\')
-                goto do_not_strip_quotes;
-              else
-                goto append;
-
-            append:
-            default:
-              yyr += *yyp;
-              break;
-
-            case '"':
-              return yyr;
-            }
-      do_not_strip_quotes: ;
-      }
-
-    return yystr;
-  }
-
+#line 147 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
   /// Build a parser object.
   parser::parser (Scanner &scanner_yyarg, Driver &driver_yyarg)
@@ -204,7 +164,7 @@ namespace yy {
   {}
 
   /*---------------.
-  | Symbol types.  |
+  | symbol kinds.  |
   `---------------*/
 
 
@@ -235,13 +195,13 @@ namespace yy {
     : state (s)
   {}
 
-  parser::symbol_number_type
-  parser::by_state::type_get () const YY_NOEXCEPT
+  parser::symbol_kind_type
+  parser::by_state::kind () const YY_NOEXCEPT
   {
     if (state == empty_state)
-      return empty_symbol;
+      return symbol_kind::S_YYEMPTY;
     else
-      return yystos_[+state];
+      return YY_CAST (symbol_kind_type, yystos_[+state]);
   }
 
   parser::stack_symbol_type::stack_symbol_type ()
@@ -250,7 +210,7 @@ namespace yy {
   parser::stack_symbol_type::stack_symbol_type (YY_RVREF (stack_symbol_type) that)
     : super_type (YY_MOVE (that.state), YY_MOVE (that.location))
   {
-    switch (that.type_get ())
+    switch (that.kind ())
     {
       case 47: // class
         value.YY_MOVE_OR_COPY< Class* > (YY_MOVE (that.value));
@@ -341,7 +301,7 @@ namespace yy {
   parser::stack_symbol_type::stack_symbol_type (state_type s, YY_MOVE_REF (symbol_type) that)
     : super_type (s, YY_MOVE (that.location))
   {
-    switch (that.type_get ())
+    switch (that.kind ())
     {
       case 47: // class
         value.move< Class* > (YY_MOVE (that.value));
@@ -424,7 +384,7 @@ namespace yy {
     }
 
     // that is emptied.
-    that.type = empty_symbol;
+    that.kind_ = symbol_kind::S_YYEMPTY;
   }
 
 #if YY_CPLUSPLUS < 201103L
@@ -432,7 +392,7 @@ namespace yy {
   parser::stack_symbol_type::operator= (const stack_symbol_type& that)
   {
     state = that.state;
-    switch (that.type_get ())
+    switch (that.kind ())
     {
       case 47: // class
         value.copy< Class* > (that.value);
@@ -522,7 +482,7 @@ namespace yy {
   parser::stack_symbol_type::operator= (stack_symbol_type& that)
   {
     state = that.state;
-    switch (that.type_get ())
+    switch (that.kind ())
     {
       case 47: // class
         value.move< Class* > (that.value);
@@ -622,23 +582,21 @@ namespace yy {
 #if YYDEBUG
   template <typename Base>
   void
-  parser::yy_print_ (std::ostream& yyo,
-                                     const basic_symbol<Base>& yysym) const
+  parser::yy_print_ (std::ostream& yyo, const basic_symbol<Base>& yysym) const
   {
     std::ostream& yyoutput = yyo;
     YYUSE (yyoutput);
-    symbol_number_type yytype = yysym.type_get ();
-#if defined __GNUC__ && ! defined __clang__ && ! defined __ICC && __GNUC__ * 100 + __GNUC_MINOR__ <= 408
-    // Avoid a (spurious) G++ 4.8 warning about "array subscript is
-    // below array bounds".
     if (yysym.empty ())
-      std::abort ();
-#endif
-    yyo << (yytype < yyntokens_ ? "token" : "nterm")
-        << ' ' << yytname_[yytype] << " ("
-        << yysym.location << ": ";
-    YYUSE (yytype);
-    yyo << ')';
+      yyo << "empty symbol";
+    else
+      {
+        symbol_kind_type yykind = yysym.kind ();
+        yyo << (yykind < YYNTOKENS ? "token" : "nterm")
+            << ' ' << yysym.name () << " ("
+            << yysym.location << ": ";
+        YYUSE (yykind);
+        yyo << ')';
+      }
   }
 #endif
 
@@ -697,11 +655,11 @@ namespace yy {
   parser::state_type
   parser::yy_lr_goto_state_ (state_type yystate, int yysym)
   {
-    int yyr = yypgoto_[yysym - yyntokens_] + yystate;
+    int yyr = yypgoto_[yysym - YYNTOKENS] + yystate;
     if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
       return yytable_[yyr];
     else
-      return yydefgoto_[yysym - yyntokens_];
+      return yydefgoto_[yysym - YYNTOKENS];
   }
 
   bool
@@ -761,6 +719,7 @@ namespace yy {
   `-----------------------------------------------*/
   yynewstate:
     YYCDEBUG << "Entering state " << int (yystack_[0].state) << '\n';
+    YY_STACK_PRINT ();
 
     // Accept?
     if (yystack_[0].state == yyfinal_)
@@ -781,7 +740,7 @@ namespace yy {
     // Read a lookahead token.
     if (yyla.empty ())
       {
-        YYCDEBUG << "Reading a token: ";
+        YYCDEBUG << "Reading a token\n";
 #if YY_EXCEPTIONS
         try
 #endif // YY_EXCEPTIONS
@@ -800,10 +759,20 @@ namespace yy {
       }
     YY_SYMBOL_PRINT ("Next token is", yyla);
 
+    if (yyla.kind () == symbol_kind::S_YYerror)
+    {
+      // The scanner already issued an error message, process directly
+      // to error recovery.  But do not keep the error token as
+      // lookahead, it is too special and may lead us to an endless
+      // loop in error recovery. */
+      yyla.kind_ = symbol_kind::S_YYUNDEF;
+      goto yyerrlab1;
+    }
+
     /* If the proper action on seeing token YYLA.TYPE is to reduce or
        to detect an error, take that action.  */
-    yyn += yyla.type_get ();
-    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yyla.type_get ())
+    yyn += yyla.kind ();
+    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yyla.kind ())
       {
         goto yydefault;
       }
@@ -949,407 +918,407 @@ namespace yy {
   case 2:
 #line 124 "parser/parser.y"
                         { yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < MainClass* > (), yystack_[0].value.as < std::vector<Class*> > ()); driver.program = yylhs.value.as < Program* > (); yylhs.value.as < Program* > ()->SetLocation(yylhs.location); }
-#line 953 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 922 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 3:
 #line 128 "parser/parser.y"
     { yylhs.value.as < MainClass* > () = new MainClass(yystack_[8].value.as < std::string > (), std::move(yystack_[2].value.as < std::vector<Statement*> > ())); yylhs.value.as < MainClass* > ()->SetLocation(yylhs.location); }
-#line 959 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 928 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 4:
 #line 131 "parser/parser.y"
            { yylhs.value.as < std::string > () = ""; }
-#line 965 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 934 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 5:
 #line 132 "parser/parser.y"
                              { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 971 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 940 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 6:
 #line 136 "parser/parser.y"
     { yylhs.value.as < Class* > () = new Class(yystack_[4].value.as < std::string > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<Declaration*> > ()); yylhs.value.as < Class* > ()->SetLocation(yylhs.location); }
-#line 977 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 946 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 7:
 #line 139 "parser/parser.y"
            {}
-#line 983 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 952 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 8:
 #line 140 "parser/parser.y"
                     { yylhs.value.as < std::vector<Class*> > () = std::move(yystack_[1].value.as < std::vector<Class*> > ()); yylhs.value.as < std::vector<Class*> > ().push_back(yystack_[0].value.as < Class* > ()); }
-#line 989 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 958 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 9:
 #line 143 "parser/parser.y"
                         { yylhs.value.as < Declaration* > () = yystack_[0].value.as < VariableDeclaration* > (); yylhs.value.as < Declaration* > ()->SetLocation(yylhs.location); }
-#line 995 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 964 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 10:
 #line 144 "parser/parser.y"
                         { yylhs.value.as < Declaration* > () = yystack_[0].value.as < MethodDeclaration* > (); yylhs.value.as < Declaration* > ()->SetLocation(yylhs.location); }
-#line 1001 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 970 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 11:
 #line 147 "parser/parser.y"
            {}
-#line 1007 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 976 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 12:
 #line 148 "parser/parser.y"
                                { yylhs.value.as < std::vector<Declaration*> > () = std::move(yystack_[1].value.as < std::vector<Declaration*> > ()); yylhs.value.as < std::vector<Declaration*> > ().push_back(yystack_[0].value.as < Declaration* > ()); }
-#line 1013 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 982 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 13:
 #line 152 "parser/parser.y"
     { yylhs.value.as < VariableDeclaration* > () = new VariableDeclaration(yystack_[2].value.as < std::string > (), yystack_[1].value.as < std::string > ()); yylhs.value.as < VariableDeclaration* > ()->SetLocation(yylhs.location); }
-#line 1019 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 988 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 14:
 #line 156 "parser/parser.y"
     { yylhs.value.as < MethodDeclaration* > () = new MethodDeclaration(yystack_[7].value.as < std::string > (), yystack_[6].value.as < std::string > (), yystack_[4].value.as < std::vector<Formal*> > (), yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < MethodDeclaration* > ()->SetLocation(yylhs.location); }
-#line 1025 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 994 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 15:
 #line 159 "parser/parser.y"
                       { yylhs.value.as < Formal* > () = new Formal(yystack_[1].value.as < std::string > (), yystack_[0].value.as < std::string > ()); yylhs.value.as < Formal* > ()->SetLocation(yylhs.location); }
-#line 1031 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1000 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 16:
 #line 162 "parser/parser.y"
            {}
-#line 1037 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1006 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 17:
 #line 163 "parser/parser.y"
              { yylhs.value.as < std::vector<Formal*> > () = std::vector<Formal*>(); yylhs.value.as < std::vector<Formal*> > ().push_back(yystack_[0].value.as < Formal* > ()); }
-#line 1043 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1012 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 18:
 #line 164 "parser/parser.y"
                          { yylhs.value.as < std::vector<Formal*> > () = std::move(yystack_[2].value.as < std::vector<Formal*> > ()); yylhs.value.as < std::vector<Formal*> > ().push_back(yystack_[0].value.as < Formal* > ()); }
-#line 1049 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1018 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 19:
 #line 167 "parser/parser.y"
                { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1055 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1024 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 20:
 #line 168 "parser/parser.y"
                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > () + "[]"; }
-#line 1061 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1030 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 21:
 #line 171 "parser/parser.y"
           { yylhs.value.as < std::string > () = "int"; }
-#line 1067 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1036 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 22:
 #line 172 "parser/parser.y"
                 { yylhs.value.as < std::string > () = "boolean"; }
-#line 1073 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1042 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 23:
 #line 173 "parser/parser.y"
              { yylhs.value.as < std::string > () = "void"; }
-#line 1079 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1048 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 24:
 #line 174 "parser/parser.y"
                      { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1085 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1054 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 25:
 #line 177 "parser/parser.y"
                        { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > (); }
-#line 1091 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1060 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 26:
 #line 180 "parser/parser.y"
                  { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1097 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1066 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 27:
 #line 183 "parser/parser.y"
                               { yylhs.value.as < Statement* > () = new AssertStatement(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1103 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1072 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 28:
 #line 184 "parser/parser.y"
                                { yylhs.value.as < Statement* > () = new LocalVariableDeclarationStatement(yystack_[0].value.as < VariableDeclaration* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location);}
-#line 1109 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1078 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 29:
 #line 185 "parser/parser.y"
                          { yylhs.value.as < Statement* > () = new ScopeStatements(yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1115 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1084 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 30:
 #line 186 "parser/parser.y"
                                   { yylhs.value.as < Statement* > () = new IfStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1121 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1090 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 31:
 #line 187 "parser/parser.y"
                                                    { yylhs.value.as < Statement* > () = new IfElseStatement(yystack_[4].value.as < Expression* > (), yystack_[2].value.as < Statement* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1127 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1096 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 32:
 #line 188 "parser/parser.y"
                                      { yylhs.value.as < Statement* > () = new WhileStatement(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Statement* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1133 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1102 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 33:
 #line 189 "parser/parser.y"
                                             { yylhs.value.as < Statement* > () = new PrintlnStatement(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1139 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1108 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 34:
 #line 190 "parser/parser.y"
                           { yylhs.value.as < Statement* > () = new SetLvalueStatement(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1145 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1114 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 35:
 #line 191 "parser/parser.y"
                         { yylhs.value.as < Statement* > () = new ReturnStatement(yystack_[1].value.as < Expression* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1151 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1120 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 36:
 #line 192 "parser/parser.y"
                            { yylhs.value.as < Statement* > () = new MethodInvocationStatement(yystack_[1].value.as < MethodInvocation* > ()); yylhs.value.as < Statement* > ()->SetLocation(yylhs.location); }
-#line 1157 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1126 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 37:
 #line 195 "parser/parser.y"
            {}
-#line 1163 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1132 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 38:
 #line 196 "parser/parser.y"
                            { yylhs.value.as < std::vector<Statement*> > () = std::move(yystack_[1].value.as < std::vector<Statement*> > ()); yylhs.value.as < std::vector<Statement*> > ().push_back(yystack_[0].value.as < Statement* > ()); }
-#line 1169 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1138 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 39:
 #line 200 "parser/parser.y"
                         { yylhs.value.as < VariableDeclaration* > () = yystack_[0].value.as < VariableDeclaration* > (); yylhs.value.as < VariableDeclaration* > ()->SetLocation(yylhs.location); }
-#line 1175 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1144 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 40:
 #line 203 "parser/parser.y"
            {}
-#line 1181 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1150 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 41:
 #line 204 "parser/parser.y"
                    { yylhs.value.as < std::vector<std::string> > () = std::vector<std::string>(); yylhs.value.as < std::vector<std::string> > ().push_back(yystack_[0].value.as < std::string > ()); }
-#line 1187 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1156 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 42:
 #line 205 "parser/parser.y"
                               { yylhs.value.as < std::vector<std::string> > () = std::move(yystack_[2].value.as < std::vector<std::string> > ()); yylhs.value.as < std::vector<std::string> > ().push_back(yystack_[0].value.as < std::string > ()); }
-#line 1193 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1162 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 43:
 #line 209 "parser/parser.y"
                                          { yylhs.value.as < MethodInvocation* > () = new MethodInvocation(yystack_[5].value.as < Expression* > (), yystack_[3].value.as < std::string > (), yystack_[1].value.as < std::vector<std::string> > ()); yylhs.value.as < MethodInvocation* > ()->SetLocation(yylhs.location); }
-#line 1199 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1168 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 44:
 #line 213 "parser/parser.y"
                  { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1205 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1174 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 45:
 #line 214 "parser/parser.y"
                                 { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > (); }
-#line 1211 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1180 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 46:
 #line 217 "parser/parser.y"
                              { yylhs.value.as < Expression* > () = new BinaryExpression(yystack_[2].value.as < Expression* > (), yystack_[0].value.as < Expression* > (), yystack_[1].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1217 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1186 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 47:
 #line 218 "parser/parser.y"
                         { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[3].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1223 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1192 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 48:
 #line 219 "parser/parser.y"
                         { yylhs.value.as < Expression* > () = new LengthExpression(yystack_[2].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1229 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1198 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 49:
 #line 220 "parser/parser.y"
                                     { yylhs.value.as < Expression* > () = new ArrayMakeExpression(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1235 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1204 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 50:
 #line 221 "parser/parser.y"
                                    { yylhs.value.as < Expression* > () = new ObjectMakeExpression(yystack_[2].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1241 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1210 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 51:
 #line 222 "parser/parser.y"
                { yylhs.value.as < Expression* > () = new InverseExpression(yystack_[0].value.as < Expression* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1247 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1216 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 52:
 #line 223 "parser/parser.y"
                    { yylhs.value.as < Expression* > () = yystack_[1].value.as < Expression* > (); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1253 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1222 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 53:
 #line 224 "parser/parser.y"
                    { yylhs.value.as < Expression* > () = new SimpleExpression(yystack_[0].value.as < std::string > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1259 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1228 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 54:
 #line 225 "parser/parser.y"
                { yylhs.value.as < Expression* > () = new NumberExpression(yystack_[0].value.as < int > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1265 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1234 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 55:
 #line 226 "parser/parser.y"
              { yylhs.value.as < Expression* > () = new SimpleExpression("this"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1271 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1240 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 56:
 #line 227 "parser/parser.y"
              { yylhs.value.as < Expression* > () = new SimpleExpression("true"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1277 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1246 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 57:
 #line 228 "parser/parser.y"
               { yylhs.value.as < Expression* > () = new SimpleExpression("false"); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1283 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1252 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 58:
 #line 229 "parser/parser.y"
                        { yylhs.value.as < Expression* > () = new MethodInvocationExpression(yystack_[0].value.as < MethodInvocation* > ()); yylhs.value.as < Expression* > ()->SetLocation(yylhs.location); }
-#line 1289 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1258 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 59:
 #line 235 "parser/parser.y"
            { yylhs.value.as < std::string > () = "&&"; }
-#line 1295 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1264 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 60:
 #line 236 "parser/parser.y"
            { yylhs.value.as < std::string > () = "||"; }
-#line 1301 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1270 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 61:
 #line 237 "parser/parser.y"
            { yylhs.value.as < std::string > () = "<"; }
-#line 1307 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1276 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 62:
 #line 238 "parser/parser.y"
            { yylhs.value.as < std::string > () = ">"; }
-#line 1313 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1282 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 63:
 #line 239 "parser/parser.y"
            { yylhs.value.as < std::string > () = "=="; }
-#line 1319 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1288 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 64:
 #line 240 "parser/parser.y"
            { yylhs.value.as < std::string > () = "+"; }
-#line 1325 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1294 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 65:
 #line 241 "parser/parser.y"
            { yylhs.value.as < std::string > () = "-"; }
-#line 1331 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1300 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 66:
 #line 242 "parser/parser.y"
            { yylhs.value.as < std::string > () = "*"; }
-#line 1337 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1306 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 67:
 #line 243 "parser/parser.y"
            { yylhs.value.as < std::string > () = "/"; }
-#line 1343 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1312 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
   case 68:
 #line 244 "parser/parser.y"
            { yylhs.value.as < std::string > () = "%"; }
-#line 1349 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1318 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
     break;
 
 
-#line 1353 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1322 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
             default:
               break;
@@ -1366,7 +1335,6 @@ namespace yy {
       YY_SYMBOL_PRINT ("-> $$ =", yylhs);
       yypop_ (yylen);
       yylen = 0;
-      YY_STACK_PRINT ();
 
       // Shift the result of the reduction.
       yypush_ (YY_NULLPTR, YY_MOVE (yylhs));
@@ -1382,7 +1350,9 @@ namespace yy {
     if (!yyerrstatus_)
       {
         ++yynerrs_;
-        error (yyla.location, yysyntax_error_ (yystack_[0].state, yyla));
+        context yyctx (*this, yyla);
+        std::string msg = yysyntax_error_ (yyctx);
+        error (yyla.location, YY_MOVE (msg));
       }
 
 
@@ -1393,7 +1363,7 @@ namespace yy {
            error, discard it.  */
 
         // Return failure if at end of input.
-        if (yyla.type_get () == yyeof_)
+        if (yyla.kind () == symbol_kind::S_YYEOF)
           YYABORT;
         else if (!yyla.empty ())
           {
@@ -1419,6 +1389,7 @@ namespace yy {
        this YYERROR.  */
     yypop_ (yylen);
     yylen = 0;
+    YY_STACK_PRINT ();
     goto yyerrlab1;
 
 
@@ -1427,31 +1398,33 @@ namespace yy {
   `-------------------------------------------------------------*/
   yyerrlab1:
     yyerrstatus_ = 3;   // Each real token shifted decrements this.
+    // Pop stack until we find a state that shifts the error token.
+    for (;;)
+      {
+        yyn = yypact_[+yystack_[0].state];
+        if (!yy_pact_value_is_default_ (yyn))
+          {
+            yyn += symbol_kind::S_YYerror;
+            if (0 <= yyn && yyn <= yylast_
+                && yycheck_[yyn] == symbol_kind::S_YYerror)
+              {
+                yyn = yytable_[yyn];
+                if (0 < yyn)
+                  break;
+              }
+          }
+
+        // Pop the current state because it cannot handle the error token.
+        if (yystack_.size () == 1)
+          YYABORT;
+
+        yyerror_range[1].location = yystack_[0].location;
+        yy_destroy_ ("Error: popping", yystack_[0]);
+        yypop_ ();
+        YY_STACK_PRINT ();
+      }
     {
       stack_symbol_type error_token;
-      for (;;)
-        {
-          yyn = yypact_[+yystack_[0].state];
-          if (!yy_pact_value_is_default_ (yyn))
-            {
-              yyn += yy_error_token_;
-              if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yy_error_token_)
-                {
-                  yyn = yytable_[yyn];
-                  if (0 < yyn)
-                    break;
-                }
-            }
-
-          // Pop the current state because it cannot handle the error token.
-          if (yystack_.size () == 1)
-            YYABORT;
-
-          yyerror_range[1].location = yystack_[0].location;
-          yy_destroy_ ("Error: popping", yystack_[0]);
-          yypop_ ();
-          YY_STACK_PRINT ();
-        }
 
       yyerror_range[2].location = yyla.location;
       YYLLOC_DEFAULT (error_token.location, yyerror_range, 2);
@@ -1489,6 +1462,7 @@ namespace yy {
     /* Do not reclaim the symbols of the rule whose action triggered
        this YYABORT or YYACCEPT.  */
     yypop_ (yylen);
+    YY_STACK_PRINT ();
     while (1 < yystack_.size ())
       {
         yy_destroy_ ("Cleanup: popping", yystack_[0]);
@@ -1522,18 +1496,100 @@ namespace yy {
     error (yyexc.location, yyexc.what ());
   }
 
-  // Generate an error message.
+  /* Return YYSTR after stripping away unnecessary quotes and
+     backslashes, so that it's suitable for yyerror.  The heuristic is
+     that double-quoting is unnecessary unless the string contains an
+     apostrophe, a comma, or backslash (other than backslash-backslash).
+     YYSTR is taken from yytname.  */
   std::string
-  parser::yysyntax_error_ (state_type yystate, const symbol_type& yyla) const
+  parser::yytnamerr_ (const char *yystr)
   {
-    // Number of reported tokens (one for the "unexpected", one per
-    // "expected").
-    std::ptrdiff_t yycount = 0;
-    // Its maximum.
-    enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
-    // Arguments of yyformat.
-    char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+    if (*yystr == '"')
+      {
+        std::string yyr;
+        char const *yyp = yystr;
 
+        for (;;)
+          switch (*++yyp)
+            {
+            case '\'':
+            case ',':
+              goto do_not_strip_quotes;
+
+            case '\\':
+              if (*++yyp != '\\')
+                goto do_not_strip_quotes;
+              else
+                goto append;
+
+            append:
+            default:
+              yyr += *yyp;
+              break;
+
+            case '"':
+              return yyr;
+            }
+      do_not_strip_quotes: ;
+      }
+
+    return yystr;
+  }
+
+  std::string
+  parser::symbol_name (symbol_kind_type yysymbol)
+  {
+    return yytnamerr_ (yytname_[yysymbol]);
+  }
+
+
+
+  // parser::context.
+  parser::context::context (const parser& yyparser, const symbol_type& yyla)
+    : yyparser_ (yyparser)
+    , yyla_ (yyla)
+  {}
+
+  int
+  parser::context::expected_tokens (symbol_kind_type yyarg[], int yyargn) const
+  {
+    // Actual number of expected tokens
+    int yycount = 0;
+
+    int yyn = yypact_[+yyparser_.yystack_[0].state];
+    if (!yy_pact_value_is_default_ (yyn))
+      {
+        /* Start YYX at -YYN if negative to avoid negative indexes in
+           YYCHECK.  In other words, skip the first -YYN actions for
+           this state because they are default actions.  */
+        int yyxbegin = yyn < 0 ? -yyn : 0;
+        // Stay within bounds of both yycheck and yytname.
+        int yychecklim = yylast_ - yyn + 1;
+        int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
+        for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
+          if (yycheck_[yyx + yyn] == yyx && yyx != symbol_kind::S_YYerror
+              && !yy_table_value_is_error_ (yytable_[yyx + yyn]))
+            {
+              if (!yyarg)
+                ++yycount;
+              else if (yycount == yyargn)
+                return 0;
+              else
+                yyarg[yycount++] = YY_CAST (symbol_kind_type, yyx);
+            }
+      }
+
+    if (yyarg && yycount == 0 && 0 < yyargn)
+      yyarg[0] = symbol_kind::S_YYEMPTY;
+    return yycount;
+  }
+
+
+
+  int
+  parser::yy_syntax_error_arguments_ (const context& yyctx,
+                                                 symbol_kind_type yyarg[], int yyargn) const
+  {
     /* There are many possibilities here to consider:
        - If this state is a consistent state with a default action, then
          the only way this function was invoked is if the default action
@@ -1558,35 +1614,26 @@ namespace yy {
          one exception: it will still contain any token that will not be
          accepted due to an error action in a later state.
     */
-    if (!yyla.empty ())
-      {
-        symbol_number_type yytoken = yyla.type_get ();
-        yyarg[yycount++] = yytname_[yytoken];
 
-        int yyn = yypact_[+yystate];
-        if (!yy_pact_value_is_default_ (yyn))
-          {
-            /* Start YYX at -YYN if negative to avoid negative indexes in
-               YYCHECK.  In other words, skip the first -YYN actions for
-               this state because they are default actions.  */
-            int yyxbegin = yyn < 0 ? -yyn : 0;
-            // Stay within bounds of both yycheck and yytname.
-            int yychecklim = yylast_ - yyn + 1;
-            int yyxend = yychecklim < yyntokens_ ? yychecklim : yyntokens_;
-            for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
-              if (yycheck_[yyx + yyn] == yyx && yyx != yy_error_token_
-                  && !yy_table_value_is_error_ (yytable_[yyx + yyn]))
-                {
-                  if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
-                    {
-                      yycount = 1;
-                      break;
-                    }
-                  else
-                    yyarg[yycount++] = yytname_[yyx];
-                }
-          }
+    if (!yyctx.lookahead ().empty ())
+      {
+        if (yyarg)
+          yyarg[0] = yyctx.token ();
+        int yyn = yyctx.expected_tokens (yyarg ? yyarg + 1 : yyarg, yyargn - 1);
+        return yyn + 1;
       }
+    return 0;
+  }
+
+  // Generate an error message.
+  std::string
+  parser::yysyntax_error_ (const context& yyctx) const
+  {
+    // Its maximum.
+    enum { YYARGS_MAX = 5 };
+    // Arguments of yyformat.
+    symbol_kind_type yyarg[YYARGS_MAX];
+    int yycount = yy_syntax_error_arguments_ (yyctx, yyarg, YYARGS_MAX);
 
     char const* yyformat = YY_NULLPTR;
     switch (yycount)
@@ -1611,7 +1658,7 @@ namespace yy {
     for (char const* yyp = yyformat; *yyp; ++yyp)
       if (yyp[0] == '%' && yyp[1] == 's' && yyi < yycount)
         {
-          yyres += yytnamerr_ (yyarg[yyi++]);
+          yyres += symbol_name (yyarg[yyi++]);
           ++yyp;
         }
       else
@@ -1818,26 +1865,28 @@ namespace yy {
   };
 
 
-
+#if YYDEBUG || 1
   // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
-  // First, the terminals, then, starting at \a yyntokens_, nonterminals.
+  // First, the terminals, then, starting at \a YYNTOKENS, nonterminals.
   const char*
   const parser::yytname_[] =
   {
-  "\"end of file\"", "error", "$undefined", "\"&&\"", "\"||\"", "\"<\"",
-  "\">\"", "\"==\"", "\"+\"", "\"-\"", "\"*\"", "\"/\"", "\"(\"", "\")\"",
-  "\"=\"", "\"[\"", "\"]\"", "\"{\"", "\"}\"", "\".\"", "\";\"", "\",\"",
-  "\"!\"", "\"assert\"", "\"if\"", "\"else\"", "\"while\"", "\"new\"",
-  "\"System.out.println\"", "\"return\"", "\"class\"", "\"extends\"",
-  "\"public static void main\"", "\"public\"", "\"this\"", "\"length\"",
-  "\"true\"", "\"false\"", "\"int\"", "\"boolean\"", "\"void\"",
-  "\"identifier\"", "\"number\"", "\"%\"", "$accept", "unit", "mainClass",
-  "class", "classes", "extension", "declaration", "declarations",
-  "variableDeclaration", "localVariableDeclaration", "methodDeclaration",
-  "statement", "statements", "arrayType", "simpleType", "typeIdentifier",
-  "type", "formal", "formals", "params", "lvalue", "expr",
-  "binaryOperator", "methodInvocation", YY_NULLPTR
+  "\"end of file\"", "error", "\"invalid token\"", "\"&&\"", "\"||\"",
+  "\"<\"", "\">\"", "\"==\"", "\"+\"", "\"-\"", "\"*\"", "\"/\"", "\"(\"",
+  "\")\"", "\"=\"", "\"[\"", "\"]\"", "\"{\"", "\"}\"", "\".\"", "\";\"",
+  "\",\"", "\"!\"", "\"assert\"", "\"if\"", "\"else\"", "\"while\"",
+  "\"new\"", "\"System.out.println\"", "\"return\"", "\"class\"",
+  "\"extends\"", "\"public static void main\"", "\"public\"", "\"this\"",
+  "\"length\"", "\"true\"", "\"false\"", "\"int\"", "\"boolean\"",
+  "\"void\"", "\"identifier\"", "\"number\"", "\"%\"", "$accept", "unit",
+  "mainClass", "class", "classes", "extension", "declaration",
+  "declarations", "variableDeclaration", "localVariableDeclaration",
+  "methodDeclaration", "statement", "statements", "arrayType",
+  "simpleType", "typeIdentifier", "type", "formal", "formals", "params",
+  "lvalue", "expr", "binaryOperator", "methodInvocation", YY_NULLPTR
   };
+#endif
+
 
 #if YYDEBUG
   const unsigned char
@@ -1852,9 +1901,8 @@ namespace yy {
      236,   237,   238,   239,   240,   241,   242,   243,   244
   };
 
-  // Print the state stack on the debug stream.
   void
-  parser::yystack_print_ ()
+  parser::yy_stack_print_ () const
   {
     *yycdebug_ << "Stack now";
     for (stack_type::const_iterator
@@ -1865,9 +1913,8 @@ namespace yy {
     *yycdebug_ << '\n';
   }
 
-  // Report on the debug stream that the rule \a yyrule is going to be reduced.
   void
-  parser::yy_reduce_print_ (int yyrule)
+  parser::yy_reduce_print_ (int yyrule) const
   {
     int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
@@ -1883,7 +1930,7 @@ namespace yy {
 
 
 } // yy
-#line 1887 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
+#line 1934 "/Users/lexolordan/compilers/compiler/parser/parser.cpp"
 
 #line 246 "parser/parser.y"
 

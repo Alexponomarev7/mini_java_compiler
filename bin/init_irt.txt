@@ -1,0 +1,5 @@
+SeqStatement:
+	LabelStatement: init
+	MoveStatement:
+		TempExpression: ::return_value
+		ConstExpression 19

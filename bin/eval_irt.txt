@@ -1,0 +1,116 @@
+SeqStatement:
+	LabelStatement: eval
+	SeqStatement:
+		SeqStatement:
+			JumpConditionalStatement: LT
+			TrueLabel: L0
+			FalseLabel: L2
+				MemExpression: 
+					BinopExpression: PLUS
+						TempExpression: ::fp
+						ConstExpression 4
+				MemExpression: 
+					BinopExpression: PLUS
+						TempExpression: ::fp
+						ConstExpression 8
+			SeqStatement:
+				LabelStatement: L0
+				SeqStatement:
+					SeqStatement:
+						MoveStatement:
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 16
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 4
+						SeqStatement:
+							MoveStatement:
+								MemExpression: 
+									BinopExpression: PLUS
+										TempExpression: ::fp
+										ConstExpression 4
+								MemExpression: 
+									BinopExpression: PLUS
+										TempExpression: ::fp
+										ConstExpression 8
+							MoveStatement:
+								MemExpression: 
+									BinopExpression: PLUS
+										TempExpression: ::fp
+										ConstExpression 8
+								MemExpression: 
+									BinopExpression: PLUS
+										TempExpression: ::fp
+										ConstExpression 16
+					LabelStatement: L2
+		SeqStatement:
+			SeqStatement:
+				JumpConditionalStatement: EQ
+				TrueLabel: L3
+				FalseLabel: L5
+					MemExpression: 
+						BinopExpression: PLUS
+							TempExpression: ::fp
+							ConstExpression 8
+					ConstExpression 0
+				SeqStatement:
+					LabelStatement: L3
+					SeqStatement:
+						MoveStatement:
+							TempExpression: ::return_value
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 4
+						LabelStatement: L5
+			SeqStatement:
+				MoveStatement:
+					MemExpression: 
+						BinopExpression: PLUS
+							TempExpression: ::fp
+							ConstExpression 24
+					MemExpression: 
+						BinopExpression: PLUS
+							TempExpression: ::fp
+							ConstExpression 8
+				SeqStatement:
+					MoveStatement:
+						MemExpression: 
+							BinopExpression: PLUS
+								TempExpression: ::fp
+								ConstExpression 28
+						BinopExpression: MINUS
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 4
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 8
+					SeqStatement:
+						MoveStatement:
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 20
+							CallExpression: 
+								NameExpression: eval
+								ExpressionList: 
+									MemExpression: 
+										BinopExpression: PLUS
+											TempExpression: ::fp
+											ConstExpression 24
+									MemExpression: 
+										BinopExpression: PLUS
+											TempExpression: ::fp
+											ConstExpression 28
+						MoveStatement:
+							TempExpression: ::return_value
+							MemExpression: 
+								BinopExpression: PLUS
+									TempExpression: ::fp
+									ConstExpression 20

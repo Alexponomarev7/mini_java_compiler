@@ -40,6 +40,14 @@ class Test {
         arg = 200;
         help.test_with_param(arg);
 
+        int xxx;
+        xxx = 1;
+
+        int yyy;
+        yyy = 1;
+
+        help.sum(xxx, yyy);
+
         return 0;
     }
 }
@@ -53,5 +61,23 @@ class Help {
 
     public void test_with_param(int a) {
         System.out.println(a);
+    }
+
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    public int set() {
+        x = 1;
+    }
+
+    public int current() {
+        int a;
+        a = 1;
+        int b;
+        b = 1;
+        int res;
+        res = this.sum(a, b);
+        return res;
     }
 }
