@@ -7,6 +7,7 @@
 #include "../nodes/expressions/const_expression.h"
 #include "../nodes/expressions/mem_expression.h"
 #include "../nodes/expressions/temp_expression.h"
+#include "../nodes/expressions/eseq_expression.h"
 
 #include "../nodes/statements/exp_statement.h"
 #include "../nodes/statements/jump_conditional_statement.h"

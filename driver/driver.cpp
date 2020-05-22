@@ -1,4 +1,5 @@
 #include <irtree/visitors/print_visitor.h>
+#include <irtree/visitors/double_call_eliminate_visitor.h>
 #include "driver/driver.hh"
 #include "parser/parser.hh"
 
@@ -77,6 +78,14 @@ int Driver::Evaluate() {
         for (auto func_view = methods.begin(); func_view != methods.end(); ++func_view) {
             IRT::PrintVisitor print_visitor_irt(func_view->first + "_irt.txt");
             methods[func_view->first]->Accept(&print_visitor_irt);
+
+            IRT::DoubleCallEliminateVisitor call_eliminate_visitor;
+            methods[func_view->first]->Accept(&call_eliminate_visitor);
+
+            auto stmt_result = call_eliminate_visitor.GetTree();
+
+            IRT::PrintVisitor print_visitor_two(func_view->first + "_without_double_call.txt");
+            stmt_result->Accept(&print_visitor_two);
         }
     } catch (std::exception& e) {
         std::cout << RED("Compilation failed!") << std::endl;

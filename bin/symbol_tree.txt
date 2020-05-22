@@ -1,39 +1,24 @@
 true
 false
-		this
-		y
-		this
-		x
-		y
 	x
 		this
 		this
-		result
-	x
+		a
 		this
-		y
-		this
+		a
+		b
 		this
 		this
 		a
 		b
-		result
-		new_a
-		new_b
-			swap
+		res
 	test
-	t
 	a
-	b
-	check
-	sum_ab
-	result
+	x
 	flag
-	start
-	t2
-	out
-	t3
-	gcd
-	ga
-	gb
-	gcd_res
+	help
+	arg
+	xxx
+	yyy
+		y
+		z

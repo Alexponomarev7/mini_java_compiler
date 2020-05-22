@@ -83,6 +83,8 @@ set(
     irtree/types/logic_operator_type.cpp
     irtree/types/binary_operator_type.cpp
     irtree/visitors/print_visitor.cpp
+    irtree/visitors/double_call_eliminate_visitor.cpp
+    irtree/visitors/irtemplate_visitor.cpp
     irtree/nodes/expressions/eseq_expression.cpp
     driver/driver.cpp
     visitors/print_visitor.cpp

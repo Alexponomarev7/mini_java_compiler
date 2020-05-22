@@ -136,15 +136,23 @@ SeqStatement:
 											BinopExpression: PLUS
 												TempExpression: ::fp
 												ConstExpression 28
-										CallExpression: 
-											NameExpression: malloc
-											ExpressionList: 
-												ConstExpression 4
+										EseqExpression:
+											MoveStatement:
+												TempExpression: %1
+												CallExpression: 
+													NameExpression: malloc
+													ExpressionList: 
+														ConstExpression 4
+											TempExpression: %1
 									SeqStatement:
 										ExpStatement:
-											CallExpression: 
-												NameExpression: test
-												ExpressionList: 
+											EseqExpression:
+												MoveStatement:
+													TempExpression: %2
+													CallExpression: 
+														NameExpression: test
+														ExpressionList: 
+												TempExpression: %2
 										SeqStatement:
 											MoveStatement:
 												MemExpression: 
@@ -154,13 +162,17 @@ SeqStatement:
 												ConstExpression 200
 											SeqStatement:
 												ExpStatement:
-													CallExpression: 
-														NameExpression: test_with_param
-														ExpressionList: 
-															MemExpression: 
-																BinopExpression: PLUS
-																	TempExpression: ::fp
-																	ConstExpression 32
+													EseqExpression:
+														MoveStatement:
+															TempExpression: %3
+															CallExpression: 
+																NameExpression: test_with_param
+																ExpressionList: 
+																	MemExpression: 
+																		BinopExpression: PLUS
+																			TempExpression: ::fp
+																			ConstExpression 32
+														TempExpression: %3
 												SeqStatement:
 													MoveStatement:
 														MemExpression: 
@@ -177,17 +189,21 @@ SeqStatement:
 															ConstExpression 1
 														SeqStatement:
 															ExpStatement:
-																CallExpression: 
-																	NameExpression: sum
-																	ExpressionList: 
-																		MemExpression: 
-																			BinopExpression: PLUS
-																				TempExpression: ::fp
-																				ConstExpression 36
-																		MemExpression: 
-																			BinopExpression: PLUS
-																				TempExpression: ::fp
-																				ConstExpression 40
+																EseqExpression:
+																	MoveStatement:
+																		TempExpression: %4
+																		CallExpression: 
+																			NameExpression: sum
+																			ExpressionList: 
+																				MemExpression: 
+																					BinopExpression: PLUS
+																						TempExpression: ::fp
+																						ConstExpression 36
+																				MemExpression: 
+																					BinopExpression: PLUS
+																						TempExpression: ::fp
+																						ConstExpression 40
+																	TempExpression: %4
 															MoveStatement:
 																TempExpression: ::return_value
 																ConstExpression 0

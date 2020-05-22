@@ -17,4 +17,4 @@ protected:
 };
 
 
-#endif //COMPILER_TEMPLATE_VISITOR_H
+#endif //COMPILER_IRTEMPLATE_VISITOR_H
