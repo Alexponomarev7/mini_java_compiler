@@ -1,9 +1,9 @@
 SeqStatement:
-	LabelStatement: set
+	LabelStatement: inc
 	MoveStatement:
 		MemExpression: 
 			TempExpression: ::fp
-		MemExpression: 
-			BinopExpression: PLUS
+		BinopExpression: PLUS
+			MemExpression: 
 				TempExpression: ::fp
-				ConstExpression 4
+			ConstExpression 1

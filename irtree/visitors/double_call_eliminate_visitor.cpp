@@ -1,7 +1,3 @@
-#ifndef COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H
-#define COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H
-
-
 #include "double_call_eliminate_visitor.h"
 
 #include "base_elements.h"
@@ -117,5 +113,3 @@ namespace IRT {
     }
 
 }
-
-#endif //COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H

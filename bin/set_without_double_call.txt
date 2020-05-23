@@ -3,4 +3,7 @@ SeqStatement:
 	MoveStatement:
 		MemExpression: 
 			TempExpression: ::fp
-		ConstExpression 1
+		MemExpression: 
+			BinopExpression: PLUS
+				TempExpression: ::fp
+				ConstExpression 4

@@ -1,0 +1,8 @@
+LabelStatement: inc
+MoveStatement:
+	MemExpression: 
+		TempExpression: ::fp
+	BinopExpression: PLUS
+		MemExpression: 
+			TempExpression: ::fp
+		ConstExpression 1

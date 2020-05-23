@@ -5,8 +5,9 @@
 
 namespace IRT {
 
-    PrintVisitor::PrintVisitor(const std::string &filename): stream_(filename) {
-
+    PrintVisitor::PrintVisitor(const std::string &filename, bool print_seq) :
+        stream_(filename)
+        , print_seq_(print_seq) {
     }
 
     void PrintVisitor::Visit(ExpStatement *stmt) {
@@ -49,13 +50,18 @@ namespace IRT {
     }
 
     void PrintVisitor::Visit(SeqStatement *seq_statement) {
-        PrintTabs();
-        stream_ << "SeqStatement:" << std::endl;
-        ++num_tabs_;
+        if (print_seq_) {
+            PrintTabs();
+            stream_ << "SeqStatement:" << std::endl;
+            ++num_tabs_;
+        }
+
         seq_statement->first_statement_->Accept(this);
         seq_statement->second_statement_->Accept(this);
-        --num_tabs_;
 
+        if (print_seq_) {
+            --num_tabs_;
+        }
     }
     void PrintVisitor::Visit(LabelStatement *label_statement) {
         PrintTabs();

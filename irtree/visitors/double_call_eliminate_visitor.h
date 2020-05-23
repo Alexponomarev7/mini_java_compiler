@@ -1,3 +1,6 @@
+#ifndef COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H
+#define COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H
+
 #include "irtemplate_visitor.h"
 #include "visitor_struct.h"
 
@@ -33,6 +36,7 @@ namespace IRT {
         void Visit(EseqExpression *eseq_expression) override;
 
         Statement *GetTree();
-
     };
 }
+
+#endif //COMPILER_DOUBLE_CALL_ELIMINATE_VISITOR_H
