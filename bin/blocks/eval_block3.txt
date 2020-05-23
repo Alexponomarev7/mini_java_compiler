@@ -1,0 +1,9 @@
+LabelStatement: L2
+JumpConditionalStatement: EQ
+TrueLabel: L3
+FalseLabel: L5
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 8
+	ConstExpression 0

@@ -1,0 +1,9 @@
+LabelStatement: test_with_param
+ExpStatement:
+	CallExpression: 
+		NameExpression: print
+		ExpressionList: 
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 4

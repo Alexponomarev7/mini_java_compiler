@@ -80,20 +80,15 @@ FalseLabel: L7
 			TempExpression: ::fp
 			ConstExpression 28
 	ConstExpression 4
-LabelStatement: L6
-ExpStatement:
-	CallExpression: 
-		NameExpression: print
-		ExpressionList: 
-			ConstExpression 111
-JumpStatement: L8
 LabelStatement: L7
 ExpStatement:
 	CallExpression: 
 		NameExpression: print
 		ExpressionList: 
 			ConstExpression 112
+JumpStatement: L8
 LabelStatement: L8
+JumpStatement: L12
 LabelStatement: L12
 JumpConditionalStatement: LT
 TrueLabel: L9
@@ -103,20 +98,8 @@ FalseLabel: L11
 			TempExpression: ::fp
 			ConstExpression 36
 	ConstExpression 5
-LabelStatement: L9
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 36
-	BinopExpression: PLUS
-		MemExpression: 
-			BinopExpression: PLUS
-				TempExpression: ::fp
-				ConstExpression 36
-		ConstExpression 1
-JumpStatement: L12
 LabelStatement: L11
+JumpStatement: L16
 LabelStatement: L16
 JumpConditionalStatement: LT
 TrueLabel: L13
@@ -126,19 +109,6 @@ FalseLabel: L15
 			TempExpression: ::fp
 			ConstExpression 36
 	ConstExpression 10
-LabelStatement: L13
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 36
-	BinopExpression: PLUS
-		MemExpression: 
-			BinopExpression: PLUS
-				TempExpression: ::fp
-				ConstExpression 36
-		ConstExpression 1
-JumpStatement: L16
 LabelStatement: L15
 ExpStatement:
 	CallExpression: 
@@ -235,3 +205,4 @@ ExpStatement:
 				BinopExpression: PLUS
 					TempExpression: ::fp
 					ConstExpression 64
+JumpStatement: done

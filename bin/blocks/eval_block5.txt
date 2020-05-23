@@ -1,0 +1,47 @@
+LabelStatement: L5
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 24
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 8
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 28
+	BinopExpression: MINUS
+		MemExpression: 
+			BinopExpression: PLUS
+				TempExpression: ::fp
+				ConstExpression 4
+		MemExpression: 
+			BinopExpression: PLUS
+				TempExpression: ::fp
+				ConstExpression 8
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 20
+	CallExpression: 
+		NameExpression: eval
+		ExpressionList: 
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 24
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 28
+MoveStatement:
+	TempExpression: ::return_value
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 20
+JumpStatement: done

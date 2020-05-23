@@ -1,0 +1,13 @@
+LabelStatement: add
+MoveStatement:
+	TempExpression: ::return_value
+	BinopExpression: PLUS
+		MemExpression: 
+			BinopExpression: PLUS
+				TempExpression: ::fp
+				ConstExpression 4
+		MemExpression: 
+			BinopExpression: PLUS
+				TempExpression: ::fp
+				ConstExpression 8
+JumpStatement: done

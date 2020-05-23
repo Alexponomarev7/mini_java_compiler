@@ -1,0 +1,7 @@
+LabelStatement: L7
+ExpStatement:
+	CallExpression: 
+		NameExpression: print
+		ExpressionList: 
+			ConstExpression 112
+JumpStatement: L8

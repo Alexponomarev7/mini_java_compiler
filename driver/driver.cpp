@@ -1,6 +1,7 @@
 #include <irtree/visitors/print_visitor.h>
 #include <irtree/visitors/double_call_eliminate_visitor.h>
 #include <irtree/visitors/eseq_up_visitor.h>
+#include <irtree/visitors/block_visitor.h>
 #include "driver/driver.hh"
 #include "parser/parser.hh"
 
@@ -95,6 +96,42 @@ int Driver::Evaluate() {
 
             IRT::PrintVisitor print_visitor_three(func_view->first + "_without_eseq.txt", false);
             stmt_result->Accept(&print_visitor_three);
+
+            IRT::BlockVisitor blockVisitor;
+            methods[func_view->first]->Accept(&blockVisitor);
+
+            int num = 1;
+            const auto& blocks = blockVisitor.GetBlocks();
+            for (auto block : blocks) {
+                IRT::PrintVisitor block_visitor(
+                        "blocks/" + func_view->first + "_block" + std::to_string(num++) + ".txt");
+                block->Accept(&block_visitor);
+            }
+
+            size_t not_used = blocks.size();
+            std::vector<bool> used(not_used);
+            std::vector<IRT::Trace*> traces;
+
+            while (not_used != 0) {
+                auto current_trace = new IRT::Trace();
+
+                for (size_t i = 0; i < blocks.size(); i++) {
+                    if (!used[i] && current_trace->CanContinue(blocks[i])) {
+                        current_trace->Add(blocks[i]);
+                        used[i] = true;
+                        not_used--;
+                    }
+                }
+
+                traces.push_back(current_trace);
+            }
+
+            int trace_num = 1;
+            for (auto trace : traces) {
+                IRT::PrintVisitor trace_visitor(
+                        "traces/" + func_view->first + "_trace" + std::to_string(trace_num++) + ".txt");
+                trace->Accept(&trace_visitor);
+            }
         }
     } catch (std::exception& e) {
         std::cout << RED("Compilation failed!") << std::endl;

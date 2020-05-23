@@ -86,7 +86,10 @@ set(
     irtree/visitors/double_call_eliminate_visitor.cpp
     irtree/visitors/irtemplate_visitor.cpp
     irtree/visitors/eseq_up_visitor.cpp
+    irtree/visitors/block_visitor.cpp
     irtree/nodes/expressions/eseq_expression.cpp
+    irtree/helpers/block.cpp
+    irtree/helpers/trace.cpp
     driver/driver.cpp
     visitors/print_visitor.cpp
     visitors/interpreter_visitor.cpp

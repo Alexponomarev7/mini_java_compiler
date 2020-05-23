@@ -1,0 +1,61 @@
+LabelStatement: L12
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 28
+	CallExpression: 
+		NameExpression: malloc
+		ExpressionList: 
+			ConstExpression 4
+ExpStatement:
+	CallExpression: 
+		NameExpression: test
+		ExpressionList: 
+ExpStatement:
+	CallExpression: 
+		NameExpression: print
+		ExpressionList: 
+			ConstExpression 174
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 32
+	ConstExpression 200
+ExpStatement:
+	CallExpression: 
+		NameExpression: test_with_param
+		ExpressionList: 
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 32
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 36
+	ConstExpression 1
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 40
+	ConstExpression 1
+ExpStatement:
+	CallExpression: 
+		NameExpression: sum
+		ExpressionList: 
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 36
+			MemExpression: 
+				BinopExpression: PLUS
+					TempExpression: ::fp
+					ConstExpression 40
+MoveStatement:
+	TempExpression: ::return_value
+	ConstExpression 0
+JumpStatement: done

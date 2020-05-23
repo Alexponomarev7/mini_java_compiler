@@ -1,5 +1,10 @@
 SeqStatement:
 	LabelStatement: test_with_param
-	MoveStatement:
-		TempExpression: ::return_value
-		ConstExpression 0
+	ExpStatement:
+		CallExpression: 
+			NameExpression: print
+			ExpressionList: 
+				MemExpression: 
+					BinopExpression: PLUS
+						TempExpression: ::fp
+						ConstExpression 4

@@ -1,0 +1,5 @@
+LabelStatement: test
+MoveStatement:
+	TempExpression: ::return_value
+	ConstExpression 0
+JumpStatement: done

@@ -57,88 +57,98 @@ SeqStatement:
 													ConstExpression 16
 								TempExpression: %2
 						SeqStatement:
-							MoveStatement:
-								MemExpression: 
-									BinopExpression: PLUS
-										TempExpression: ::fp
-										ConstExpression 28
-								BinopExpression: PLUS
-									ConstExpression 1
-									ConstExpression 2
+							ExpStatement:
+								EseqExpression:
+									MoveStatement:
+										TempExpression: %3
+										CallExpression: 
+											NameExpression: print
+											ExpressionList: 
+												MemExpression: 
+													BinopExpression: PLUS
+														TempExpression: ::fp
+														ConstExpression 24
+									TempExpression: %3
 							SeqStatement:
 								MoveStatement:
 									MemExpression: 
 										BinopExpression: PLUS
 											TempExpression: ::fp
 											ConstExpression 28
-									EseqExpression:
-										MoveStatement:
-											TempExpression: %3
-											CallExpression: 
-												NameExpression: get
-												ExpressionList: 
-										TempExpression: %3
+									BinopExpression: PLUS
+										ConstExpression 1
+										ConstExpression 2
 								SeqStatement:
 									MoveStatement:
 										MemExpression: 
 											BinopExpression: PLUS
 												TempExpression: ::fp
-												ConstExpression 36
-										ConstExpression 1
+												ConstExpression 28
+										EseqExpression:
+											MoveStatement:
+												TempExpression: %4
+												CallExpression: 
+													NameExpression: get
+													ExpressionList: 
+											TempExpression: %4
 									SeqStatement:
-										SeqStatement:
-											JumpConditionalStatement: EQ
-											TrueLabel: L8
-											FalseLabel: L8
-												MemExpression: 
-													BinopExpression: PLUS
-														TempExpression: ::fp
-														ConstExpression 28
-												ConstExpression 4
-											LabelStatement: L8
+										MoveStatement:
+											MemExpression: 
+												BinopExpression: PLUS
+													TempExpression: ::fp
+													ConstExpression 36
+											ConstExpression 1
 										SeqStatement:
 											SeqStatement:
-												LabelStatement: L12
+												JumpConditionalStatement: EQ
+												TrueLabel: L6
+												FalseLabel: L7
+													MemExpression: 
+														BinopExpression: PLUS
+															TempExpression: ::fp
+															ConstExpression 28
+													ConstExpression 4
 												SeqStatement:
-													JumpConditionalStatement: LT
-													TrueLabel: L9
-													FalseLabel: L11
-														MemExpression: 
-															BinopExpression: PLUS
-																TempExpression: ::fp
-																ConstExpression 36
-														ConstExpression 5
+													LabelStatement: L6
 													SeqStatement:
-														LabelStatement: L9
-														SeqStatement:
-															SeqStatement:
+														ExpStatement:
+															EseqExpression:
 																MoveStatement:
-																	MemExpression: 
-																		BinopExpression: PLUS
-																			TempExpression: ::fp
-																			ConstExpression 36
-																	BinopExpression: PLUS
-																		MemExpression: 
-																			BinopExpression: PLUS
-																				TempExpression: ::fp
-																				ConstExpression 36
-																		ConstExpression 1
-																LabelStatement: L11
-															JumpStatement: L12
+																	TempExpression: %5
+																	CallExpression: 
+																		NameExpression: print
+																		ExpressionList: 
+																			ConstExpression 111
+																TempExpression: %5
+														SeqStatement:
+															JumpStatement: L8
+															SeqStatement:
+																LabelStatement: L7
+																SeqStatement:
+																	ExpStatement:
+																		EseqExpression:
+																			MoveStatement:
+																				TempExpression: %6
+																				CallExpression: 
+																					NameExpression: print
+																					ExpressionList: 
+																						ConstExpression 112
+																			TempExpression: %6
+																	LabelStatement: L8
 											SeqStatement:
 												SeqStatement:
-													LabelStatement: L16
+													LabelStatement: L12
 													SeqStatement:
 														JumpConditionalStatement: LT
-														TrueLabel: L13
-														FalseLabel: L15
+														TrueLabel: L9
+														FalseLabel: L11
 															MemExpression: 
 																BinopExpression: PLUS
 																	TempExpression: ::fp
 																	ConstExpression 36
-															ConstExpression 10
+															ConstExpression 5
 														SeqStatement:
-															LabelStatement: L13
+															LabelStatement: L9
 															SeqStatement:
 																SeqStatement:
 																	MoveStatement:
@@ -152,94 +162,175 @@ SeqStatement:
 																					TempExpression: ::fp
 																					ConstExpression 36
 																			ConstExpression 1
-																	LabelStatement: L15
-																JumpStatement: L16
+																	JumpStatement: L12
+																LabelStatement: L11
 												SeqStatement:
-													MoveStatement:
-														MemExpression: 
-															BinopExpression: PLUS
-																TempExpression: ::fp
-																ConstExpression 40
-														EseqExpression:
-															MoveStatement:
-																TempExpression: %4
-																CallExpression: 
-																	NameExpression: malloc
-																	ExpressionList: 
-																		ConstExpression 2
-															TempExpression: %4
 													SeqStatement:
-														MoveStatement:
-															MemExpression: 
-																BinopExpression: PLUS
-																	TempExpression: ::fp
-																	ConstExpression 44
-															EseqExpression:
-																MoveStatement:
-																	TempExpression: %5
-																	CallExpression: 
-																		NameExpression: get
-																		ExpressionList: 
-																TempExpression: %5
+														LabelStatement: L16
 														SeqStatement:
-															MoveStatement:
+															JumpConditionalStatement: LT
+															TrueLabel: L13
+															FalseLabel: L15
 																MemExpression: 
 																	BinopExpression: PLUS
 																		TempExpression: ::fp
-																		ConstExpression 48
-																EseqExpression:
-																	MoveStatement:
-																		TempExpression: %6
-																		CallExpression: 
-																			NameExpression: malloc
-																			ExpressionList: 
-																				ConstExpression 1
-																	TempExpression: %6
+																		ConstExpression 36
+																ConstExpression 10
 															SeqStatement:
-																MoveStatement:
-																	MemExpression: 
-																		BinopExpression: PLUS
-																			TempExpression: ::fp
-																			ConstExpression 52
-																	EseqExpression:
-																		MoveStatement:
-																			TempExpression: %7
-																			CallExpression: 
-																				NameExpression: malloc
-																				ExpressionList: 
-																					ConstExpression 4
-																		TempExpression: %7
+																LabelStatement: L13
 																SeqStatement:
-																	MoveStatement:
-																		MemExpression: 
-																			BinopExpression: PLUS
-																				TempExpression: ::fp
-																				ConstExpression 56
-																		ConstExpression 10
 																	SeqStatement:
 																		MoveStatement:
 																			MemExpression: 
 																				BinopExpression: PLUS
 																					TempExpression: ::fp
-																					ConstExpression 60
-																			ConstExpression 5
-																		MoveStatement:
+																					ConstExpression 36
+																			BinopExpression: PLUS
+																				MemExpression: 
+																					BinopExpression: PLUS
+																						TempExpression: ::fp
+																						ConstExpression 36
+																				ConstExpression 1
+																		JumpStatement: L16
+																	LabelStatement: L15
+													SeqStatement:
+														ExpStatement:
+															EseqExpression:
+																MoveStatement:
+																	TempExpression: %7
+																	CallExpression: 
+																		NameExpression: print
+																		ExpressionList: 
 																			MemExpression: 
 																				BinopExpression: PLUS
 																					TempExpression: ::fp
-																					ConstExpression 64
+																					ConstExpression 36
+																TempExpression: %7
+														SeqStatement:
+															ExpStatement:
+																EseqExpression:
+																	MoveStatement:
+																		TempExpression: %8
+																		CallExpression: 
+																			NameExpression: print
+																			ExpressionList: 
+																				MemExpression: 
+																					BinopExpression: PLUS
+																						TempExpression: ::fp
+																						ConstExpression 28
+																	TempExpression: %8
+															SeqStatement:
+																MoveStatement:
+																	MemExpression: 
+																		BinopExpression: PLUS
+																			TempExpression: ::fp
+																			ConstExpression 40
+																	EseqExpression:
+																		MoveStatement:
+																			TempExpression: %9
+																			CallExpression: 
+																				NameExpression: malloc
+																				ExpressionList: 
+																					ConstExpression 2
+																		TempExpression: %9
+																SeqStatement:
+																	MoveStatement:
+																		MemExpression: 
+																			BinopExpression: PLUS
+																				TempExpression: ::fp
+																				ConstExpression 44
+																		EseqExpression:
+																			MoveStatement:
+																				TempExpression: %10
+																				CallExpression: 
+																					NameExpression: get
+																					ExpressionList: 
+																			TempExpression: %10
+																	SeqStatement:
+																		ExpStatement:
 																			EseqExpression:
 																				MoveStatement:
-																					TempExpression: %8
+																					TempExpression: %11
 																					CallExpression: 
-																						NameExpression: eval
+																						NameExpression: print
 																						ExpressionList: 
 																							MemExpression: 
 																								BinopExpression: PLUS
 																									TempExpression: ::fp
-																									ConstExpression 56
+																									ConstExpression 44
+																				TempExpression: %11
+																		SeqStatement:
+																			MoveStatement:
+																				MemExpression: 
+																					BinopExpression: PLUS
+																						TempExpression: ::fp
+																						ConstExpression 48
+																				EseqExpression:
+																					MoveStatement:
+																						TempExpression: %12
+																						CallExpression: 
+																							NameExpression: malloc
+																							ExpressionList: 
+																								ConstExpression 1
+																					TempExpression: %12
+																			SeqStatement:
+																				MoveStatement:
+																					MemExpression: 
+																						BinopExpression: PLUS
+																							TempExpression: ::fp
+																							ConstExpression 52
+																					EseqExpression:
+																						MoveStatement:
+																							TempExpression: %13
+																							CallExpression: 
+																								NameExpression: malloc
+																								ExpressionList: 
+																									ConstExpression 4
+																						TempExpression: %13
+																				SeqStatement:
+																					MoveStatement:
+																						MemExpression: 
+																							BinopExpression: PLUS
+																								TempExpression: ::fp
+																								ConstExpression 56
+																						ConstExpression 10
+																					SeqStatement:
+																						MoveStatement:
 																							MemExpression: 
 																								BinopExpression: PLUS
 																									TempExpression: ::fp
 																									ConstExpression 60
-																				TempExpression: %8
+																							ConstExpression 5
+																						SeqStatement:
+																							MoveStatement:
+																								MemExpression: 
+																									BinopExpression: PLUS
+																										TempExpression: ::fp
+																										ConstExpression 64
+																								EseqExpression:
+																									MoveStatement:
+																										TempExpression: %14
+																										CallExpression: 
+																											NameExpression: eval
+																											ExpressionList: 
+																												MemExpression: 
+																													BinopExpression: PLUS
+																														TempExpression: ::fp
+																														ConstExpression 56
+																												MemExpression: 
+																													BinopExpression: PLUS
+																														TempExpression: ::fp
+																														ConstExpression 60
+																									TempExpression: %14
+																							ExpStatement:
+																								EseqExpression:
+																									MoveStatement:
+																										TempExpression: %15
+																										CallExpression: 
+																											NameExpression: print
+																											ExpressionList: 
+																												MemExpression: 
+																													BinopExpression: PLUS
+																														TempExpression: ::fp
+																														ConstExpression 64
+																									TempExpression: %15

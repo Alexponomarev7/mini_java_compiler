@@ -329,8 +329,15 @@ void IrtreeBuildVisitor::Visit(MethodInvocationStatement* statement) {
 }
 
 void IrtreeBuildVisitor::Visit(PrintlnStatement* statement) {
-    // TODO: add print
-    tos_value_ = nullptr;
+    auto expression_list = new IRT::ExpressionList();
+    expression_list->Add(Accept(statement->expr_)->ToExpression());
+
+    tos_value_ = new IRT::ExpressionWrapper(
+        new IRT::CallExpression(
+            new IRT::NameExpression(IRT::Label("print")),
+            expression_list
+        )
+    );
 }
 
 void IrtreeBuildVisitor::Visit(ReturnStatement* statement) {
@@ -409,8 +416,8 @@ void IrtreeBuildVisitor::Visit(WhileStatement* statement) {
         suffix = new IRT::SeqStatement(
                 new IRT::LabelStatement(label_true),
                 new IRT::SeqStatement(
-                    new IRT::SeqStatement(true_stmt->ToStatement(), suffix),
-                    new IRT::JumpStatement(while_label)
+                    new IRT::SeqStatement(true_stmt->ToStatement(), new IRT::JumpStatement(while_label)),
+                    suffix
                 )
         );
     }
