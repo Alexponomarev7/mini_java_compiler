@@ -1,0 +1,11 @@
+L6:
+mov R114, ebp
+mov R115, #8
+add R113, R114, R115
+mov R118, ebp
+mov R119, #8
+add R117, R118, R119
+mov R120, #1
+sub R116, [R117], R120
+mov R116, [R113]
+jmp L9

@@ -16,6 +16,8 @@ namespace IRT {
     };
 
     std::string ToString(LogicOperatorType type);
+
+    std::string SuffixAsm(LogicOperatorType type);
 }
 
 #endif //COMPILER_LOGIC_OPERATOR_TYPE_H

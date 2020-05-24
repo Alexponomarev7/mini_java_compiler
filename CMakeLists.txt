@@ -58,6 +58,7 @@ set(
     SOURCES
     irtree/generators/label.cpp
     irtree/generators/temporary.cpp
+    irtree/generators/registry.cpp
     irtree/tree_wrapper/expression_wrapper.cpp
     irtree/nodes/statements/exp_statement.cpp
     irtree/nodes/expressions/const_expression.cpp
@@ -87,6 +88,7 @@ set(
     irtree/visitors/irtemplate_visitor.cpp
     irtree/visitors/eseq_up_visitor.cpp
     irtree/visitors/block_visitor.cpp
+    irtree/visitors/asm_visitor.cpp
     irtree/nodes/expressions/eseq_expression.cpp
     irtree/helpers/block.cpp
     irtree/helpers/trace.cpp

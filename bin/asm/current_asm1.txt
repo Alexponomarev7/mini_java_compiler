@@ -1,0 +1,29 @@
+current:
+mov R8, ebp
+mov R9, #8
+add R7, R8, R9
+mov R10, #1
+mov R10, [R7]
+mov R12, ebp
+mov R13, #12
+add R11, R12, R13
+mov R14, #1
+mov R14, [R11]
+mov R16, ebp
+mov R17, #16
+add R15, R16, R17
+mov R19, ebp
+mov R20, #8
+add R18, R19, R20
+push [R18]
+mov R22, ebp
+mov R23, #12
+add R21, R22, R23
+push [R21]
+call sum
+mov [R21], [R15]
+mov R26, ebp
+mov R27, #16
+add R25, R26, R27
+mov [R25], ::return_value
+jmp done

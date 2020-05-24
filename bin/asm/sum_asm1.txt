@@ -1,0 +1,10 @@
+sum:
+mov R36, ebp
+mov R37, #4
+add R35, R36, R37
+mov R39, ebp
+mov R40, #8
+add R38, R39, R40
+add R34, [R35], [R38]
+mov R34, ::return_value
+jmp done

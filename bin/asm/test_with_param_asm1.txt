@@ -1,0 +1,7 @@
+test_with_param:
+mov R30, ebp
+mov R31, #4
+add R29, R30, R31
+push [R29]
+call print
+jmp done

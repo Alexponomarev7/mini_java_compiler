@@ -1,0 +1,5 @@
+set:
+mov R4, ebp
+mov R5, #1
+mov R5, [R4]
+jmp done

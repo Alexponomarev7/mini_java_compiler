@@ -2,6 +2,7 @@
 #include <irtree/visitors/double_call_eliminate_visitor.h>
 #include <irtree/visitors/eseq_up_visitor.h>
 #include <irtree/visitors/block_visitor.h>
+#include <irtree/visitors/asm_visitor.h>
 #include "driver/driver.hh"
 #include "parser/parser.hh"
 
@@ -129,8 +130,12 @@ int Driver::Evaluate() {
             int trace_num = 1;
             for (auto trace : traces) {
                 IRT::PrintVisitor trace_visitor(
-                        "traces/" + func_view->first + "_trace" + std::to_string(trace_num++) + ".txt");
+                        "traces/" + func_view->first + "_trace" + std::to_string(trace_num) + ".txt");
                 trace->Accept(&trace_visitor);
+
+                IRT::AsmVisitor asm_visitor(
+                        "asm/" + func_view->first + "_asm" + std::to_string(trace_num++) + ".txt");
+                trace->Accept(&asm_visitor);
             }
         }
     } catch (std::exception& e) {

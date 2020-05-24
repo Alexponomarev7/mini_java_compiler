@@ -12,3 +12,16 @@ std::string IRT::ToString(IRT::LogicOperatorType type) {
             return "GT";
     }
 }
+
+std::string IRT::SuffixAsm(IRT::LogicOperatorType type) {
+    switch (type) {
+        case LogicOperatorType::EQ:
+            return "e";
+        case LogicOperatorType::NE:
+            return "ne";
+        case LogicOperatorType::LT:
+            return "le";
+        case LogicOperatorType::GT:
+            return "ge";
+    }
+}

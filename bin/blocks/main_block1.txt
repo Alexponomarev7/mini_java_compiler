@@ -4,79 +4,24 @@ MoveStatement:
 		BinopExpression: PLUS
 			TempExpression: ::fp
 			ConstExpression 4
-	ConstExpression 1
+	ConstExpression 218
 MoveStatement:
 	MemExpression: 
 		BinopExpression: PLUS
 			TempExpression: ::fp
 			ConstExpression 8
-	CallExpression: 
-		NameExpression: malloc
-		ExpressionList: 
-			ConstExpression 1
+	ConstExpression 129
 MoveStatement:
 	MemExpression: 
 		BinopExpression: PLUS
 			TempExpression: ::fp
 			ConstExpression 12
-	ConstExpression 2
-MoveStatement:
+	ConstExpression 1123
+JumpConditionalStatement: NE
+TrueLabel: L0
+FalseLabel: L1
 	MemExpression: 
 		BinopExpression: PLUS
 			TempExpression: ::fp
 			ConstExpression 16
-	ConstExpression 3
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 24
-	CallExpression: 
-		NameExpression: add
-		ExpressionList: 
-			MemExpression: 
-				BinopExpression: PLUS
-					TempExpression: ::fp
-					ConstExpression 12
-			MemExpression: 
-				BinopExpression: PLUS
-					TempExpression: ::fp
-					ConstExpression 16
-ExpStatement:
-	CallExpression: 
-		NameExpression: print
-		ExpressionList: 
-			MemExpression: 
-				BinopExpression: PLUS
-					TempExpression: ::fp
-					ConstExpression 24
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 28
-	BinopExpression: PLUS
-		ConstExpression 1
-		ConstExpression 2
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 28
-	CallExpression: 
-		NameExpression: get
-		ExpressionList: 
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 36
-	ConstExpression 1
-JumpConditionalStatement: EQ
-TrueLabel: L6
-FalseLabel: L7
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 28
-	ConstExpression 4
+	ConstExpression 0

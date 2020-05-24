@@ -10,4 +10,5 @@ namespace IRT {
 
     template int IrTemplateVisitor<int>::Accept(BaseElement* element);
     template IrtStorage IrTemplateVisitor<IrtStorage>::Accept(IRT::BaseElement *element);
+    template Registry IrTemplateVisitor<Registry>::Accept(BaseElement *element);
 }

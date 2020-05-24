@@ -1,13 +1,2 @@
-LabelStatement: L13
-MoveStatement:
-	MemExpression: 
-		BinopExpression: PLUS
-			TempExpression: ::fp
-			ConstExpression 36
-	BinopExpression: PLUS
-		MemExpression: 
-			BinopExpression: PLUS
-				TempExpression: ::fp
-				ConstExpression 36
-		ConstExpression 1
-JumpStatement: L16
+LabelStatement: L8
+JumpStatement: L13

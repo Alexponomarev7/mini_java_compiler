@@ -1,0 +1,11 @@
+L10:
+mov R123, ebp
+mov R124, #8
+add R122, R123, R124
+mov R127, ebp
+mov R128, #8
+add R126, R127, R128
+mov R129, #1
+sub R125, [R126], R129
+mov R125, [R122]
+jmp L13

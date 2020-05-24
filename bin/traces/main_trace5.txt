@@ -1,4 +1,4 @@
-LabelStatement: L6
+LabelStatement: L10
 MoveStatement:
 	MemExpression: 
 		BinopExpression: PLUS
@@ -10,4 +10,4 @@ MoveStatement:
 				TempExpression: ::fp
 				ConstExpression 8
 		ConstExpression 1
-JumpStatement: L9
+JumpStatement: L13

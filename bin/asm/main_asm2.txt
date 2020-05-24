@@ -1,0 +1,7 @@
+L0:
+mov R104, ebp
+mov R105, #20
+add R103, R104, R105
+mov R106, #1234
+mov R106, [R103]
+jmp L2

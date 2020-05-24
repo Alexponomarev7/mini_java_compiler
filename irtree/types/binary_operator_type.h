@@ -15,6 +15,8 @@ namespace IRT {
     };
 
     std::string ToString(BinaryOperatorType type);
+
+    std::string OperatorAsm(BinaryOperatorType type);
 }
 
 

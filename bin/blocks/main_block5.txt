@@ -1,9 +1,8 @@
-LabelStatement: L12
-JumpConditionalStatement: LT
-TrueLabel: L9
-FalseLabel: L11
+LabelStatement: L3
+MoveStatement:
 	MemExpression: 
 		BinopExpression: PLUS
 			TempExpression: ::fp
-			ConstExpression 36
-	ConstExpression 5
+			ConstExpression 8
+	ConstExpression 140
+JumpStatement: L5

@@ -4,6 +4,7 @@
 
 #include "visitor.h"
 #include "../nodes/base_element.h"
+#include "irtree/generators/registry.h"
 
 namespace IRT {
     template<typename T>

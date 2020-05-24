@@ -1,0 +1,4 @@
+test:
+mov R2, #0
+mov R2, ::return_value
+jmp done

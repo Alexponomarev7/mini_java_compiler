@@ -1,7 +1,8 @@
-LabelStatement: L6
-ExpStatement:
-	CallExpression: 
-		NameExpression: print
-		ExpressionList: 
-			ConstExpression 111
-JumpStatement: L8
+LabelStatement: L0
+MoveStatement:
+	MemExpression: 
+		BinopExpression: PLUS
+			TempExpression: ::fp
+			ConstExpression 20
+	ConstExpression 1234
+JumpStatement: L2

@@ -18,3 +18,20 @@ std::string IRT::ToString(BinaryOperatorType type) {
     }
 }
 
+std::string IRT::OperatorAsm(BinaryOperatorType type) {
+    switch (type) {
+        case BinaryOperatorType::PLUS:
+            return "add";
+        case BinaryOperatorType::MINUS:
+            return "sub";
+        case BinaryOperatorType::MUL:
+            return "mul";
+        case BinaryOperatorType::DIV:
+            return "div";
+        case BinaryOperatorType::AND:
+            assert(false);
+        case BinaryOperatorType::OR:
+            assert(false);
+    }
+}
+

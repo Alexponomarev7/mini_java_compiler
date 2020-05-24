@@ -1,0 +1,98 @@
+main:
+mov R43, ebp
+mov R44, #4
+add R42, R43, R44
+mov R45, #218
+mov R45, [R42]
+mov R47, ebp
+mov R48, #8
+add R46, R47, R48
+mov R49, #129
+mov R49, [R46]
+mov R51, ebp
+mov R52, #12
+add R50, R51, R52
+mov R53, #1123
+mov R53, [R50]
+mov R55, ebp
+mov R56, #16
+add R54, R55, R56
+mov R57, #0
+cmp [R54], R57
+jne L0
+L1:
+mov R59, ebp
+mov R60, #24
+add R58, R59, R60
+mov R61, #4321
+mov R61, [R58]
+jmp L2
+L2:
+mov R63, ebp
+mov R64, #8
+add R62, R63, R64
+mov R65, #500
+cmp [R62], R65
+jge L3
+L5:
+jmp L9
+L9:
+mov R67, ebp
+mov R68, #8
+add R66, R67, R68
+mov R69, #500
+cmp [R66], R69
+jge L6
+L8:
+jmp L13
+L13:
+mov R71, ebp
+mov R72, #8
+add R70, R71, R72
+mov R73, #500
+cmp [R70], R73
+jge L10
+L12:
+mov R75, ebp
+mov R76, #28
+add R74, R75, R76
+mov R77, #4
+push R77
+call malloc
+mov R77, [R74]
+call test
+mov R78, #174
+push R78
+call print
+mov R80, ebp
+mov R81, #32
+add R79, R80, R81
+mov R82, #200
+mov R82, [R79]
+mov R84, ebp
+mov R85, #32
+add R83, R84, R85
+push [R83]
+call test_with_param
+mov R87, ebp
+mov R88, #36
+add R86, R87, R88
+mov R89, #1
+mov R89, [R86]
+mov R91, ebp
+mov R92, #40
+add R90, R91, R92
+mov R93, #1
+mov R93, [R90]
+mov R95, ebp
+mov R96, #36
+add R94, R95, R96
+push [R94]
+mov R98, ebp
+mov R99, #40
+add R97, R98, R99
+push [R97]
+call sum
+mov R101, #0
+mov R101, ::return_value
+jmp done
